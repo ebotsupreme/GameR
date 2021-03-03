@@ -1,2 +1,2 @@
-# GameR
-Video Game Review App
+# What To Eat
+Recipe App
