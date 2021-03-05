@@ -24,6 +24,10 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import { firebase } from '@react-native-firebase/crashlytics';
+
+const defaultAppCrashlytics = firebase.crashlytics();
+
 const App: () => React$Node = () => {
   return (
     <>
