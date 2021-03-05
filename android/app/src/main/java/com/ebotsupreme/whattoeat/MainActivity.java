@@ -1,4 +1,4 @@
-package com.whattoeat;
+package com.ebotsupreme.whattoeat;
 
 import com.facebook.react.ReactActivity;
 
