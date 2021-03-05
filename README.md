@@ -3,6 +3,8 @@ Recipe App
 
 Check out recipes. Favorite them to your account. Upload your own. Share with others.
 
-db diagram: https://dbdiagram.io/d/60411ebffcdcb6230b22a19b
+DB & Architecture Overview: https://docs.google.com/document/d/18IbMFXMdWJ5EdLdoYN-etpzDrKFTvFi1akGn6ktINP4/edit?usp=sharing
 
-api: https://developer.edamam.com/
+DB diagram: https://dbdiagram.io/d/60411ebffcdcb6230b22a19b
+
+API: https://developer.edamam.com/
