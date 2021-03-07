@@ -1,13 +1,12 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 
-const Home = ({ navigation }) => {
+const Details = ({ navigation }) => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button onPress={() => navigation.navigate('Modal')} title="Open Modal" />
+      <Text>Details Screen</Text>
     </View>
   );
 };
 
-export default Home;
+export default Details;

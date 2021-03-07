@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const Recipe = () => {
+const SavedRecipes = () => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Recipe Screen</Text>
+      <Text>My Saved Recipes Screen</Text>
     </View>
   );
 };
 
-export default Recipe;
+export default SavedRecipes;
