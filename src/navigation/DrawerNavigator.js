@@ -7,7 +7,7 @@ import BottomTabNavigator from './TabNavigator';
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => (
-  <Drawer.Navigator>
+  <Drawer.Navigator drawerPosition="right" initialRouteName="Feed">
     <Drawer.Screen name="Feed" component={BottomTabNavigator} />
     <Drawer.Screen name="Saved Recipes" component={SavedRecipeStackNavigator} />
   </Drawer.Navigator>

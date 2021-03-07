@@ -40,7 +40,11 @@ const MainStackNavigator = () => (
 
 const SavedRecipeStackNavigator = () => (
   <Stack.Navigator screenOptions={screenOptionStyle}>
-    <Stack.Screen name="Saved Recipes" component={SavedRecipes} />
+    <Stack.Screen
+      name="Saved Recipes"
+      component={SavedRecipes}
+      options={optionStyle}
+    />
   </Stack.Navigator>
 );
 
