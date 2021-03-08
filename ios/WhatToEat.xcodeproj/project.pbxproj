@@ -18,6 +18,7 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* WhatToEatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* WhatToEatTests.m */; };
 		550CB38F25F2A44F00F95BC6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 550CB38E25F2A44F00F95BC6 /* GoogleService-Info.plist */; };
+		55B10AB325F455A000D3A96A /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 55B10AB225F455A000D3A96A /* FontAwesome.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		82741F29CDEBC3B2C3F7D704 /* libPods-WhatToEat-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73B1744A7977D1D45324D773 /* libPods-WhatToEat-tvOSTests.a */; };
 		863F22A866416D3BB5ACFE01 /* libPods-WhatToEat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B70CD1C3AFF9D2F9F754163C /* libPods-WhatToEat.a */; };
@@ -59,6 +60,7 @@
 		2D02E47B1E0B4A5D006451C7 /* WhatToEat-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WhatToEat-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* WhatToEat-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WhatToEat-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		550CB38E25F2A44F00F95BC6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		55B10AB225F455A000D3A96A /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		707DD155C5F14305E550FA38 /* Pods-WhatToEat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatToEat.release.xcconfig"; path = "Target Support Files/Pods-WhatToEat/Pods-WhatToEat.release.xcconfig"; sourceTree = "<group>"; };
 		73B1744A7977D1D45324D773 /* libPods-WhatToEat-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WhatToEat-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = WhatToEat/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 		13B07FAE1A68108700A75B9A /* WhatToEat */ = {
 			isa = PBXGroup;
 			children = (
+				55B10AB225F455A000D3A96A /* FontAwesome.ttf */,
 				550CB38E25F2A44F00F95BC6 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -350,6 +353,7 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				550CB38F25F2A44F00F95BC6 /* GoogleService-Info.plist in Resources */,
+				55B10AB325F455A000D3A96A /* FontAwesome.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
