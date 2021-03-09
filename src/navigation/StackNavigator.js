@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import Feed from '../screens/Feed';
 import Details from '../screens/Details';
@@ -22,13 +23,17 @@ const screenOptionStyle = {
 
 const optionStyle = {
   headerTitle: (props) => <Logo {...props} />,
-  headerRight: () => (
+  headerRight: (props) => (
+    /**
+     * TODO add react native paper and make this an icon
+     */
     <Button
       onPress={() => alert('This is a button!')}
-      title="Sign In"
-      color="#FF7900"
+      title="Chrome Cast"
+      color="#35b9c0"
     />
   ),
+  headerTitleAlign: 'left',
 };
 
 const MainStackNavigator = () => (

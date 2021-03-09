@@ -6,7 +6,7 @@ const Logo = () => {
     <View>
       <Image
         style={styles.logo}
-        source={require('../../assets/chefHatLogo.jpg')}
+        source={require('../../assets/chefLogo.png')}
       />
     </View>
   );
