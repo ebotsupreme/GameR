@@ -28,11 +28,17 @@ const BottomTabNavigator = () => (
           <Icon
             name={iconName}
             size={20}
-            color={focused ? '#FF7900' : 'grey'}
+            color={focused ? 'white' : '#d3d3d3'}
           />
         );
       },
-    })}>
+    })}
+    tabBarOptions={{
+      labelStyle: { fontSize: 14, fontWeight: '600' },
+      style: { backgroundColor: '#35b9c0' },
+      activeTintColor: 'white',
+      inactiveTintColor: '#d3d3d3',
+    }}>
     <Tab.Screen name="Feed" component={MainStackNavigator} />
     <Tab.Screen name="Saved Recipes" component={SavedRecipeStackNavigator} />
   </Tab.Navigator>
