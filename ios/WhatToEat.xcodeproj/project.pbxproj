@@ -60,6 +60,7 @@
 		2D02E4901E0B4A5D006451C7 /* WhatToEat-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WhatToEat-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		550CB38E25F2A44F00F95BC6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		55B10AB225F455A000D3A96A /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		55B10C5C25F83E8B00D3A96A /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		707DD155C5F14305E550FA38 /* Pods-WhatToEat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatToEat.release.xcconfig"; path = "Target Support Files/Pods-WhatToEat/Pods-WhatToEat.release.xcconfig"; sourceTree = "<group>"; };
 		73B1744A7977D1D45324D773 /* libPods-WhatToEat-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WhatToEat-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = WhatToEat/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -128,6 +129,7 @@
 		13B07FAE1A68108700A75B9A /* WhatToEat */ = {
 			isa = PBXGroup;
 			children = (
+				55B10C5C25F83E8B00D3A96A /* MaterialCommunityIcons.ttf */,
 				55B10AB225F455A000D3A96A /* FontAwesome.ttf */,
 				550CB38E25F2A44F00F95BC6 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
