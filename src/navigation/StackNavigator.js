@@ -35,8 +35,7 @@ const optionStyle = (colors) => {
         onPress={() => alert('This is a button!')}
         title="Chrome Cast"
         color="#35b9c0"
-        // mode="outline"
-        icon="cast"
+        icon="cast" // cast-connected
       />
     ),
     headerTitleAlign: 'left',
