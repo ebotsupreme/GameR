@@ -1,13 +1,12 @@
 import React from 'react';
 import { Button } from 'react-native-paper';
 import { createStackNavigator } from '@react-navigation/stack';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { useTheme } from 'react-native-paper';
+import { useTheme, IconButton } from 'react-native-paper';
 
 import Feed from '../screens/Feed';
 import Details from '../screens/Details';
-import Logo from '../common/components/Logo';
 import SavedRecipes from '../screens/SavedRecipes';
+import HeaderNavigator from '../navigation/HeaderNavigator';
 
 const Stack = createStackNavigator();
 
@@ -26,16 +25,13 @@ const screenOptionStyle = (colors) => {
 
 const optionStyle = (colors) => {
   return {
-    headerTitle: (props) => <Logo {...props} />,
+    headerTitle: (props) => <HeaderNavigator {...props} />,
     headerRight: (props) => (
-      /**
-       * TODO add react native paper and make this an icon
-       */
-      <Button
-        onPress={() => alert('This is a button!')}
-        title="Chrome Cast"
-        color="#35b9c0"
-        icon="cast" // cast-connected
+      <IconButton
+        icon="cast"
+        color={colors.colors.primary}
+        size={20}
+        onPress={() => console.log('pressed', colors.colors.primary)}
       />
     ),
     headerTitleAlign: 'left',
@@ -63,7 +59,7 @@ const SavedRecipeStackNavigator = () => {
       <Stack.Screen
         name="Saved Recipes"
         component={SavedRecipes}
-        options={optionStyle}
+        options={optionStyle(colors)}
       />
     </Stack.Navigator>
   );
