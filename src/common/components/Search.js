@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Platform } from 'react-native';
-import { Text, Searchbar } from 'react-native-paper';
+import { StyleSheet, Platform } from 'react-native';
+import { Searchbar } from 'react-native-paper';
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -14,19 +14,27 @@ const Search = () => {
       onChangeText={onChangeSearch}
       value={searchQuery}
       style={styles.container}
+      inputStyle={styles.searchInput}
+      textAlign={'center'}
     />
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width: 260,
-    height: Platform.OS === 'ios' ? 35 : 'auto',
+    flex: 1,
+    height: Platform.OS === 'ios' ? 35 : 35,
     justifyContent: 'center',
     alignSelf: 'center',
     shadowColor: 'transparent',
     elevation: 0,
     alignItems: 'center',
+    backgroundColor: '#f5f5f5',
+    borderRadius: 20,
+    marginLeft: 10,
+  },
+  searchInput: {
+    paddingVertical: 0,
   },
 });
 

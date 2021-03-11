@@ -3,7 +3,7 @@ import { Image, StyleSheet, View } from 'react-native';
 
 const Logo = () => {
   return (
-    <View style={{ justifyContent: 'center' }}>
+    <View style={styles.container}>
       <Image
         style={styles.logo}
         source={require('../../assets/chefLogo.png')}
@@ -13,6 +13,9 @@ const Logo = () => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+  },
   logo: {
     width: 40,
     height: 40,
