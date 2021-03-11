@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 
 const Search = () => {
@@ -23,7 +23,7 @@ const Search = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: Platform.OS === 'ios' ? 35 : 35,
+    height: 35,
     justifyContent: 'center',
     alignSelf: 'center',
     shadowColor: 'transparent',
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     paddingVertical: 0,
+    fontSize: 16,
   },
 });
 
