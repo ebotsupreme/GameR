@@ -21,9 +21,21 @@ const theme = {
     // placeholder: '',
     // backdrop: '',
   },
-  // fonts: {
-
-  // }
+  fonts: {
+    ...DefaultTheme.fonts,
+    airbnbCereal: {
+      black: 'AirbnbCerealApp-Black',
+      light: 'AirbnbCerealApp-Light',
+      medium: 'AirbnbCerealApp-Medium',
+      bold: 'AirbnbCerealApp-Bold',
+    },
+    openSans: {
+      light: 'OpenSans-Light',
+      regular: 'OpenSans-Regular',
+      semiBold: 'OpenSans-SemiBold',
+      bold: 'OpenSans-Bold',
+    },
+  },
 };
 
 /**
