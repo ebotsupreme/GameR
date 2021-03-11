@@ -25,10 +25,7 @@ const Search = () => {
       onChangeText={onChangeSearch}
       value={searchQuery}
       style={styles.container}
-      inputStyle={[
-        styles.searchInput,
-        // { fontFamily: fonts.airbnbCereal.light },
-      ]}
+      inputStyle={styles.searchInput}
       textAlign={'center'}
       onFocus={() => onFocusSearch()}
     />

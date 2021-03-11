@@ -33,7 +33,9 @@ const BottomTabNavigator = () => {
               name={iconName}
               size={20}
               color={focused ? colors.active : colors.disabled}
-              style={fonts.airbnbCereal.bold}
+              style={
+                focused ? fonts.airbnbCereal.bold : fonts.airbnbCereal.light
+              }
             />
           );
         },

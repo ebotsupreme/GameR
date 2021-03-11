@@ -22,7 +22,22 @@ const theme = {
     // backdrop: '',
   },
   fonts: {
-    ...DefaultTheme.fonts,
+    regular: {
+      fontFamily: 'AirbnbCerealApp-Medium',
+      fontWeight: '400',
+    },
+    medium: {
+      fontFamily: 'AirbnbCerealApp-Medium',
+      fontWeight: '500',
+    },
+    light: {
+      fontFamily: 'AirbnbCerealApp-Light',
+      fontWeight: '300',
+    },
+    thin: {
+      fontFamily: 'OpenSans-Light',
+      fontWeight: '100',
+    },
     airbnbCereal: {
       black: 'AirbnbCerealApp-Black',
       light: 'AirbnbCerealApp-Light',
