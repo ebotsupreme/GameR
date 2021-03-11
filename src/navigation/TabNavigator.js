@@ -18,6 +18,7 @@ const BottomTabNavigator = () => {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
+          const fontFamily = Icon.getFontFamily();
 
           switch (route.name) {
             case 'Feed':
@@ -27,14 +28,18 @@ const BottomTabNavigator = () => {
               iconName = 'heart';
               break;
           }
-
+          /**
+           * TODO fontFamily not working. Default FontAwesome being used.
+           */
           return (
             <Icon
               name={iconName}
               size={20}
               color={focused ? colors.active : colors.disabled}
               style={
-                focused ? fonts.airbnbCereal.bold : fonts.airbnbCereal.light
+                focused
+                  ? { fontFamily: 'AirbnbCerealApp-Black' }
+                  : { fontFamily: 'OpenSans-Light' }
               }
             />
           );

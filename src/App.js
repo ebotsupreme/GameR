@@ -21,9 +21,17 @@ const theme = {
     // placeholder: '',
     // backdrop: '',
   },
+  /**
+   * Circular Air Pro is the main Airbnb typeface.
+   * Its three main weights are light, bold, and black.
+   * Use light for paragraphs and subheads,
+   * black or bold for titles,
+   * and bold for special moments.
+   *
+   */
   fonts: {
     regular: {
-      fontFamily: 'AirbnbCerealApp-Medium',
+      fontFamily: 'AirbnbCerealApp-Light',
       fontWeight: '400',
     },
     medium: {
@@ -35,7 +43,7 @@ const theme = {
       fontWeight: '300',
     },
     thin: {
-      fontFamily: 'OpenSans-Light',
+      fontFamily: 'AirbnbCerealApp-Light',
       fontWeight: '100',
     },
     airbnbCereal: {

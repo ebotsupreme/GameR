@@ -17,15 +17,13 @@ const Search = () => {
     navigation.navigate('Search Recipes');
   };
 
-  console.log('fonts', fonts);
-
   return (
     <Searchbar
       placeholder={searchPlaceholder}
       onChangeText={onChangeSearch}
       value={searchQuery}
       style={styles.container}
-      inputStyle={styles.searchInput}
+      inputStyle={[styles.searchInput, fonts.medium]}
       textAlign={'center'}
       onFocus={() => onFocusSearch()}
     />
