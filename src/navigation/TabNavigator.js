@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useTheme } from 'react-native-paper';
@@ -11,13 +12,13 @@ import {
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
-  const { colors } = useTheme();
-
+  const { colors, fonts } = useTheme();
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
+          const fontFamily = Icon.getFontFamily();
 
           switch (route.name) {
             case 'Feed':
@@ -27,12 +28,19 @@ const BottomTabNavigator = () => {
               iconName = 'heart';
               break;
           }
-
+          /**
+           * TODO fontFamily not working. Default FontAwesome being used.
+           */
           return (
             <Icon
               name={iconName}
               size={20}
               color={focused ? colors.active : colors.disabled}
+              style={
+                focused
+                  ? { fontFamily: 'AirbnbCerealApp-Black' }
+                  : { fontFamily: 'OpenSans-Light' }
+              }
             />
           );
         },
@@ -48,5 +56,11 @@ const BottomTabNavigator = () => {
     </Tab.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  tabText: {
+    fontFamily: 'AirbnbCerealBold',
+  },
+});
 
 export default BottomTabNavigator;

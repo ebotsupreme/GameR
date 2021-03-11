@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
+import { useTheme } from 'react-native-paper';
 
 const Details = ({ navigation }) => {
+  const { fonts } = useTheme();
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
+      <Text style={fonts.light}>Details Screen</Text>
     </View>
   );
 };
