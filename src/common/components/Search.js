@@ -11,7 +11,6 @@ const Search = () => {
   const onChangeSearch = (query) => setSearchQuery(query);
 
   const onFocusSearch = () => {
-    console.log('onFocusSearch navigation', navigation);
     navigation.navigate('Search Recipes');
   };
 
