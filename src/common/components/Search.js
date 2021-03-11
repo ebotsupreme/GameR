@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { Searchbar } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchPlaceholder, setSearchPlaceholder] = useState('Search Recipes');
 
+  const navigation = useNavigation();
   const onChangeSearch = (query) => setSearchQuery(query);
+
+  const onFocusSearch = () => {
+    console.log('onFocusSearch navigation', navigation);
+    navigation.navigate('Search Recipes');
+  };
 
   return (
     <Searchbar
@@ -16,6 +23,7 @@ const Search = () => {
       style={styles.container}
       inputStyle={styles.searchInput}
       textAlign={'center'}
+      onFocus={() => onFocusSearch()}
     />
   );
 };

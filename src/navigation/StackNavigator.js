@@ -1,12 +1,13 @@
 import React from 'react';
-import { Button } from 'react-native-paper';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useTheme, IconButton } from 'react-native-paper';
+
+import HeaderNavigator from '../navigation/HeaderNavigator';
 
 import Feed from '../screens/Feed';
 import Details from '../screens/Details';
 import SavedRecipes from '../screens/SavedRecipes';
-import HeaderNavigator from '../navigation/HeaderNavigator';
+import SearchRecipes from '../screens/SearchRecipes';
 
 const Stack = createStackNavigator();
 
@@ -48,6 +49,11 @@ const MainStackNavigator = () => {
         options={optionStyle(colors)}
       />
       <Stack.Screen name="Details" component={Details} />
+      <Stack.Screen
+        name="Search Recipes"
+        component={SearchRecipes}
+        options={optionStyle(colors)}
+      />
     </Stack.Navigator>
   );
 };
