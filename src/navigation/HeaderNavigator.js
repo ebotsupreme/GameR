@@ -1,9 +1,12 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import Logo from '../common/components/Logo';
-import Search from '../common/components/Search';
+import { Logo, Search } from '../common/components/index';
 
+/**
+ *
+ * @param {{}} props
+ */
 const HeaderNavigator = (props) => (
   <View style={styles.container}>
     <Logo {...props} style={styles.flexOne} />

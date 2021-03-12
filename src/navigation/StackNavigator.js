@@ -2,15 +2,15 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useTheme, IconButton } from 'react-native-paper';
 
-import HeaderNavigator from '../navigation/HeaderNavigator';
+import { HeaderNavigator } from '../navigation/index';
 
-import Feed from '../screens/Feed';
-import Details from '../screens/Details';
-import SavedRecipes from '../screens/SavedRecipes';
-import SearchRecipes from '../screens/SearchRecipes';
+import { Feed, Details, SavedRecipes, SearchRecipes } from '../screens/index';
 
 const Stack = createStackNavigator();
-
+/**
+ *
+ * @param {{}} colors
+ */
 const screenOptionStyle = (colors) => {
   return {
     headerTitleStyle: {
@@ -23,7 +23,10 @@ const screenOptionStyle = (colors) => {
     // headerBackTitle: 'Back',
   };
 };
-
+/**
+ *
+ * @param {{}} colors
+ */
 const optionStyle = (colors) => {
   return {
     headerTitle: (props) => <HeaderNavigator {...props} />,
@@ -38,7 +41,9 @@ const optionStyle = (colors) => {
     headerTitleAlign: 'left',
   };
 };
-
+/**
+ *
+ */
 const MainStackNavigator = () => {
   const colors = useTheme();
   return (
@@ -57,7 +62,9 @@ const MainStackNavigator = () => {
     </Stack.Navigator>
   );
 };
-
+/**
+ *
+ */
 const SavedRecipeStackNavigator = () => {
   const colors = useTheme();
   return (

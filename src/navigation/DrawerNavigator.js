@@ -1,11 +1,12 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import { SavedRecipeStackNavigator } from './StackNavigator';
-import BottomTabNavigator from './TabNavigator';
+import { SavedRecipeStackNavigator, BottomTabNavigator } from './index';
 
 const Drawer = createDrawerNavigator();
-
+/**
+ *
+ */
 const DrawerNavigator = () => (
   <Drawer.Navigator drawerPosition="right" initialRouteName="Feed">
     {/* TODO replace this with account section or remove */}

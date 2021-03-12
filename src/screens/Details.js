@@ -1,7 +1,11 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
+/**
+ *
+ * @param {{}} navigation
+ */
 const Details = ({ navigation }) => {
   const { fonts } = useTheme();
   return (
