@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
-const searchRecipes = ({ navigation }) => {
+const SearchRecipes = ({ navigation }) => {
   const { fonts } = useTheme();
 
   /**
@@ -17,4 +17,4 @@ const searchRecipes = ({ navigation }) => {
   );
 };
 
-export default searchRecipes;
+export default SearchRecipes;

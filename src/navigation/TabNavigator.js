@@ -4,10 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useTheme } from 'react-native-paper';
 
-import {
-  MainStackNavigator,
-  SavedRecipeStackNavigator,
-} from './StackNavigator';
+import { MainStackNavigator, SavedRecipeStackNavigator } from './index';
 
 const Tab = createBottomTabNavigator();
 

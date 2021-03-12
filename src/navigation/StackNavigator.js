@@ -2,12 +2,9 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useTheme, IconButton } from 'react-native-paper';
 
-import HeaderNavigator from '../navigation/HeaderNavigator';
+import { HeaderNavigator } from '../navigation/index';
 
-import Feed from '../screens/Feed';
-import Details from '../screens/Details';
-import SavedRecipes from '../screens/SavedRecipes';
-import SearchRecipes from '../screens/SearchRecipes';
+import { Feed, Details, SavedRecipes, SearchRecipes } from '../screens/index';
 
 const Stack = createStackNavigator();
 

@@ -1,8 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import Logo from '../common/components/Logo';
-import Search from '../common/components/Search';
+import { Logo, Search } from '../common/components/index';
 
 const HeaderNavigator = (props) => (
   <View style={styles.container}>

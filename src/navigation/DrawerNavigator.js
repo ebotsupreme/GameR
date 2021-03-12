@@ -1,8 +1,7 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import { SavedRecipeStackNavigator } from './StackNavigator';
-import BottomTabNavigator from './TabNavigator';
+import { SavedRecipeStackNavigator, BottomTabNavigator } from './index';
 
 const Drawer = createDrawerNavigator();
 
