@@ -7,7 +7,9 @@ import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { DrawerNavigator } from './navigation/index';
 
 const defaultAppCrashlytics = firebase.crashlytics();
-
+/**
+ *
+ */
 const theme = {
   ...DefaultTheme,
   colors: {
@@ -60,7 +62,6 @@ const theme = {
     },
   },
 };
-
 /**
  *
  */

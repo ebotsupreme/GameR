@@ -7,7 +7,10 @@ import { HeaderNavigator } from '../navigation/index';
 import { Feed, Details, SavedRecipes, SearchRecipes } from '../screens/index';
 
 const Stack = createStackNavigator();
-
+/**
+ *
+ * @param {{}} colors
+ */
 const screenOptionStyle = (colors) => {
   return {
     headerTitleStyle: {
@@ -20,7 +23,10 @@ const screenOptionStyle = (colors) => {
     // headerBackTitle: 'Back',
   };
 };
-
+/**
+ *
+ * @param {{}} colors
+ */
 const optionStyle = (colors) => {
   return {
     headerTitle: (props) => <HeaderNavigator {...props} />,
@@ -35,7 +41,9 @@ const optionStyle = (colors) => {
     headerTitleAlign: 'left',
   };
 };
-
+/**
+ *
+ */
 const MainStackNavigator = () => {
   const colors = useTheme();
   return (
@@ -54,7 +62,9 @@ const MainStackNavigator = () => {
     </Stack.Navigator>
   );
 };
-
+/**
+ *
+ */
 const SavedRecipeStackNavigator = () => {
   const colors = useTheme();
   return (

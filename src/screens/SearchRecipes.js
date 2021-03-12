@@ -2,6 +2,10 @@ import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
+/**
+ *
+ * @param {{}} navigation
+ */
 const SearchRecipes = ({ navigation }) => {
   const { fonts } = useTheme();
 

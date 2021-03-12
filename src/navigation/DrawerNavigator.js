@@ -4,7 +4,9 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { SavedRecipeStackNavigator, BottomTabNavigator } from './index';
 
 const Drawer = createDrawerNavigator();
-
+/**
+ *
+ */
 const DrawerNavigator = () => (
   <Drawer.Navigator drawerPosition="right" initialRouteName="Feed">
     {/* TODO replace this with account section or remove */}

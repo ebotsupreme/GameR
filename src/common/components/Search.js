@@ -4,6 +4,9 @@ import { Searchbar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'react-native-paper';
 
+/**
+ *
+ */
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchPlaceholder, setSearchPlaceholder] = useState('Search Recipes');

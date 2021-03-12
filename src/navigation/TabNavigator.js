@@ -1,5 +1,4 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useTheme } from 'react-native-paper';
@@ -7,7 +6,9 @@ import { useTheme } from 'react-native-paper';
 import { MainStackNavigator, SavedRecipeStackNavigator } from './index';
 
 const Tab = createBottomTabNavigator();
-
+/**
+ *
+ */
 const BottomTabNavigator = () => {
   const { colors, fonts } = useTheme();
   return (
@@ -53,11 +54,5 @@ const BottomTabNavigator = () => {
     </Tab.Navigator>
   );
 };
-
-const styles = StyleSheet.create({
-  tabText: {
-    fontFamily: 'AirbnbCerealBold',
-  },
-});
 
 export default BottomTabNavigator;
