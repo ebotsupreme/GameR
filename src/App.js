@@ -3,6 +3,9 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { firebase } from '@react-native-firebase/crashlytics';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import { Provider } from 'react-redux';
+
+import { store } from '../src/store/store';
 
 import { DrawerNavigator } from './navigation/index';
 
@@ -67,11 +70,13 @@ const theme = {
  */
 const App = () => {
   return (
-    <PaperProvider theme={theme}>
-      <NavigationContainer>
-        <DrawerNavigator />
-      </NavigationContainer>
-    </PaperProvider>
+    <Provider store={store}>
+      <PaperProvider theme={theme}>
+        <NavigationContainer>
+          <DrawerNavigator />
+        </NavigationContainer>
+      </PaperProvider>
+    </Provider>
   );
 };
 

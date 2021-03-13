@@ -4,7 +4,13 @@ import { useTheme, IconButton } from 'react-native-paper';
 
 import { HeaderNavigator } from '../navigation/index';
 
-import { Feed, Details, SavedRecipes, SearchRecipes } from '../screens/index';
+import {
+  Feed,
+  Details,
+  SavedRecipes,
+  SearchRecipes,
+  ReduxTest,
+} from '../screens/index';
 
 const Stack = createStackNavigator();
 /**
@@ -59,6 +65,7 @@ const MainStackNavigator = () => {
         component={SearchRecipes}
         options={optionStyle(colors)}
       />
+      <Stack.Screen name="Redux Test" component={ReduxTest} />
     </Stack.Navigator>
   );
 };

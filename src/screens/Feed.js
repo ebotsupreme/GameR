@@ -12,6 +12,10 @@ const Feed = ({ navigation }) => {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text style={fonts.light}>Feed Screen</Text>
       <Button onPress={() => navigation.navigate('Details')} title="Details" />
+      <Button
+        onPress={() => navigation.navigate('Redux Test')}
+        title="Redux Test"
+      />
     </View>
   );
 };
