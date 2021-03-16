@@ -1,0 +1,11 @@
+{
+  "user": {
+    "id": 999999,
+    "name": "Link Boyo",
+    "email": "linkb@gmail.com"
+  },
+  "recipe": {
+    "id": 888888,
+    "name": "Chimchiri chicken"
+  }
+}
