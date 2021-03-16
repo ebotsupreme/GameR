@@ -37,7 +37,7 @@ const theme = {
   fonts: {
     regular: {
       fontFamily: 'AirbnbCerealApp-Light',
-      fontWeight: '400',
+      fontWeight: '500',
     },
     medium: {
       fontFamily: 'AirbnbCerealApp-Medium',
@@ -45,11 +45,11 @@ const theme = {
     },
     light: {
       fontFamily: 'AirbnbCerealApp-Light',
-      fontWeight: '300',
+      // fontWeight: '300',
     },
     thin: {
       fontFamily: 'AirbnbCerealApp-Light',
-      fontWeight: '100',
+      // fontWeight: '100',
     },
     airbnbCereal: {
       black: 'AirbnbCerealApp-Black',
