@@ -2,6 +2,9 @@ import React from 'react';
 import { View, Text, Button, StyleSheet, ScrollView } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
+import FeedCarousel from '../common/components/FeedCarousel';
+import PopularRecipesFeedData from '../json/popularRecipesFeed.json';
+
 /**
  *
  * @param {{}} navigation
@@ -21,6 +24,7 @@ const Feed = ({ navigation }) => {
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
             Popular
           </Text>
+          <FeedCarousel data={PopularRecipesFeedData} />
         </View>
         <View style={{ height: 100 }}>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>Meal</Text>
