@@ -53,6 +53,10 @@ const Feed = (props) => {
             Recent
           </Text>
         </View>
+        <Button
+          onPress={() => navigation.navigate('Counter')}
+          title="Counter"
+        />
       </ScrollView>
     </View>
   );

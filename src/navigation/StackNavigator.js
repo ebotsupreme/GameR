@@ -10,7 +10,10 @@ import {
   SavedRecipes,
   SearchRecipes,
   ReduxTest,
+  Counter,
 } from '../screens/index';
+
+// import Counter from '../features/counter/Counter';
 
 const Stack = createStackNavigator();
 /**
@@ -66,6 +69,7 @@ const MainStackNavigator = () => {
         options={optionStyle(colors)}
       />
       <Stack.Screen name="Redux Test" component={ReduxTest} />
+      <Stack.Screen name="Counter" component={Counter} />
     </Stack.Navigator>
   );
 };
