@@ -3,13 +3,12 @@ import { Text, TouchableOpacity, View } from 'react-native';
 
 const FeedCard = (props) => {
   const { item, navigation } = props;
-  console.log('item', item);
   return (
     <View
       style={{
         backgroundColor: 'floralwhite',
         borderRadius: 5,
-        height: 250,
+        height: 150,
         padding: 10,
         marginLeft: 5,
         marginRight: 5,

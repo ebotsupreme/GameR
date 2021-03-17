@@ -10,9 +10,6 @@ import FeedCard from './FeedCard';
 const FeedCarousel = (props) => {
   const { data } = props;
   const carouselRef = useRef(null);
-  console.log('data[0].recipes', data[0].recipes);
-  console.log('CarouselWidth', CarouselWidth());
-  console.log('itemWidthAndHeight', ItemWidthAndHeight());
   return (
     <Carousel
       data={data[0].recipes}
