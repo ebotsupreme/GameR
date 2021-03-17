@@ -9,7 +9,8 @@ import PopularRecipesFeedData from '../json/popularRecipesFeed.json';
  *
  * @param {{}} navigation
  */
-const Feed = ({ navigation }) => {
+const Feed = (props) => {
+  const { navigation } = props;
   const { colors, fonts } = useTheme();
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
@@ -24,7 +25,7 @@ const Feed = ({ navigation }) => {
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
             Popular
           </Text>
-          <FeedCarousel data={PopularRecipesFeedData} />
+          <FeedCarousel data={PopularRecipesFeedData} {...props} />
         </View>
         <View style={{ height: 100 }}>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>Meal</Text>
