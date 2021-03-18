@@ -3,7 +3,7 @@ import { combineReducers } from '@reduxjs/toolkit';
 import recentFeedReducer from '../features/recentFeed/recentFeedSlice';
 
 const rootReducer = combineReducers({
-  recentFeedReducer,
+  recentFeed: recentFeedReducer,
 });
 
 export default rootReducer;

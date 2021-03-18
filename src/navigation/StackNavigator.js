@@ -11,6 +11,7 @@ import {
   SearchRecipes,
   ReduxTest,
   Counter,
+  RecentFeedList,
 } from '../screens/index';
 
 // import Counter from '../features/counter/Counter';
@@ -70,6 +71,7 @@ const MainStackNavigator = () => {
       />
       <Stack.Screen name="Redux Test" component={ReduxTest} />
       <Stack.Screen name="Counter" component={Counter} />
+      <Stack.Screen name="Recent Feed List" component={RecentFeedList} />
     </Stack.Navigator>
   );
 };

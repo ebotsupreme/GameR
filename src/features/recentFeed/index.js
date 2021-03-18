@@ -1,4 +1,4 @@
-import { recentFeedSuccess } from './recentFeedSlice';
+import { startLoading, hasError, recentFeedSuccess } from './recentFeedSlice';
 import { handleFetchRecentFeed } from './recentFeedActions';
 
-export { recentFeedSuccess, handleFetchRecentFeed };
+export { startLoading, hasError, recentFeedSuccess, handleFetchRecentFeed };

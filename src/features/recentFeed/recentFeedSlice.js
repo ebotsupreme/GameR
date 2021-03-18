@@ -8,8 +8,16 @@ const recentFeedSlice = createSlice({
   initialState: {
     recentFeed: [],
     isLoading: false,
+    error: false,
   },
   reducers: {
+    startLoading: (state) => {
+      state.isLoading = true;
+    },
+    hasError: (state, action) => {
+      state.error = action.payload;
+      state.isLoading = false;
+    },
     recentFeedSuccess: (state, action) => {
       state.recentFeed = action.payload;
       state.isLoading = false;
@@ -17,5 +25,9 @@ const recentFeedSlice = createSlice({
   },
 });
 
-export const { recentFeedSuccess } = recentFeedSlice.actions;
+export const {
+  startLoading,
+  hasError,
+  recentFeedSuccess,
+} = recentFeedSlice.actions;
 export default recentFeedSlice.reducer;
