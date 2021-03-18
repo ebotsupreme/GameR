@@ -8,7 +8,8 @@ import { api } from '../../api/index';
  * @param {{}} dispatch
  */
 export const handleFetchRecentFeed = async (dispatch) => {
-  dispatch(startLoading());
+  {
+    /*dispatch(startLoading());
   try {
     // await api.get('/users').then((response) => { // example
     await api
@@ -19,5 +20,6 @@ export const handleFetchRecentFeed = async (dispatch) => {
   } catch (e) {
     console.error(e.message);
     dispatch(hasError(e.message));
+  } */
   }
 };
