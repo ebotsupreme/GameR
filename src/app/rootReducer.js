@@ -1,8 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+// import counterReducer from '../features/counter/counterSlice';
+import recentFeedReducer from '../features/recentFeed/recentFeedSlice';
 
 const rootReducer = combineReducers({
-  counter: counterReducer,
+  recentFeedReducer,
 });
 
 export default rootReducer;
