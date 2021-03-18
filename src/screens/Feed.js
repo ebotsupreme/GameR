@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, Button, StyleSheet, ScrollView } from 'react-native';
 import { useTheme } from 'react-native-paper';
+import { useSelector, useDispatch } from 'react-redux';
 
 import FeedCarousel from '../common/components/FeedCarousel';
+import { handleFetchRecentFeed } from '../features/recentFeed/index';
 import PopularRecipesFeedData from '../json/popularRecipesFeed.json';
 
 /**
@@ -12,6 +14,17 @@ import PopularRecipesFeedData from '../json/popularRecipesFeed.json';
 const Feed = (props) => {
   const { navigation } = props;
   const { colors, fonts } = useTheme();
+  const dispatch = useDispatch();
+  const { isLoading, recentFeed } = useSelector((state) => state.recentFeed);
+
+  console.log('FEED isLoading', isLoading);
+  console.log('FEED recentFeed', recentFeed);
+
+  // TODO temporarliy disabled
+  // useEffect(() => {
+  //   dispatch(handleFetchRecentFeed);
+  // }, [dispatch]);
+
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <ScrollView>
@@ -53,6 +66,14 @@ const Feed = (props) => {
             Recent
           </Text>
         </View>
+        <Button
+          onPress={() => navigation.navigate('Counter')}
+          title="Counter"
+        />
+        <Button
+          onPress={() => navigation.navigate('Recent Feed List')}
+          title="Recent Feed List"
+        />
       </ScrollView>
     </View>
   );
