@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import FeedCarousel from '../common/components/FeedCarousel';
 import { handleFetchRecentFeed } from '../features/recentFeed/index';
 import PopularRecipesFeedData from '../json/popularRecipesFeed.json';
+import Feedcard, { FeedCard } from '../common/components/index';
 
 /**
  *
@@ -38,7 +39,13 @@ const Feed = (props) => {
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
             Popular
           </Text>
-          <FeedCarousel data={PopularRecipesFeedData} {...props} />
+          <FeedCarousel
+            data={PopularRecipesFeedData}
+            {...props}
+            renderItemComponent={(item) => (
+              <FeedCard {...{ ...item, ...props }} />
+            )}
+          />
         </View>
         <View style={{ height: 100 }}>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>Meal</Text>

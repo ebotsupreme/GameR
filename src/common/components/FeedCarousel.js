@@ -8,14 +8,14 @@ import {
 import FeedCard from './FeedCard';
 
 const FeedCarousel = (props) => {
-  const { data } = props;
+  const { data, renderItemComponent } = props;
   const carouselRef = useRef(null);
   return (
     <Carousel
       data={data[0].recipes}
       sliderWidth={CarouselWidth()}
       itemWidth={ItemWidthAndHeight()}
-      renderItem={(item, index) => <FeedCard {...item} {...props} />}
+      renderItem={renderItemComponent}
       ref={carouselRef}
     />
   );

@@ -3,6 +3,7 @@ import { Text, TouchableOpacity, View } from 'react-native';
 
 const FeedCard = (props) => {
   const { item, navigation } = props;
+  console.log('FEED CARD PROPS', props);
   return (
     <View
       style={{
