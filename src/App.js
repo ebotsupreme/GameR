@@ -5,13 +5,12 @@ import { firebase } from '@react-native-firebase/crashlytics';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { Provider } from 'react-redux';
 
-// redux original example
-// import { store } from './store/store';
-
 import { DrawerNavigator } from './navigation/index';
 
 // redux toolkit example
 import store from './app/store';
+
+import Config from 'react-native-config';
 
 const defaultAppCrashlytics = firebase.crashlytics();
 /**
@@ -73,6 +72,7 @@ const theme = {
  *
  */
 const App = () => {
+  console.log('configgg', Config);
   return (
     <Provider store={store}>
       <PaperProvider theme={theme}>

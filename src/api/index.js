@@ -1,3 +1,3 @@
-import { fetchRecentFeed } from './feed';
+import { api } from './api';
 
-export { fetchRecentFeed };
+export { api };

@@ -19,11 +19,7 @@ const RecentFeedList = () => {
   return (
     <View>
       <Text>Start.</Text>
-      {/* {isLoading ? (
-        <Text>Loading...</Text>
-      ) : (
-        <Text>Recent Feed: {recentFeed}</Text>
-      )} */}
+      {isLoading ? <Text>Loading...</Text> : <Text>Recent Feed: </Text>}
     </View>
   );
 };
