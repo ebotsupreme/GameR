@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import FeedCarousel from '../common/components/FeedCarousel';
 import { handleFetchRecentFeed } from '../features/recentFeed/index';
-import PopularRecipesFeedData from '../json/popularRecipesFeed.json';
 import { FeedCard } from '../common/components/index';
 
 /**
@@ -87,6 +86,7 @@ const styles = StyleSheet.create({
   feedTitle: {
     fontFamily: 'AirbnbCerealApp-Bold',
     fontSize: 16,
+    marginBottom: 10,
   },
 });
 
