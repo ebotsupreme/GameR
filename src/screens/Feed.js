@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import FeedCarousel from '../common/components/FeedCarousel';
 import { handleFetchRecentFeed } from '../features/recentFeed/index';
 import PopularRecipesFeedData from '../json/popularRecipesFeed.json';
+import { FeedCard } from '../common/components/index';
 
 /**
  *
@@ -17,28 +18,28 @@ const Feed = (props) => {
   const dispatch = useDispatch();
   const { isLoading, recentFeed } = useSelector((state) => state.recentFeed);
 
-  console.log('FEED isLoading', isLoading);
-  console.log('FEED recentFeed', recentFeed);
-
-  // TODO temporarliy disabled
-  // useEffect(() => {
-  //   dispatch(handleFetchRecentFeed);
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(handleFetchRecentFeed);
+  }, [dispatch]);
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <ScrollView>
-        {/* <Text style={fonts.light}>Feed Screen</Text>
-      <Button onPress={() => navigation.navigate('Details')} title="Details" />
-      <Button
-        onPress={() => navigation.navigate('Redux Test')}
-        title="Redux Test"
-      /> */}
-        <View style={{ height: 100 }}>
+        {/* TODO WIP */}
+        {/*<Button
+            onPress={() => navigation.navigate('Redux Test')}
+            title="Redux Test"
+          /> */}
+        <View>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
             Popular
           </Text>
-          <FeedCarousel data={PopularRecipesFeedData} {...props} />
+          <FeedCarousel
+            data={recentFeed}
+            renderItemComponent={(item) => (
+              <FeedCard {...{ ...item, ...props }} />
+            )}
+          />
         </View>
         <View style={{ height: 100 }}>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>Meal</Text>
