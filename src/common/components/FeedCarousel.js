@@ -1,27 +1,17 @@
 import React, { useRef, Dimensions } from 'react';
 import Carousel from 'react-native-snap-carousel';
 
-import {
-  handleCarouselWidth,
-  handleItemWidthAndHeight,
-} from '../../utility/index';
+import { handleCarouselWidth, ITEM_WIDTH } from '../../utility/index';
 
 const FeedCarousel = (props) => {
   const { data, renderItemComponent } = props;
   const carouselRef = useRef(null);
 
-  const WIDTH = handleItemWidthAndHeight();
-  const horizontalMargin = 5;
-  const slideWidth = WIDTH;
-  const HEIGHT = WIDTH;
-  const sliderWidth = handleCarouselWidth();
-  const itemWidth = slideWidth + horizontalMargin * 2;
-  const itemHeight = HEIGHT;
   return (
     <Carousel
       data={data}
       sliderWidth={handleCarouselWidth()}
-      itemWidth={itemWidth}
+      itemWidth={ITEM_WIDTH}
       renderItem={renderItemComponent}
       ref={carouselRef}
       activeSlideAlignment={'start'}

@@ -1,14 +1,11 @@
 import React from 'react';
-import {
-  Text,
-  TouchableOpacity,
-  View,
-  StyleSheet,
-  Dimensions,
-  Pressable,
-} from 'react-native';
+import { View, StyleSheet, Pressable } from 'react-native';
 
-import { handleItemWidthAndHeight } from '../../utility/index';
+import {
+  handleItemWidthAndHeight,
+  HORIZONTAL_MARGIN,
+  ITEM_WIDTH,
+} from '../../utility/index';
 import { CardImage, CardMeta } from './index';
 
 const FeedCard = (props) => {
@@ -16,26 +13,20 @@ const FeedCard = (props) => {
   const WIDTH = handleItemWidthAndHeight();
   const HEIGHT = WIDTH;
 
-  const horizontalMargin = 5;
-  const slideWidth = WIDTH;
-  const sliderWidth = Dimensions.get('window').width;
-  const itemWidth = slideWidth + horizontalMargin * 2;
-  const itemHeight = HEIGHT;
-
   // console.log('FEED CARD PROPS', JSON.stringify(props, null, 4));
   return (
     <View
       style={[
         styles.container,
         {
-          width: itemWidth,
-          height: itemHeight,
-          paddingHorizontal: horizontalMargin,
+          width: ITEM_WIDTH,
+          height: HEIGHT,
+          paddingHorizontal: HORIZONTAL_MARGIN,
         },
       ]}>
       <View
         style={{
-          width: slideWidth,
+          width: WIDTH,
         }}>
         <Pressable
           onPress={() => navigation.navigate('Details', item.id)}
