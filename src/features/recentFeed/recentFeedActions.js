@@ -13,7 +13,7 @@ import PopularRecipesFeedData from '../../json/popularRecipesFeed.json';
 export const handleFetchRecentFeed = async (dispatch) => {
   {
     /*
-    TEMPORARY DISABLED
+    TODO TEMPORARY DISABLED DUE TO API CALL LIMIT
     dispatch(startLoading());
   try {
     // await api.get('/users').then((response) => { // example

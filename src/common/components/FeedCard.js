@@ -12,8 +12,7 @@ const FeedCard = (props) => {
   // console.log('FEED CARD PROPS', JSON.stringify(props, null, 4));
   return (
     <View style={[styles.container, { width: WIDTH, height: HEIGHT }]}>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Details', { ...props })}>
+      <TouchableOpacity onPress={() => navigation.navigate('Details', item.id)}>
         <CardImage {...{ ...props, width: WIDTH, height: HEIGHT }} />
         {/* Card Meta content s.a. title */}
         <CardMeta {...{ ...props, width: WIDTH, height: HEIGHT }} />

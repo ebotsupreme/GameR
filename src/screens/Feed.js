@@ -18,7 +18,6 @@ const Feed = (props) => {
   const dispatch = useDispatch();
   const { isLoading, recentFeed } = useSelector((state) => state.recentFeed);
 
-  // TODO temporarliy disabled
   useEffect(() => {
     dispatch(handleFetchRecentFeed);
   }, [dispatch]);
