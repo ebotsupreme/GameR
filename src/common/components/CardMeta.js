@@ -6,10 +6,9 @@ import { useTheme } from 'react-native-paper';
  *
  * @param {{}} props
  */
-const CardMeta = (props) => {
-  const { item } = props;
+const CardMeta = ({ item }) => {
   const { fonts } = useTheme();
-  // console.log('cardMeta item', JSON.stringify(item, null, 2));
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{item.title}</Text>

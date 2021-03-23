@@ -1,23 +1,42 @@
 import React from 'react';
-import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Pressable } from 'react-native';
 
-import { ItemWidthAndHeight } from '../../utility/index';
+import {
+  handleItemWidthAndHeight,
+  HORIZONTAL_MARGIN,
+  ITEM_WIDTH,
+} from '../../utility/index';
 import { CardImage, CardMeta } from './index';
 
-const FeedCard = (props) => {
-  const { item, navigation } = props;
-  const WIDTH = ItemWidthAndHeight();
+/**
+ *
+ * @param {{}} props
+ */
+const FeedCard = ({ item, navigation }) => {
+  const WIDTH = handleItemWidthAndHeight();
   const HEIGHT = WIDTH;
 
-  // console.log('FEED CARD PROPS', JSON.stringify(props, null, 4));
   return (
-    <View style={[styles.container, { width: WIDTH, height: HEIGHT }]}>
-      <TouchableOpacity onPress={() => navigation.navigate('Details', item.id)}>
-        <CardImage {...{ ...props, width: WIDTH, height: HEIGHT }} />
-        {/* Card Meta content s.a. title */}
-        <CardMeta {...{ ...props, width: WIDTH, height: HEIGHT }} />
-        {/* <Text style={{ fontSize: 16 }}>{item.title}</Text> */}
-      </TouchableOpacity>
+    <View
+      style={[
+        styles.container,
+        {
+          width: ITEM_WIDTH,
+          height: HEIGHT,
+          paddingHorizontal: HORIZONTAL_MARGIN,
+        },
+      ]}>
+      <View
+        style={{
+          width: WIDTH,
+        }}>
+        <Pressable
+          onPress={() => navigation.navigate('Details', item.id)}
+          style={{ width: WIDTH, height: HEIGHT }}>
+          <CardImage {...{ item, width: WIDTH, height: HEIGHT }} />
+          <CardMeta {...{ item, width: WIDTH, height: HEIGHT }} />
+        </Pressable>
+      </View>
     </View>
   );
 };
@@ -27,7 +46,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'floralwhite',
+    backgroundColor: '#FFF',
     position: 'relative',
     borderRadius: 10,
   },

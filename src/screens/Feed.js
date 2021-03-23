@@ -5,15 +5,13 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import FeedCarousel from '../common/components/FeedCarousel';
 import { handleFetchRecentFeed } from '../features/recentFeed/index';
-import PopularRecipesFeedData from '../json/popularRecipesFeed.json';
 import { FeedCard } from '../common/components/index';
 
 /**
  *
  * @param {{}} navigation
  */
-const Feed = (props) => {
-  const { navigation } = props;
+const Feed = ({ navigation }) => {
   const { colors, fonts } = useTheme();
   const dispatch = useDispatch();
   const { isLoading, recentFeed } = useSelector((state) => state.recentFeed);
@@ -25,7 +23,7 @@ const Feed = (props) => {
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <ScrollView>
-        {/* TODO WIP */}
+        {/* TODO WIP - db hookup demo  */}
         {/*<Button
             onPress={() => navigation.navigate('Redux Test')}
             title="Redux Test"
@@ -37,24 +35,24 @@ const Feed = (props) => {
           <FeedCarousel
             data={recentFeed}
             renderItemComponent={(item) => (
-              <FeedCard {...{ ...item, ...props }} />
+              <FeedCard {...{ ...item, navigation }} />
             )}
           />
         </View>
-        <View style={{ height: 100 }}>
+        <View style={styles.feedContainer}>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>Meal</Text>
         </View>
-        <View style={{ height: 100 }}>
+        <View style={styles.feedContainer}>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
             Category
           </Text>
         </View>
-        <View style={{ height: 100 }}>
+        <View style={styles.feedContainer}>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
             Seasonal / Holiday
           </Text>
         </View>
-        <View style={{ height: 100 }}>
+        <View style={styles.feedContainer}>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
             Healthy
           </Text>
@@ -84,9 +82,13 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'flex-start',
   },
+  feedContainer: {
+    height: 100,
+  },
   feedTitle: {
     fontFamily: 'AirbnbCerealApp-Bold',
     fontSize: 16,
+    marginBottom: 10,
   },
 });
 

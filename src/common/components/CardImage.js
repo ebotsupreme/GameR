@@ -1,12 +1,14 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const CardImage = (props) => {
-  // console.log('cardImage props', JSON.stringify(props, null, 4));
-  const { item, width, height } = props;
-
+import { gradientColors } from '../../styles/index';
+/**
+ *
+ * @param {{}} props
+ */
+const CardImage = ({ item, width, height }) => {
   return (
     <>
       {item.image ? (
@@ -21,13 +23,8 @@ const CardImage = (props) => {
           </View>
         </View>
       )}
-      {/* TODO add image not found placeholder text/image here + linear gradient */}
       <LinearGradient
-        colors={[
-          'rgba(0, 0, 0, 0.1)',
-          'rgba(0, 0, 0, 0.2)',
-          'rgba(0, 0, 0, 0.4)',
-        ]}
+        colors={gradientColors}
         style={[styles.linearGradient, { width, height }]}
       />
     </>

@@ -1,3 +1,13 @@
-import { CarouselWidth, ItemWidthAndHeight } from './CarouselDimensions';
+import {
+  handleCarouselWidth,
+  handleItemWidthAndHeight,
+  HORIZONTAL_MARGIN,
+  ITEM_WIDTH,
+} from './CarouselDimensions';
 
-export { CarouselWidth, ItemWidthAndHeight };
+export {
+  handleCarouselWidth,
+  handleItemWidthAndHeight,
+  HORIZONTAL_MARGIN,
+  ITEM_WIDTH,
+};

@@ -1,14 +1,27 @@
-import { useWindowDimensions } from 'react-native';
+import { Dimensions } from 'react-native';
 
-const CarouselWidth = () => {
-  const carouselWidth = useWindowDimensions().width;
-  return carouselWidth;
+/**
+ *
+ */
+const handleCarouselWidth = () => {
+  return Dimensions.get('window').width;
 };
-
-const ItemWidthAndHeight = () => {
-  const carouselWidth = CarouselWidth();
-  const itemWidthAndHeight = Math.round(carouselWidth * 0.33);
-  return itemWidthAndHeight;
+/**
+ *
+ */
+const handleItemWidthAndHeight = () => {
+  const carouselWidth = handleCarouselWidth();
+  return Math.round(carouselWidth * 0.33);
 };
+/**
+ *
+ */
+const HORIZONTAL_MARGIN = 5;
+const ITEM_WIDTH = handleItemWidthAndHeight() + HORIZONTAL_MARGIN * 2;
 
-export { CarouselWidth, ItemWidthAndHeight };
+export {
+  handleCarouselWidth,
+  handleItemWidthAndHeight,
+  HORIZONTAL_MARGIN,
+  ITEM_WIDTH,
+};
