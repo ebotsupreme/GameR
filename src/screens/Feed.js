@@ -30,7 +30,7 @@ const Feed = ({ navigation }) => {
           <FeedCarousel
             data={recentFeed}
             renderItemComponent={(item) => (
-              <FeedCard {...{ ...item, navigation }} />
+              <FeedCard {...{ ...item, navigation, isLoading }} />
             )}
           />
         </View>

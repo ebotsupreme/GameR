@@ -7,14 +7,19 @@ import {
   ITEM_WIDTH,
 } from '../../utility/index';
 import { CardImage, CardMeta } from './index';
+import SkeletonCard from './SkeletonCard';
 
 /**
  *
  * @param {{}} props
  */
-const FeedCard = ({ item, navigation }) => {
+const FeedCard = ({ item, navigation, isLoading }) => {
   const WIDTH = handleItemWidthAndHeight();
   const HEIGHT = WIDTH;
+
+  if (isLoading) {
+    return <SkeletonCard width={0} height={0} />;
+  }
 
   return (
     <View
