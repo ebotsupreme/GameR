@@ -40,20 +40,20 @@ const Feed = (props) => {
             )}
           />
         </View>
-        <View style={{ height: 100 }}>
+        <View style={styles.feedContainer}>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>Meal</Text>
         </View>
-        <View style={{ height: 100 }}>
+        <View style={styles.feedContainer}>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
             Category
           </Text>
         </View>
-        <View style={{ height: 100 }}>
+        <View style={styles.feedContainer}>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
             Seasonal / Holiday
           </Text>
         </View>
-        <View style={{ height: 100 }}>
+        <View style={styles.feedContainer}>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
             Healthy
           </Text>
@@ -82,6 +82,9 @@ const Feed = (props) => {
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'flex-start',
+  },
+  feedContainer: {
+    height: 100,
   },
   feedTitle: {
     fontFamily: 'AirbnbCerealApp-Bold',

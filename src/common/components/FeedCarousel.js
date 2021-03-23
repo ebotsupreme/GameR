@@ -1,12 +1,16 @@
-import React, { useRef, Dimensions } from 'react';
+import React, { useRef } from 'react';
 import Carousel from 'react-native-snap-carousel';
 
 import { handleCarouselWidth, ITEM_WIDTH } from '../../utility/index';
 
+/**
+ *
+ * @param {{}} props
+ */
 const FeedCarousel = (props) => {
   const { data, renderItemComponent } = props;
   const carouselRef = useRef(null);
-
+  console.log('item width', ITEM_WIDTH, 'data length', data.length);
   return (
     <Carousel
       data={data}
@@ -17,7 +21,11 @@ const FeedCarousel = (props) => {
       activeSlideAlignment={'start'}
       inactiveSlideOpacity={1}
       inactiveSlideScale={1}
-      containerCustomStyle={{ paddingLeft: 10 }}
+      containerCustomStyle={{ paddingHorizontal: 10 }}
+      contentContainerCustomStyle={{
+        overflow: 'hidden',
+        width: ITEM_WIDTH * data.length,
+      }}
     />
   );
 };

@@ -3,7 +3,6 @@ import Feed from './Feed';
 import SavedRecipes from './SavedRecipes';
 import SearchRecipes from './SearchRecipes';
 import ReduxTest from './ReduxTest';
-import Counter from '../features/counter/Counter';
 import RecentFeedList from '../features/recentFeed/recentFeedList';
 
 export {
@@ -12,6 +11,5 @@ export {
   SavedRecipes,
   SearchRecipes,
   ReduxTest,
-  Counter,
   RecentFeedList,
 };

@@ -8,12 +8,15 @@ import {
 } from '../../utility/index';
 import { CardImage, CardMeta } from './index';
 
+/**
+ *
+ * @param {{}} props
+ */
 const FeedCard = (props) => {
   const { item, navigation } = props;
   const WIDTH = handleItemWidthAndHeight();
   const HEIGHT = WIDTH;
 
-  // console.log('FEED CARD PROPS', JSON.stringify(props, null, 4));
   return (
     <View
       style={[
