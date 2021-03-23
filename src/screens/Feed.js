@@ -23,7 +23,7 @@ const Feed = ({ navigation }) => {
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <ScrollView>
-        {/* TODO WIP */}
+        {/* TODO WIP - db hookup demo  */}
         {/*<Button
             onPress={() => navigation.navigate('Redux Test')}
             title="Redux Test"
