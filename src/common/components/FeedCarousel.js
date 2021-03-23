@@ -10,7 +10,7 @@ import { handleCarouselWidth, ITEM_WIDTH } from '../../utility/index';
 const FeedCarousel = (props) => {
   const { data, renderItemComponent } = props;
   const carouselRef = useRef(null);
-  console.log('item width', ITEM_WIDTH, 'data length', data.length);
+
   return (
     <Carousel
       data={data}
@@ -24,7 +24,7 @@ const FeedCarousel = (props) => {
       containerCustomStyle={{ paddingHorizontal: 10 }}
       contentContainerCustomStyle={{
         overflow: 'hidden',
-        width: ITEM_WIDTH * data.length,
+        width: (ITEM_WIDTH + 2) * data.length,
       }}
     />
   );
