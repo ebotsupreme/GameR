@@ -32,7 +32,6 @@ export const handleFetchRecentFeed = async (dispatch) => {
       dispatch(startLoading());
 
       setTimeout(() => {
-        console.log('set start');
         let data = PopularRecipesFeedData;
         if (data.length === 0) {
           reject('Error, feed empty');
