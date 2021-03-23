@@ -3,6 +3,7 @@ import { View, Image, StyleSheet } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import { gradientColors } from '../../styles/index';
 /**
  *
  * @param {{}} props
@@ -23,11 +24,7 @@ const CardImage = ({ item, width, height }) => {
         </View>
       )}
       <LinearGradient
-        colors={[
-          'rgba(0, 0, 0, 0.1)',
-          'rgba(0, 0, 0, 0.2)',
-          'rgba(0, 0, 0, 0.4)',
-        ]}
+        colors={gradientColors}
         style={[styles.linearGradient, { width, height }]}
       />
     </>
