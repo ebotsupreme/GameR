@@ -10,7 +10,6 @@ import {
   SavedRecipes,
   SearchRecipes,
   ReduxTest,
-  RecentFeedList,
 } from '../screens/index';
 
 const Stack = createStackNavigator();
@@ -67,7 +66,6 @@ const MainStackNavigator = () => {
         options={optionStyle(colors)}
       />
       <Stack.Screen name="Redux Test" component={ReduxTest} />
-      <Stack.Screen name="Recent Feed List" component={RecentFeedList} />
     </Stack.Navigator>
   );
 };

@@ -7,9 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
  *
  * @param {{}} props
  */
-const CardImage = (props) => {
-  const { item, width, height } = props;
-
+const CardImage = ({ item, width, height }) => {
   return (
     <>
       {item.image ? (

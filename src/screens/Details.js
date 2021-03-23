@@ -19,6 +19,9 @@ const Details = (props) => {
   const itemId = route.params;
   const { isLoading, recentFeed } = useSelector((state) => state.recentFeed);
 
+  /**
+   *
+   */
   const onRecipeDetails = () => {
     return recentFeed.find((feed) => feed.id === itemId);
   };

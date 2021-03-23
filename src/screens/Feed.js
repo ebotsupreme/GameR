@@ -11,8 +11,7 @@ import { FeedCard } from '../common/components/index';
  *
  * @param {{}} navigation
  */
-const Feed = (props) => {
-  const { navigation } = props;
+const Feed = ({ navigation }) => {
   const { colors, fonts } = useTheme();
   const dispatch = useDispatch();
   const { isLoading, recentFeed } = useSelector((state) => state.recentFeed);
@@ -36,7 +35,7 @@ const Feed = (props) => {
           <FeedCarousel
             data={recentFeed}
             renderItemComponent={(item) => (
-              <FeedCard {...{ ...item, ...props }} />
+              <FeedCard {...{ ...item, navigation }} />
             )}
           />
         </View>

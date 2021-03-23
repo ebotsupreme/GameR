@@ -12,8 +12,7 @@ import { CardImage, CardMeta } from './index';
  *
  * @param {{}} props
  */
-const FeedCard = (props) => {
-  const { item, navigation } = props;
+const FeedCard = ({ item, navigation }) => {
   const WIDTH = handleItemWidthAndHeight();
   const HEIGHT = WIDTH;
 
@@ -34,8 +33,8 @@ const FeedCard = (props) => {
         <Pressable
           onPress={() => navigation.navigate('Details', item.id)}
           style={{ width: WIDTH, height: HEIGHT }}>
-          <CardImage {...{ ...props, width: WIDTH, height: HEIGHT }} />
-          <CardMeta {...{ ...props, width: WIDTH, height: HEIGHT }} />
+          <CardImage {...{ item, width: WIDTH, height: HEIGHT }} />
+          <CardMeta {...{ item, width: WIDTH, height: HEIGHT }} />
         </Pressable>
       </View>
     </View>
