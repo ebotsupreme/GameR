@@ -23,11 +23,6 @@ const Feed = ({ navigation }) => {
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <ScrollView>
-        {/* TODO WIP - db hookup demo  */}
-        {/*<Button
-            onPress={() => navigation.navigate('Redux Test')}
-            title="Redux Test"
-          /> */}
         <View>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
             Popular
@@ -35,7 +30,7 @@ const Feed = ({ navigation }) => {
           <FeedCarousel
             data={recentFeed}
             renderItemComponent={(item) => (
-              <FeedCard {...{ ...item, navigation }} />
+              <FeedCard {...{ ...item, navigation, isLoading }} />
             )}
           />
         </View>
@@ -66,12 +61,8 @@ const Feed = ({ navigation }) => {
           </Text>
         </View>
         <Button
-          onPress={() => navigation.navigate('Counter')}
-          title="Counter"
-        />
-        <Button
-          onPress={() => navigation.navigate('Recent Feed List')}
-          title="Recent Feed List"
+          onPress={() => navigation.navigate('Redux Test')}
+          title="Redux Test"
         />
       </ScrollView>
     </View>
@@ -88,7 +79,9 @@ const styles = StyleSheet.create({
   feedTitle: {
     fontFamily: 'AirbnbCerealApp-Bold',
     fontSize: 16,
-    marginBottom: 10,
+    paddingHorizontal: 15,
+    marginTop: 10,
+    marginBottom: 12,
   },
 });
 
