@@ -10,7 +10,7 @@ const ReduxProvider = ({ children, reduxStore }) => (
   <Provider store={reduxStore}>{children}</Provider>
 );
 
-it('render default text', () => {
+it('render default text for each feed', () => {
   const store = configureStore({
     reducer: rootReducer,
     middleware: [...getDefaultMiddleware({ immutableCheck: false })],
@@ -20,10 +20,17 @@ it('render default text', () => {
   );
   // const dispatch = useDispatch();
   const screen = render(
-    <Provider store={store}>
-      <Feed />
-    </Provider>,
+    // <Provider store={store}>
+    //   <Feed />
+    // </Provider>,
+    <Feed />,
+    { wrapper },
   );
 
   screen.getByText('Popular');
+  screen.getByText('Meal');
+  screen.getByText('Category');
+  screen.getByText('Seasonal / Holiday');
+  screen.getByText('Healthy');
+  screen.getByText('Recent');
 });
