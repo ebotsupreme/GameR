@@ -54,6 +54,9 @@
     ],
     "transformIgnorePatterns": [
       "node_modules/(?!(react-native|react-navigation|@react-native-firebase/database|@react-native-community/masked-view|react-native-iphone-x-helper|react-native-config|react-native-snap-carousel|react-native-skeleton-placeholder|react-native-linear-gradient|react-native-vector-icons|@react-native-firebase/app)/)"
+    ],
+    "setupFiles": [
+      "./mock.js"
     ]
   }
 }
