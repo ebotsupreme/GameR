@@ -3,10 +3,7 @@ import { View, Text, ScrollView } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
 
-import {
-  handleFetchRecentFeed,
-  recentFeedSuccess,
-} from '../features/recentFeed/index';
+import { handleFetchPopularFeed } from '../features/popularFeed/index';
 
 /**
  *
@@ -17,17 +14,17 @@ const Details = (props) => {
   const dispatch = useDispatch();
   const { navigation, route } = props;
   const itemId = route.params;
-  const { isLoading, recentFeed } = useSelector((state) => state.recentFeed);
+  const { isLoading, popularFeed } = useSelector((state) => state.popularFeed);
 
   /**
    *
    */
   const onRecipeDetails = () => {
-    return recentFeed.find((feed) => feed.id === itemId);
+    return popularFeed.find((feed) => feed.id === itemId);
   };
 
   useEffect(() => {
-    dispatch(handleFetchRecentFeed);
+    dispatch(handleFetchPopularFeed);
   }, [dispatch]);
 
   return (
