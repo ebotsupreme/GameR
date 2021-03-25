@@ -4,7 +4,7 @@ import { useTheme } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
 
 import FeedCarousel from '../common/components/FeedCarousel';
-import { handleFetchRecentFeed } from '../features/recentFeed/index';
+import { handleFetchPopularFeed } from '../features/popularFeed/index';
 import { FeedCard } from '../common/components/index';
 
 /**
@@ -14,10 +14,10 @@ import { FeedCard } from '../common/components/index';
 const Feed = ({ navigation }) => {
   const { colors, fonts } = useTheme();
   const dispatch = useDispatch();
-  const { isLoading, recentFeed } = useSelector((state) => state.recentFeed);
+  const { isLoading, popularFeed } = useSelector((state) => state.popularFeed);
 
   useEffect(() => {
-    dispatch(handleFetchRecentFeed);
+    dispatch(handleFetchPopularFeed);
   }, [dispatch]);
 
   return (
@@ -28,7 +28,7 @@ const Feed = ({ navigation }) => {
             Popular
           </Text>
           <FeedCarousel
-            data={recentFeed}
+            data={popularFeed}
             renderItemComponent={(item) => (
               <FeedCard {...{ ...item, navigation, isLoading }} />
             )}

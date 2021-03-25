@@ -11,7 +11,7 @@ it('should fetch popular feed data', () => {
   const resp = { data: fakeRecipe };
   axios.get.mockResolvedValue(resp);
 
-  const fakeFetchRecentTestFeed = new Promise((resolve, reject) => {
+  const fakeFetchPopularTestFeed = new Promise((resolve, reject) => {
     setTimeout(() => {
       if (fakeData.length === 0) {
         reject('Error, feed empty');
@@ -20,5 +20,5 @@ it('should fetch popular feed data', () => {
     }, 300);
   });
 
-  fakeFetchRecentTestFeed.then((data) => expect(data).toEqual(fakeRecipe));
+  fakeFetchPopularTestFeed.then((data) => expect(data).toEqual(fakeRecipe));
 });
