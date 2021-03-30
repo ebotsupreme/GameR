@@ -1,17 +1,40 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, isRejected } from '@reduxjs/toolkit';
 import Config from 'react-native-config';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { startLoading, hasError, mealFeedSuccess, hasMealType } from './index';
 import { api } from '../../api/index';
 
+import MealTypeFeedData from '../../json/breakfastMealType.json';
+
+/**
+ *
+ */
+const fetchMealTypeTestFeed = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    let data = MealTypeFeedData;
+    if (data.length === 0) {
+      reject('Error, feed empty');
+    }
+    resolve(data);
+  }, 300);
+});
+/**
+ *
+ */
 const handleFetchMealFeedByTitle = createAsyncThunk(
   'mealFeed/handleFetchMealFeedByTitle',
   async (mealType, thunkAPI) => {
-    const response = await api.get(
-      `/recipes/complexSearch?apiKey=${Config.API}&type=${mealType}&number=5`,
-    );
-    return response.data;
+    // NOTE: TEMPORARY DISABLED DUE TO API CALL LIMIT
+    // const response = await api.get(
+    //   `/recipes/complexSearch?apiKey=${Config.API}&type=${mealType}&number=5`,
+    // );
+    // return response.data;
+
+    const response = await fetchMealTypeTestFeed.then((data) => {
+      return data;
+    });
+    return response;
   },
 );
 

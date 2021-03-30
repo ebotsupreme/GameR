@@ -11,7 +11,7 @@ import PopularRecipesFeedData from '../../json/popularRecipesFeed.json';
  * @param {{}} dispatch
  */
 export const handleFetchPopularFeed = async (dispatch) => {
-  // TODO: TEMPORARY DISABLED DUE TO API CALL LIMIT
+  // NOTE: TEMPORARY DISABLED DUE TO API CALL LIMIT
   {
     /*
   dispatch(startLoading());
