@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import FeedCarousel from '../common/components/FeedCarousel';
 import { handleFetchPopularFeed } from '../features/popularFeed/index';
 import { FeedCard } from '../common/components/index';
+import mealTypes from '../json/mealTypes.json';
+import { handleFetchMealFeed } from '../features/mealFeed';
 
 /**
  *
@@ -18,7 +20,14 @@ const Feed = ({ navigation }) => {
 
   useEffect(() => {
     dispatch(handleFetchPopularFeed);
+    dispatch(handleFetchMealFeed);
   }, [dispatch]);
+
+  const onMealTypes = () => {
+    // mealTypes.map((mealType) => )
+  };
+
+  // console.log('mealTypes', JSON.stringify(mealTypes, null, 4));
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
@@ -34,8 +43,14 @@ const Feed = ({ navigation }) => {
             )}
           />
         </View>
-        <View style={styles.feedContainer}>
+        <View>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>Meal</Text>
+          <FeedCarousel
+            data={mealTypes}
+            renderItemComponent={(item) => (
+              <FeedCard {...{ item, navigation, isLoading }} type="multi" />
+            )}
+          />
         </View>
         <View style={styles.feedContainer}>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
@@ -78,7 +93,7 @@ const styles = StyleSheet.create({
   },
   feedTitle: {
     fontFamily: 'AirbnbCerealApp-Bold',
-    fontSize: 16,
+    fontSize: 18,
     paddingHorizontal: 15,
     marginTop: 10,
     marginBottom: 12,

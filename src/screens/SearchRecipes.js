@@ -16,7 +16,10 @@ const SearchRecipes = ({ navigation }) => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text style={fonts.light}>Search Recipes Screen</Text>
-      <Button onPress={() => navigation.navigate('Details')} title="Details" />
+      <Button
+        onPress={() => navigation.navigate('Search Results')}
+        title="Search Results"
+      />
     </View>
   );
 };

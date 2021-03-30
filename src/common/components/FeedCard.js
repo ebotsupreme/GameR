@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet, Pressable } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import { handleFetchMealFeed } from '../../features/mealFeed';
 
 import {
   handleItemWidthAndHeight,
@@ -8,14 +10,30 @@ import {
 } from '../../utility/index';
 import { CardImage, CardMeta } from './index';
 import SkeletonCard from './SkeletonCard';
+import { hasMealType } from '../../features/mealFeed/index';
 
 /**
  *
  * @param {{}} props
  */
-const FeedCard = ({ item, navigation, isLoading }) => {
+const FeedCard = ({ item, navigation, isLoading, type = '' }) => {
+  if (type === 'multi') {
+    item = item.item;
+  }
   const WIDTH = handleItemWidthAndHeight();
   const HEIGHT = WIDTH;
+  const dispatch = useDispatch();
+
+  const onPressableScreen = () => {
+    if (type === 'multi') {
+      return navigation.navigate('Search Results', item.title);
+    }
+    return navigation.navigate('Details', item.id);
+  };
+
+  useEffect(() => {
+    dispatch(hasMealType(item.title));
+  }, [dispatch, item.title]);
 
   if (isLoading) {
     return <SkeletonCard width={0} height={0} />;
@@ -36,10 +54,10 @@ const FeedCard = ({ item, navigation, isLoading }) => {
           width: WIDTH,
         }}>
         <Pressable
-          onPress={() => navigation.navigate('Details', item.id)}
+          onPress={() => onPressableScreen()}
           style={{ width: WIDTH, height: HEIGHT }}>
-          <CardImage {...{ item, width: WIDTH, height: HEIGHT }} />
-          <CardMeta {...{ item, width: WIDTH, height: HEIGHT }} />
+          <CardImage {...{ item, width: WIDTH, height: HEIGHT, type }} />
+          <CardMeta {...{ item, width: WIDTH, height: HEIGHT, type }} />
         </Pressable>
       </View>
     </View>
