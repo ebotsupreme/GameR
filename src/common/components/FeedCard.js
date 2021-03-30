@@ -1,8 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, StyleSheet, Pressable } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
-import { handleFetchMealFeed } from '../../features/mealFeed';
-
 import {
   handleItemWidthAndHeight,
   HORIZONTAL_MARGIN,
@@ -10,7 +7,6 @@ import {
 } from '../../utility/index';
 import { CardImage, CardMeta } from './index';
 import SkeletonCard from './SkeletonCard';
-import { hasMealType } from '../../features/mealFeed/index';
 
 /**
  *
@@ -22,7 +18,6 @@ const FeedCard = ({ item, navigation, isLoading, type = '' }) => {
   }
   const WIDTH = handleItemWidthAndHeight();
   const HEIGHT = WIDTH;
-  const dispatch = useDispatch();
 
   const onPressableScreen = () => {
     if (type === 'multi') {
@@ -30,10 +25,6 @@ const FeedCard = ({ item, navigation, isLoading, type = '' }) => {
     }
     return navigation.navigate('Details', item.id);
   };
-
-  useEffect(() => {
-    dispatch(hasMealType(item.title));
-  }, [dispatch, item.title]);
 
   if (isLoading) {
     return <SkeletonCard width={0} height={0} />;

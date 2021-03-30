@@ -7,7 +7,6 @@ import FeedCarousel from '../common/components/FeedCarousel';
 import { handleFetchPopularFeed } from '../features/popularFeed/index';
 import { FeedCard } from '../common/components/index';
 import mealTypes from '../json/mealTypes.json';
-import { handleFetchMealFeed } from '../features/mealFeed';
 
 /**
  *
@@ -20,14 +19,7 @@ const Feed = ({ navigation }) => {
 
   useEffect(() => {
     dispatch(handleFetchPopularFeed);
-    dispatch(handleFetchMealFeed);
   }, [dispatch]);
-
-  const onMealTypes = () => {
-    // mealTypes.map((mealType) => )
-  };
-
-  // console.log('mealTypes', JSON.stringify(mealTypes, null, 4));
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>

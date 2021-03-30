@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { handleFetchMealFeedByTitle } from './mealFeedActions';
 
 const mealFeedSlice = createSlice({
   name: 'mealFeed',
@@ -22,6 +23,19 @@ const mealFeedSlice = createSlice({
     },
     mealFeedSuccess: (state, action) => {
       state.mealFeed = action.payload;
+      state.isLoading = false;
+    },
+  },
+  extraReducers: {
+    [handleFetchMealFeedByTitle.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [handleFetchMealFeedByTitle.fulfilled]: (state, action) => {
+      state.mealFeed = action.payload;
+      state.isLoading = false;
+    },
+    [handleFetchMealFeedByTitle.rejected]: (state, action) => {
+      state.error = action.payload;
       state.isLoading = false;
     },
   },

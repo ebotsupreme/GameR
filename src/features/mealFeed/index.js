@@ -4,12 +4,16 @@ import {
   mealFeedSuccess,
   hasMealType,
 } from './mealFeedSlice';
-import { handleFetchMealFeed } from './mealFeedActions';
+import {
+  handleFetchMealFeed,
+  handleFetchMealFeedByTitle,
+} from './mealFeedActions';
 
 export {
   startLoading,
   hasError,
   mealFeedSuccess,
-  handleFetchMealFeed,
   hasMealType,
+  handleFetchMealFeed,
+  handleFetchMealFeedByTitle,
 };
