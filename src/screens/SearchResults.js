@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, StyleSheet, FlatList, SafeAreaView } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { handleFetchMealFeedByTitle } from '../features/mealFeed/index';
+import { MealFeed } from './index';
 
 /**
  *
@@ -14,9 +15,8 @@ const SearchResults = ({ navigation, route }) => {
   const dispatch = useDispatch();
   const { isLoading, mealFeed } = useSelector((state) => state.mealFeed);
   const itemTitle = route.params;
-  console.log('Search Results Screen mealFeed', mealFeed);
   /**
-   * this will need to handle the searched image results
+   * NOTE: this will need to handle the searched image results
    * of either the searched recipe OR searched meal type / category
    */
 
@@ -26,11 +26,31 @@ const SearchResults = ({ navigation, route }) => {
     }
   }, [dispatch, itemTitle]);
 
+  /**
+   *
+   * @param {{}} item
+   */
+  const renderMealFeed = ({ item }) => <MealFeed {...{ item }} />;
+
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={fonts.light}>Search Results Screen</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={mealFeed.results}
+        renderItem={renderMealFeed}
+        keyExtractor={(item) => item.id.toString()}
+        numColumns={2}
+      />
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 10,
+  },
+});
 
 export default SearchResults;

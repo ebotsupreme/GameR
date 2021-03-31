@@ -6,6 +6,10 @@ import {
 } from './CarouselDimensions';
 import { handleMealFeedImgSrc } from './ImageSource';
 import { handleItemTitle } from './ItemTitle';
+import {
+  handleSearchResultScreenWidth,
+  handleSearchResultItemWidth,
+} from './SearchResultImageDimensions';
 
 export {
   handleCarouselWidth,
@@ -14,4 +18,6 @@ export {
   ITEM_WIDTH,
   handleMealFeedImgSrc,
   handleItemTitle,
+  handleSearchResultScreenWidth,
+  handleSearchResultItemWidth,
 };

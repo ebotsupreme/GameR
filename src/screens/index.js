@@ -4,5 +4,14 @@ import SavedRecipes from './SavedRecipes';
 import SearchRecipes from './SearchRecipes';
 import SearchResults from './SearchResults';
 import ReduxTest from './ReduxTest';
+import MealFeed from './MealFeed';
 
-export { Details, Feed, SavedRecipes, SearchRecipes, SearchResults, ReduxTest };
+export {
+  Details,
+  Feed,
+  SavedRecipes,
+  SearchRecipes,
+  SearchResults,
+  ReduxTest,
+  MealFeed,
+};
