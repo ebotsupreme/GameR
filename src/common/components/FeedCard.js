@@ -12,7 +12,13 @@ import SkeletonCard from './SkeletonCard';
  *
  * @param {{}} props
  */
-const FeedCard = ({ item, navigation, isLoading, type = '' }) => {
+const FeedCard = ({
+  item,
+  navigation,
+  isLoading,
+  type = '',
+  isLoadingMealFeed,
+}) => {
   if (type === 'multi') {
     item = item.item;
   }
@@ -26,7 +32,7 @@ const FeedCard = ({ item, navigation, isLoading, type = '' }) => {
     return navigation.navigate('Details', item.id);
   };
 
-  if (isLoading) {
+  if (isLoading || isLoadingMealFeed) {
     return <SkeletonCard width={0} height={0} />;
   }
 

@@ -5,38 +5,43 @@ const mealFeedSlice = createSlice({
   name: 'mealFeed',
   initialState: {
     mealFeed: [],
-    isLoading: false,
+    isLoadingMealFeed: false,
     error: false,
     mealType: '',
+    isDataLoaded: false,
   },
   reducers: {
     startLoading: (state) => {
-      state.isLoading = true;
+      state.isLoadingMealFeed = true;
     },
     hasError: (state, action) => {
       state.error = action.payload;
-      state.isLoading = false;
+      state.isLoadingMealFeed = false;
     },
     hasMealType: (state, action) => {
       state.mealType = action.payload;
-      state.isLoading = false;
+      state.isLoadingMealFeed = false;
     },
     mealFeedSuccess: (state, action) => {
       state.mealFeed = action.payload;
-      state.isLoading = false;
+      state.isLoadingMealFeed = false;
+      state.isDataLoaded = true;
     },
   },
   extraReducers: {
     [handleFetchMealFeedByTitle.pending]: (state, action) => {
-      state.isLoading = true;
+      state.isLoadingMealFeed = true;
+      state.isDataLoaded = false;
     },
     [handleFetchMealFeedByTitle.fulfilled]: (state, action) => {
       state.mealFeed = action.payload;
-      state.isLoading = false;
+      state.isLoadingMealFeed = false;
+      state.isDataLoaded = true;
     },
     [handleFetchMealFeedByTitle.rejected]: (state, action) => {
       state.error = action.payload;
-      state.isLoading = false;
+      state.isLoadingMealFeed = false;
+      state.isDataLoaded = false;
     },
   },
 });
@@ -49,6 +54,6 @@ export const {
 } = mealFeedSlice.actions;
 export default mealFeedSlice.reducer;
 export const selectMealFeed = (state) => state.mealFeed.mealFeed;
-export const selectIsLoading = (state) => state.mealFeed.isLoading;
+export const selectIsLoading = (state) => state.mealFeed.isLoadingMealFeed;
 export const selectError = (state) => state.mealFeed.error;
 export const selectMealType = (state) => state.mealFeed.mealType;

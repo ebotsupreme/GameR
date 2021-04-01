@@ -10,6 +10,7 @@ import {
   handleSearchResultScreenWidth,
   handleSearchResultItemWidth,
 } from './SearchResultImageDimensions';
+import { handleSearchResultFeedPlaceholder } from './SearchResultFeedPlaceholder';
 
 export {
   handleCarouselWidth,
@@ -20,4 +21,5 @@ export {
   handleItemTitle,
   handleSearchResultScreenWidth,
   handleSearchResultItemWidth,
+  handleSearchResultFeedPlaceholder,
 };

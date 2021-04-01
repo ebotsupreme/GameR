@@ -16,9 +16,11 @@ const Feed = ({ navigation }) => {
   const { colors, fonts } = useTheme();
   const dispatch = useDispatch();
   const { isLoading, popularFeed } = useSelector((state) => state.popularFeed);
+  const { isLoadingMealFeed } = useSelector((state) => state.mealFeed);
 
   useEffect(() => {
     dispatch(handleFetchPopularFeed);
+    // console.log('isLoadingMealFeed', isLoadingMealFeed);
   }, [dispatch]);
 
   return (
@@ -40,7 +42,10 @@ const Feed = ({ navigation }) => {
           <FeedCarousel
             data={mealTypes}
             renderItemComponent={(item) => (
-              <FeedCard {...{ item, navigation, isLoading }} type="multi" />
+              <FeedCard
+                {...{ item, navigation, isLoadingMealFeed }}
+                type="multi"
+              />
             )}
           />
         </View>

@@ -1,3 +1,3 @@
-import { gradientColors } from './linearGradient';
+import { feedGradientColors, searchGradientColors } from './linearGradient';
 
-export { gradientColors };
+export { feedGradientColors, searchGradientColors };

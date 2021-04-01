@@ -1,7 +1,10 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, Pressable, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import LinearGradient from 'react-native-linear-gradient';
 
 import { handleSearchResultItemWidth } from '../utility/index';
+import { searchGradientColors } from '../styles/index';
 
 /**
  *
@@ -12,16 +15,37 @@ const MealFeed = ({ item }) => {
   const HEIGHT = WIDTH;
 
   return (
-    <TouchableOpacity
-      style={[styles.container, { width: WIDTH - 10, height: HEIGHT - 10 }]}>
-      <Image
-        style={[styles.image, { width: WIDTH - 10, height: HEIGHT - 10 }]}
-        source={{ uri: item.image }}
-      />
-      <View style={[styles.titleContainer, { maxWidth: WIDTH - 25 }]}>
-        <Text style={styles.title}>{item.title}</Text>
-      </View>
-    </TouchableOpacity>
+    <>
+      <Pressable
+        onPress={() => console.log('pressable')}
+        style={[styles.container, { width: WIDTH - 10, height: HEIGHT - 10 }]}>
+        {item.image ? (
+          <Image
+            style={[styles.image, { width: WIDTH - 10, height: HEIGHT - 10 }]}
+            source={{ uri: item.image }}
+          />
+        ) : (
+          <View style={{ width: WIDTH - 10, height: HEIGHT - 10 }}>
+            <View styles={styles.imageUnavailable}>
+              <Icon size={100} name="image" color="grey" />
+            </View>
+          </View>
+        )}
+        <LinearGradient
+          colors={searchGradientColors}
+          style={[
+            styles.linearGradient,
+            {
+              width: WIDTH - 10,
+              height: HEIGHT - 10,
+            },
+          ]}>
+          <View style={[styles.titleContainer, { maxWidth: WIDTH - 25 }]}>
+            <Text style={styles.title}>{item.title}</Text>
+          </View>
+        </LinearGradient>
+      </Pressable>
+    </>
   );
 };
 
@@ -40,9 +64,18 @@ const styles = StyleSheet.create({
     left: 10,
   },
   title: {
-    color: 'white',
-    fontWeight: '600',
+    fontFamily: 'AirbnbCerealApp-Black',
+    color: '#FFF',
     fontSize: 16,
+  },
+  imageUnavailable: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  linearGradient: {
+    position: 'absolute',
+    borderRadius: 10,
   },
 });
 

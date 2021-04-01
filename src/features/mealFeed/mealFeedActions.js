@@ -1,4 +1,4 @@
-import { createAsyncThunk, isRejected } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import Config from 'react-native-config';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -17,7 +17,7 @@ const fetchMealTypeTestFeed = new Promise((resolve, reject) => {
       reject('Error, feed empty');
     }
     resolve(data);
-  }, 300);
+  }, 10000);
 });
 /**
  *
@@ -27,7 +27,7 @@ const handleFetchMealFeedByTitle = createAsyncThunk(
   async (mealType, thunkAPI) => {
     // NOTE: TEMPORARY DISABLED DUE TO API CALL LIMIT
     // const response = await api.get(
-    //   `/recipes/complexSearch?apiKey=${Config.API}&type=${mealType}&number=5`,
+    //   `/recipes/complexSearch?apiKey=${Config.API}&type=${mealType}&number=50`,
     // );
     // return response.data;
 

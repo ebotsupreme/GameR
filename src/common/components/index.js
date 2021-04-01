@@ -5,6 +5,7 @@ import FeedCard from './FeedCard';
 import CardImage from './CardImage';
 import CardMeta from './CardMeta';
 import SkeletonCard from './SkeletonCard';
+import SearchResultSkeletonCard from './SearchResultSkeletonCard';
 
 export {
   Logo,
@@ -14,4 +15,5 @@ export {
   CardImage,
   CardMeta,
   SkeletonCard,
+  SearchResultSkeletonCard,
 };
