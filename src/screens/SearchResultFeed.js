@@ -10,7 +10,7 @@ import { searchGradientColors } from '../styles/index';
  *
  * @param {{}} item
  */
-const MealFeed = ({ item }) => {
+const SearchResultFeed = ({ item }) => {
   const WIDTH = handleSearchResultItemWidth();
   const HEIGHT = WIDTH;
 
@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MealFeed;
+export default SearchResultFeed;

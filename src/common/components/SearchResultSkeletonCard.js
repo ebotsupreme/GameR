@@ -31,24 +31,6 @@ const SearchResultSkeletonCard = () => {
       </SkeletonPlaceholder.Item>
     </SkeletonPlaceholder>
   );
-
-  return (
-    <SkeletonPlaceholder
-      backgroundColor="#DADADB"
-      flex={1}
-      justifyContent="center"
-      alignItems="center">
-      <SkeletonPlaceholder.Item
-        paddingVertical={10}
-        paddingHorizontal={15}
-        marginHorizontal={7}
-        marginVertical={10}
-        width={WIDTH - 10}
-        height={HEIGHT - 10}
-        borderRadius={10}
-      />
-    </SkeletonPlaceholder>
-  );
 };
 
 export default SearchResultSkeletonCard;

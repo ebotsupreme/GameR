@@ -8,7 +8,6 @@ import { useTheme } from 'react-native-paper';
  */
 const CardMeta = ({ item, type = '' }) => {
   const { fonts } = useTheme();
-
   return (
     <View style={styles.container}>
       <Text style={[styles.title, type === 'multi' && { fontSize: 16 }]}>

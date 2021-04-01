@@ -4,7 +4,7 @@ import SavedRecipes from './SavedRecipes';
 import SearchRecipes from './SearchRecipes';
 import SearchResults from './SearchResults';
 import ReduxTest from './ReduxTest';
-import MealFeed from './MealFeed';
+import SearchResultFeed from './SearchResultFeed';
 
 export {
   Details,
@@ -13,5 +13,5 @@ export {
   SearchRecipes,
   SearchResults,
   ReduxTest,
-  MealFeed,
+  SearchResultFeed,
 };

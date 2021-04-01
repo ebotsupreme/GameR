@@ -15,7 +15,7 @@ import SkeletonCard from './SkeletonCard';
 const FeedCard = ({
   item,
   navigation,
-  isLoading,
+  isLoadingPopularFeed,
   type = '',
   isLoadingMealFeed,
 }) => {
@@ -31,8 +31,11 @@ const FeedCard = ({
     }
     return navigation.navigate('Details', item.id);
   };
-
-  if (isLoading || isLoadingMealFeed) {
+  /**
+   * NOTE: review isLoadingMealFeed -
+   * may not be needed as it is initially undefined...
+   */
+  if (isLoadingPopularFeed || isLoadingMealFeed) {
     return <SkeletonCard width={0} height={0} />;
   }
 

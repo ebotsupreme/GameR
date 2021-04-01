@@ -8,7 +8,7 @@ const mealFeedSlice = createSlice({
     isLoadingMealFeed: false,
     error: false,
     mealType: '',
-    isDataLoaded: false,
+    isMealFeedLoaded: false,
   },
   reducers: {
     startLoading: (state) => {
@@ -25,23 +25,23 @@ const mealFeedSlice = createSlice({
     mealFeedSuccess: (state, action) => {
       state.mealFeed = action.payload;
       state.isLoadingMealFeed = false;
-      state.isDataLoaded = true;
+      state.isMealFeedLoaded = true;
     },
   },
   extraReducers: {
     [handleFetchMealFeedByTitle.pending]: (state, action) => {
       state.isLoadingMealFeed = true;
-      state.isDataLoaded = false;
+      state.isMealFeedLoaded = false;
     },
     [handleFetchMealFeedByTitle.fulfilled]: (state, action) => {
       state.mealFeed = action.payload;
       state.isLoadingMealFeed = false;
-      state.isDataLoaded = true;
+      state.isMealFeedLoaded = true;
     },
     [handleFetchMealFeedByTitle.rejected]: (state, action) => {
       state.error = action.payload;
       state.isLoadingMealFeed = false;
-      state.isDataLoaded = false;
+      state.isMealFeedLoaded = false;
     },
   },
 });

@@ -7,6 +7,7 @@ import FeedCarousel from '../common/components/FeedCarousel';
 import { handleFetchPopularFeed } from '../features/popularFeed/index';
 import { FeedCard } from '../common/components/index';
 import mealTypes from '../json/mealTypes.json';
+import { handleSearchResultFeedPlaceholder } from '../utility/index';
 
 /**
  *
@@ -15,12 +16,17 @@ import mealTypes from '../json/mealTypes.json';
 const Feed = ({ navigation }) => {
   const { colors, fonts } = useTheme();
   const dispatch = useDispatch();
-  const { isLoading, popularFeed } = useSelector((state) => state.popularFeed);
-  const { isLoadingMealFeed } = useSelector((state) => state.mealFeed);
+  const {
+    isLoadingPopularFeed,
+    popularFeed,
+    isPopularFeedLoaded,
+  } = useSelector((state) => state.popularFeed);
+  const { isLoadingMealFeed, isMealFeedLoaded } = useSelector(
+    (state) => state.mealFeed,
+  );
 
   useEffect(() => {
     dispatch(handleFetchPopularFeed);
-    // console.log('isLoadingMealFeed', isLoadingMealFeed);
   }, [dispatch]);
 
   return (
@@ -31,9 +37,13 @@ const Feed = ({ navigation }) => {
             Popular
           </Text>
           <FeedCarousel
-            data={popularFeed}
+            data={
+              isPopularFeedLoaded
+                ? popularFeed
+                : handleSearchResultFeedPlaceholder()
+            }
             renderItemComponent={(item) => (
-              <FeedCard {...{ ...item, navigation, isLoading }} />
+              <FeedCard {...{ ...item, navigation, isLoadingPopularFeed }} />
             )}
           />
         </View>

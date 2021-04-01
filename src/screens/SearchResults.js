@@ -4,7 +4,7 @@ import { useTheme } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { handleFetchMealFeedByTitle } from '../features/mealFeed/index';
-import { MealFeed } from './index';
+import { SearchResultFeed } from './index';
 import { SearchResultSkeletonCard } from '../common/components/index';
 import { handleSearchResultFeedPlaceholder } from '../utility/index';
 
@@ -15,7 +15,7 @@ import { handleSearchResultFeedPlaceholder } from '../utility/index';
 const SearchResults = ({ navigation, route }) => {
   const { fonts } = useTheme();
   const dispatch = useDispatch();
-  const { mealFeed, isDataLoaded } = useSelector((state) => state.mealFeed);
+  const { mealFeed, isMealFeedLoaded } = useSelector((state) => state.mealFeed);
   const itemTitle = route.params;
   /**
    * NOTE: this will need to handle the searched image results
@@ -30,8 +30,12 @@ const SearchResults = ({ navigation, route }) => {
    *
    * @param {{}} item
    */
-  const renderMealFeed = ({ item }) => <MealFeed {...{ item }} />;
-
+  const renderSearchResultFeed = ({ item }) => (
+    <SearchResultFeed {...{ item }} />
+  );
+  /**
+   *
+   */
   const renderPlaceholder = () => (
     <SearchResultSkeletonCard width={0} height={0} />
   );
@@ -40,11 +44,15 @@ const SearchResults = ({ navigation, route }) => {
     <SafeAreaView style={styles.container}>
       <FlatList
         data={
-          isDataLoaded ? mealFeed.results : handleSearchResultFeedPlaceholder()
+          isMealFeedLoaded
+            ? mealFeed.results
+            : handleSearchResultFeedPlaceholder()
         }
-        renderItem={isDataLoaded ? renderMealFeed : renderPlaceholder}
+        renderItem={
+          isMealFeedLoaded ? renderSearchResultFeed : renderPlaceholder
+        }
         keyExtractor={(item) =>
-          isDataLoaded ? item.id.toString() : item.toString()
+          isMealFeedLoaded ? item.id.toString() : item.toString()
         }
         numColumns={2}
       />
