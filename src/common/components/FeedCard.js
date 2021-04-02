@@ -12,30 +12,23 @@ import SkeletonCard from './SkeletonCard';
  *
  * @param {{}} props
  */
-const FeedCard = ({
-  item,
-  navigation,
-  isLoadingPopularFeed,
-  type = '',
-  isLoadingMealFeed,
-}) => {
+const FeedCard = ({ item, navigation, isLoadingPopularFeed, type = '' }) => {
   if (type === 'multi') {
     item = item.item;
   }
   const WIDTH = handleItemWidthAndHeight();
   const HEIGHT = WIDTH;
-
+  /**
+   *
+   */
   const onPressableScreen = () => {
     if (type === 'multi') {
       return navigation.navigate('Search Results', item.title);
     }
     return navigation.navigate('Details', item.id);
   };
-  /**
-   * NOTE: review isLoadingMealFeed -
-   * may not be needed as it is initially undefined...
-   */
-  if (isLoadingPopularFeed || isLoadingMealFeed) {
+
+  if (isLoadingPopularFeed || item === undefined) {
     return <SkeletonCard width={0} height={0} />;
   }
 

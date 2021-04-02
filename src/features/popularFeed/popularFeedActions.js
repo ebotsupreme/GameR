@@ -39,7 +39,7 @@ export const handleFetchPopularFeed = async (dispatch) => {
         reject('Error, feed empty');
       }
       resolve(data);
-    }, 10000);
+    }, 500);
   });
 
   fetchPopularTestFeed

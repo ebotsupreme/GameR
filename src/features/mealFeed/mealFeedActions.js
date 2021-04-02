@@ -17,7 +17,7 @@ const fetchMealTypeTestFeed = new Promise((resolve, reject) => {
       reject('Error, feed empty');
     }
     resolve(data);
-  }, 10000);
+  }, 500);
 });
 /**
  *

@@ -50,12 +50,9 @@ const Feed = ({ navigation }) => {
         <View>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>Meal</Text>
           <FeedCarousel
-            data={mealTypes}
+            data={mealTypes ? mealTypes : handleSearchResultFeedPlaceholder()}
             renderItemComponent={(item) => (
-              <FeedCard
-                {...{ item, navigation, isLoadingMealFeed }}
-                type="multi"
-              />
+              <FeedCard {...{ item, navigation }} type="multi" />
             )}
           />
         </View>
