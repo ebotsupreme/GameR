@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import Config from 'react-native-config';
-import { useSelector, useDispatch } from 'react-redux';
 
 import { startLoading, hasError, mealFeedSuccess, hasMealType } from './index';
 import { api } from '../../api/index';

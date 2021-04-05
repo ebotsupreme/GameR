@@ -43,7 +43,10 @@ const Feed = ({ navigation }) => {
                 : handleSearchResultFeedPlaceholder()
             }
             renderItemComponent={(item) => (
-              <FeedCard {...{ ...item, navigation, isLoadingPopularFeed }} />
+              <FeedCard
+                {...{ ...item, navigation, isLoadingPopularFeed }}
+                screen="popularFeed"
+              />
             )}
           />
         </View>
@@ -52,7 +55,11 @@ const Feed = ({ navigation }) => {
           <FeedCarousel
             data={mealTypes ? mealTypes : handleSearchResultFeedPlaceholder()}
             renderItemComponent={(item) => (
-              <FeedCard {...{ item, navigation }} type="multi" />
+              <FeedCard
+                {...{ item, navigation }}
+                type="multi"
+                screen="mealFeed"
+              />
             )}
           />
         </View>

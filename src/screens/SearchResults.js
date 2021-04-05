@@ -16,22 +16,22 @@ const SearchResults = ({ navigation, route }) => {
   const { fonts } = useTheme();
   const dispatch = useDispatch();
   const { mealFeed, isMealFeedLoaded } = useSelector((state) => state.mealFeed);
-  const itemTitle = route.params;
+  const { title, screen } = route.params;
   /**
    * NOTE: this will need to handle the searched image results
    * of either the searched recipe OR searched meal type / category
    */
   useEffect(() => {
-    if (itemTitle) {
-      dispatch(handleFetchMealFeedByTitle(itemTitle));
+    if (title) {
+      dispatch(handleFetchMealFeedByTitle(title));
     }
-  }, [dispatch, itemTitle]);
+  }, [dispatch, title]);
   /**
    *
    * @param {{}} item
    */
   const renderSearchResultFeed = ({ item }) => (
-    <SearchResultFeed {...{ item }} />
+    <SearchResultFeed {...{ item, navigation, screen }} />
   );
   /**
    *

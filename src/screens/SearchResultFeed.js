@@ -10,14 +10,14 @@ import { searchGradientColors } from '../styles/index';
  *
  * @param {{}} item
  */
-const SearchResultFeed = ({ item }) => {
+const SearchResultFeed = ({ item, navigation, screen = '' }) => {
   const WIDTH = handleSearchResultItemWidth();
   const HEIGHT = WIDTH;
 
   return (
     <>
       <Pressable
-        onPress={() => console.log('pressable')}
+        onPress={() => navigation.navigate('Details', { id: item.id, screen })}
         style={[styles.container, { width: WIDTH - 10, height: HEIGHT - 10 }]}>
         {item.image ? (
           <Image

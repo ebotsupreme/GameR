@@ -12,7 +12,13 @@ import SkeletonCard from './SkeletonCard';
  *
  * @param {{}} props
  */
-const FeedCard = ({ item, navigation, isLoadingPopularFeed, type = '' }) => {
+const FeedCard = ({
+  item,
+  navigation,
+  isLoadingPopularFeed,
+  type = '',
+  screen = '',
+}) => {
   if (type === 'multi') {
     item = item.item;
   }
@@ -23,9 +29,12 @@ const FeedCard = ({ item, navigation, isLoadingPopularFeed, type = '' }) => {
    */
   const onPressableScreen = () => {
     if (type === 'multi') {
-      return navigation.navigate('Search Results', item.title);
+      return navigation.navigate('Search Results', {
+        title: item.title,
+        screen,
+      });
     }
-    return navigation.navigate('Details', item.id);
+    return navigation.navigate('Details', { id: item.id, screen });
   };
 
   if (isLoadingPopularFeed || item === undefined) {
@@ -34,14 +43,14 @@ const FeedCard = ({ item, navigation, isLoadingPopularFeed, type = '' }) => {
 
   return (
     <View
-      style={[
-        styles.container,
+      style={
+        (styles.container,
         {
           width: ITEM_WIDTH,
           height: HEIGHT,
           paddingHorizontal: HORIZONTAL_MARGIN,
-        },
-      ]}>
+        })
+      }>
       <View
         style={{
           width: WIDTH,
