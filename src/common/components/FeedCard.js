@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, StyleSheet, Pressable } from 'react-native';
-
 import {
   handleItemWidthAndHeight,
   HORIZONTAL_MARGIN,
@@ -13,33 +12,54 @@ import SkeletonCard from './SkeletonCard';
  *
  * @param {{}} props
  */
-const FeedCard = ({ item, navigation, isLoading }) => {
+const FeedCard = ({
+  item,
+  navigation,
+  isLoadingPopularFeed,
+  type = '',
+  screen = '',
+}) => {
+  if (type === 'multi') {
+    item = item.item;
+  }
   const WIDTH = handleItemWidthAndHeight();
   const HEIGHT = WIDTH;
+  /**
+   *
+   */
+  const onPressableScreen = () => {
+    if (type === 'multi') {
+      return navigation.navigate('Search Results', {
+        title: item.title,
+        screen,
+      });
+    }
+    return navigation.navigate('Details', { id: item.id, screen });
+  };
 
-  if (isLoading) {
+  if (isLoadingPopularFeed || item === undefined) {
     return <SkeletonCard width={0} height={0} />;
   }
 
   return (
     <View
-      style={[
-        styles.container,
+      style={
+        (styles.container,
         {
           width: ITEM_WIDTH,
           height: HEIGHT,
           paddingHorizontal: HORIZONTAL_MARGIN,
-        },
-      ]}>
+        })
+      }>
       <View
         style={{
           width: WIDTH,
         }}>
         <Pressable
-          onPress={() => navigation.navigate('Details', item.id)}
+          onPress={() => onPressableScreen()}
           style={{ width: WIDTH, height: HEIGHT }}>
-          <CardImage {...{ item, width: WIDTH, height: HEIGHT }} />
-          <CardMeta {...{ item, width: WIDTH, height: HEIGHT }} />
+          <CardImage {...{ item, width: WIDTH, height: HEIGHT, type }} />
+          <CardMeta {...{ item, width: WIDTH, height: HEIGHT, type }} />
         </Pressable>
       </View>
     </View>

@@ -1,7 +1,15 @@
-const gradientColors = [
-  'rgba(0, 0, 0, 0.1)',
+const feedGradientColors = [
+  'rgba(0, 0, 0, 0)',
+  'rgba(0, 0, 0, 0)',
   'rgba(0, 0, 0, 0.2)',
   'rgba(0, 0, 0, 0.4)',
 ];
 
-export { gradientColors };
+const searchGradientColors = [
+  'rgba(0, 0, 0, 0.0)',
+  'rgba(0, 0, 0, 0.0)',
+  'rgba(0, 0, 0, 0.4)',
+  'rgba(0, 0, 0, 0.6)',
+];
+
+export { feedGradientColors, searchGradientColors };

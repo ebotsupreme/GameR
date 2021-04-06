@@ -6,7 +6,7 @@ import database from '@react-native-firebase/database';
 
 /**
  *
- * @param {{}} navigation
+ * @param {{}} props
  */
 const ReduxTest = ({ navigation }) => {
   const { colors, fonts } = useTheme();

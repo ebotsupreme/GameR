@@ -9,6 +9,7 @@ import {
   Details,
   SavedRecipes,
   SearchRecipes,
+  SearchResults,
   ReduxTest,
 } from '../screens/index';
 
@@ -63,6 +64,11 @@ const MainStackNavigator = () => {
       <Stack.Screen
         name="Search Recipes"
         component={SearchRecipes}
+        options={optionStyle(colors)}
+      />
+      <Stack.Screen
+        name="Search Results"
+        component={SearchResults}
         options={optionStyle(colors)}
       />
       <Stack.Screen name="Redux Test" component={ReduxTest} />

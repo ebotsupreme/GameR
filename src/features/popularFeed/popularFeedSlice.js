@@ -7,20 +7,24 @@ const popularFeedSlice = createSlice({
   name: 'popularFeed',
   initialState: {
     popularFeed: [],
-    isLoading: false,
+    isLoadingPopularFeed: false,
     error: false,
+    isPopularFeedLoaded: false,
   },
   reducers: {
     startLoading: (state) => {
-      state.isLoading = true;
+      state.isLoadingPopularFeed = true;
+      state.isPopularFeedLoaded = false;
     },
     hasError: (state, action) => {
       state.error = action.payload;
-      state.isLoading = false;
+      state.isLoadingPopularFeed = false;
+      state.isPopularFeedLoaded = false;
     },
     popularFeedSuccess: (state, action) => {
       state.popularFeed = action.payload;
-      state.isLoading = false;
+      state.isLoadingPopularFeed = false;
+      state.isPopularFeedLoaded = true;
     },
   },
 });
@@ -32,5 +36,6 @@ export const {
 } = popularFeedSlice.actions;
 export default popularFeedSlice.reducer;
 export const selectPopularFeed = (state) => state.popularFeed.popularFeed;
-export const selectIsLoading = (state) => state.popularFeed.isLoading;
+export const selectIsLoading = (state) =>
+  state.popularFeed.isLoadingPopularFeed;
 export const selectError = (state) => state.popularFeed.error;

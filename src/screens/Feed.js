@@ -6,15 +6,21 @@ import { useSelector, useDispatch } from 'react-redux';
 import FeedCarousel from '../common/components/FeedCarousel';
 import { handleFetchPopularFeed } from '../features/popularFeed/index';
 import { FeedCard } from '../common/components/index';
+import { mealTypes } from '../json/meal/index';
+import { handleSearchResultFeedPlaceholder } from '../utility/index';
 
 /**
  *
- * @param {{}} navigation
+ * @param {{}} props
  */
 const Feed = ({ navigation }) => {
   const { colors, fonts } = useTheme();
   const dispatch = useDispatch();
-  const { isLoading, popularFeed } = useSelector((state) => state.popularFeed);
+  const {
+    isLoadingPopularFeed,
+    popularFeed,
+    isPopularFeedLoaded,
+  } = useSelector((state) => state.popularFeed);
 
   useEffect(() => {
     dispatch(handleFetchPopularFeed);
@@ -28,14 +34,31 @@ const Feed = ({ navigation }) => {
             Popular
           </Text>
           <FeedCarousel
-            data={popularFeed}
+            data={
+              isPopularFeedLoaded
+                ? popularFeed
+                : handleSearchResultFeedPlaceholder()
+            }
             renderItemComponent={(item) => (
-              <FeedCard {...{ ...item, navigation, isLoading }} />
+              <FeedCard
+                {...{ ...item, navigation, isLoadingPopularFeed }}
+                screen="popularFeed"
+              />
             )}
           />
         </View>
-        <View style={styles.feedContainer}>
+        <View>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>Meal</Text>
+          <FeedCarousel
+            data={mealTypes ? mealTypes : handleSearchResultFeedPlaceholder()}
+            renderItemComponent={(item) => (
+              <FeedCard
+                {...{ item, navigation }}
+                type="multi"
+                screen="mealFeed"
+              />
+            )}
+          />
         </View>
         <View style={styles.feedContainer}>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
@@ -78,7 +101,7 @@ const styles = StyleSheet.create({
   },
   feedTitle: {
     fontFamily: 'AirbnbCerealApp-Bold',
-    fontSize: 16,
+    fontSize: 18,
     paddingHorizontal: 15,
     marginTop: 10,
     marginBottom: 12,

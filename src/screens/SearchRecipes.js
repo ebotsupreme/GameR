@@ -4,7 +4,7 @@ import { useTheme } from 'react-native-paper';
 
 /**
  *
- * @param {{}} navigation
+ * @param {{}} props
  */
 const SearchRecipes = ({ navigation }) => {
   const { fonts } = useTheme();
@@ -16,7 +16,10 @@ const SearchRecipes = ({ navigation }) => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text style={fonts.light}>Search Recipes Screen</Text>
-      <Button onPress={() => navigation.navigate('Details')} title="Details" />
+      <Button
+        onPress={() => navigation.navigate('Search Results')}
+        title="Search Results"
+      />
     </View>
   );
 };

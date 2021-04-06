@@ -3,18 +3,21 @@ import { View, Image, StyleSheet } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { gradientColors } from '../../styles/index';
+import { feedGradientColors } from '../../styles/index';
+import { handleMealFeedImgSrc } from '../../utility/index';
 /**
  *
  * @param {{}} props
  */
-const CardImage = ({ item, width, height }) => {
+const CardImage = ({ item, width, height, type = '' }) => {
   return (
     <>
       {item.image ? (
         <Image
           style={[styles.container, { width, height }]}
-          source={{ uri: item.image }}
+          source={
+            type === 'multi' ? handleMealFeedImgSrc(item) : { uri: item.image }
+          }
         />
       ) : (
         <View style={{ width, height }}>
@@ -24,7 +27,7 @@ const CardImage = ({ item, width, height }) => {
         </View>
       )}
       <LinearGradient
-        colors={gradientColors}
+        colors={feedGradientColors}
         style={[styles.linearGradient, { width, height }]}
       />
     </>
