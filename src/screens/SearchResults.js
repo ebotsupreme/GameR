@@ -22,10 +22,13 @@ const SearchResults = ({ navigation, route }) => {
    * of either the searched recipe OR searched meal type / category
    */
   useEffect(() => {
-    if (title) {
+    if (title && screen === 'mealFeed') {
       dispatch(handleFetchMealFeedByTitle(title));
     }
-  }, [dispatch, title]);
+    if (title && screen === 'cuisineFeed') {
+      console.log('dispatch cuisine action');
+    }
+  }, [dispatch, title, screen]);
   /**
    *
    * @param {{}} item

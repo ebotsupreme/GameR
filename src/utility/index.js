@@ -4,7 +4,7 @@ import {
   HORIZONTAL_MARGIN,
   ITEM_WIDTH,
 } from './CarouselDimensions';
-import { handleMealFeedImgSrc } from './ImageSource';
+import { handleFeedImgSrc } from './ImageSource';
 import { handleItemTitle } from './ItemTitle';
 import {
   handleSearchResultScreenWidth,
@@ -17,7 +17,7 @@ export {
   handleItemWidthAndHeight,
   HORIZONTAL_MARGIN,
   ITEM_WIDTH,
-  handleMealFeedImgSrc,
+  handleFeedImgSrc,
   handleItemTitle,
   handleSearchResultScreenWidth,
   handleSearchResultItemWidth,

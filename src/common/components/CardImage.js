@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { feedGradientColors } from '../../styles/index';
-import { handleMealFeedImgSrc } from '../../utility/index';
+import { handleFeedImgSrc } from '../../utility/index';
 /**
  *
  * @param {{}} props
@@ -16,7 +16,7 @@ const CardImage = ({ item, width, height, type = '' }) => {
         <Image
           style={[styles.container, { width, height }]}
           source={
-            type === 'multi' ? handleMealFeedImgSrc(item) : { uri: item.image }
+            type === 'multi' ? handleFeedImgSrc(item) : { uri: item.image }
           }
         />
       ) : (

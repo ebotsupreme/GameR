@@ -4,9 +4,10 @@ import { useTheme } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
 
 import FeedCarousel from '../common/components/FeedCarousel';
-import { handleFetchPopularFeed } from '../features/popularFeed/index';
 import { FeedCard } from '../common/components/index';
 import { mealTypes } from '../json/meal/index';
+import { cuisineTypes } from '../json/cuisine/index';
+import { handleFetchPopularFeed } from '../features/popularFeed/index';
 import { handleSearchResultFeedPlaceholder } from '../utility/index';
 
 /**
@@ -60,10 +61,22 @@ const Feed = ({ navigation }) => {
             )}
           />
         </View>
-        <View style={styles.feedContainer}>
+        <View>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
-            Category
+            Cuisine
           </Text>
+          <FeedCarousel
+            data={
+              cuisineTypes ? cuisineTypes : handleSearchResultFeedPlaceholder()
+            }
+            renderItemComponent={(item) => (
+              <FeedCard
+                {...{ item, navigation }}
+                type="multi"
+                screen="cuisineFeed"
+              />
+            )}
+          />
         </View>
         <View style={styles.feedContainer}>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>

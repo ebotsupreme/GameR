@@ -1,0 +1,53 @@
+[
+  {
+    "title": "American",
+    "image": "burger.jpg",
+    "id": 1
+  },
+  {
+    "title": "Chinese",
+    "image": ".jpg",
+    "id": 2
+  },
+  {
+    "title": "Indian",
+    "image": ".jpg",
+    "id": 3
+  },
+  {
+    "title": "Italian",
+    "image": ".jpg",
+
+    "id": 4
+  },
+  {
+    "title": "Korean",
+    "image": "soonTofu.jpg",
+    "id": 5
+  },
+  {
+    "title": "Mediterranean",
+    "image": "falafel.jpg",
+    "id": 6
+  },
+  {
+    "title": "Mexican",
+    "image": "tacos.jpg",
+    "id": 7
+  },
+  {
+    "title": "Middle Eastern",
+    "image": "kebab.jpg",
+    "id": 8
+  },
+  {
+    "title": "Southern",
+    "image": "friedChicken.jpg",
+    "id": 9
+  },
+  {
+    "title": "Thai",
+    "image": "padThai.jpg",
+    "id": 10
+  }
+]

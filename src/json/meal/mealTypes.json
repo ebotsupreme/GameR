@@ -1,52 +1,52 @@
 [
   {
     "title": "Breakfast",
-    "image": "../assets/breakfast.jpeg",
+    "image": "../assets/breakfast.jpg",
     "id": 1
   },
   {
     "title": "Appetizer",
-    "image": "../assets/appetizer.jpeg",
+    "image": "../assets/appetizer.jpg",
     "id": 2
   },
   {
     "title": "Soup",
-    "image": "../assets/soup.jpeg",
+    "image": "../assets/soup.jpg",
     "id": 3
   },
   {
     "title": "Salad",
-    "image": "../assets/salad.jpeg",
+    "image": "../assets/salad.jpg",
     "id": 4
   },
   {
     "title": "Bread",
-    "image": "../assets/bread.jpeg",
+    "image": "../assets/bread.jpg",
     "id": 5
   },
   {
     "title": "Side Dish",
-    "image": "../assets/side_dish.jpeg",
+    "image": "../assets/side_dish.jpg",
     "id": 6
   },
   {
     "title": "Main Course",
-    "image": "../assets/main_course.jpeg",
+    "image": "../assets/main_course.jpg",
     "id": 7
   },
   {
     "title": "Dessert",
-    "image": "../assets/dessert.jpeg",
+    "image": "../assets/dessert.jpg",
     "id": 8
   },
   {
     "title": "Sauce",
-    "image": "../assets/sauce.jpeg",
+    "image": "../assets/sauce.jpg",
     "id": 9
   },
   {
     "title": "Drink",
-    "image": "../assets/drinks.jpeg",
+    "image": "../assets/drinks.jpg",
     "id": 10
   }
 ]

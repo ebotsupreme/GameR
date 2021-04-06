@@ -53,7 +53,7 @@ const returnFeedData = (feedData) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       let data = feedData;
-      if (data.length === 0) {
+      if (data === undefined || (data && data.length === 0)) {
         reject('Error, feed empty');
       }
       resolve(data);
@@ -73,9 +73,13 @@ const handleFetchMealFeedByTitle = createAsyncThunk(
     // return response.data;
 
     const feedData = await onFetchMealTypeData(mealType);
-    const response = await returnFeedData(feedData).then((data) => {
-      return data;
-    });
+    const response = await returnFeedData(feedData)
+      .then((data) => {
+        return data;
+      })
+      .catch((e) => {
+        console.log('error', e);
+      });
     return response;
   },
 );
