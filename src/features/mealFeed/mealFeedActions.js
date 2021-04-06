@@ -4,20 +4,63 @@ import Config from 'react-native-config';
 import { startLoading, hasError, mealFeedSuccess, hasMealType } from './index';
 import { api } from '../../api/index';
 
-import MealTypeFeedData from '../../json/breakfastMealType.json';
+import {
+  breakfastFeedData,
+  appetizerFeedData,
+  soupFeedData,
+  saladFeedData,
+  breadFeedData,
+  sideDishFeedData,
+  mainCourseFeedData,
+  dessertFeedData,
+  sauceFeedData,
+  drinkFeedData,
+} from '../../json/meal/index';
 
 /**
  *
+ * @param {string} mealType
  */
-const fetchMealTypeTestFeed = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    let data = MealTypeFeedData;
-    if (data.length === 0) {
-      reject('Error, feed empty');
-    }
-    resolve(data);
-  }, 500);
-});
+const onFetchMealTypeData = async (mealType) => {
+  console.log('mealType', mealType);
+  switch (mealType) {
+    case 'Breakfast':
+      return breakfastFeedData;
+    case 'Appetizer':
+      return appetizerFeedData;
+    case 'Soup':
+      return soupFeedData;
+    case 'Salad':
+      return saladFeedData;
+    case 'Bread':
+      return breadFeedData;
+    case 'Side Dish':
+      return sideDishFeedData;
+    case 'Main Course':
+      return mainCourseFeedData;
+    case 'Dessert':
+      return dessertFeedData;
+    case 'Sauce':
+      return sauceFeedData;
+    case 'Drink':
+      return drinkFeedData;
+  }
+};
+/**
+ *
+ * @param {{}} feedData
+ */
+const returnFeedData = (feedData) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      let data = feedData;
+      if (data.length === 0) {
+        reject('Error, feed empty');
+      }
+      resolve(data);
+    }, 500);
+  });
+};
 /**
  *
  */
@@ -30,7 +73,8 @@ const handleFetchMealFeedByTitle = createAsyncThunk(
     // );
     // return response.data;
 
-    const response = await fetchMealTypeTestFeed.then((data) => {
+    const feedData = await onFetchMealTypeData(mealType);
+    const response = await returnFeedData(feedData).then((data) => {
       return data;
     });
     return response;
