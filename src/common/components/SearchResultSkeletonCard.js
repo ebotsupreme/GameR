@@ -15,10 +15,7 @@ const SearchResultSkeletonCard = () => {
       backgroundColor="#DADADB"
       flexDirection="row"
       flexWrap="wrap">
-      <SkeletonPlaceholder.Item
-        flex={1}
-        // justifyContent="center"
-        alignItems="center">
+      <SkeletonPlaceholder.Item flex={1} alignItems="center">
         <SkeletonPlaceholder.Item
           paddingVertical={10}
           paddingHorizontal={15}

@@ -8,7 +8,7 @@ import { searchGradientColors } from '../styles/index';
 
 /**
  *
- * @param {{}} item
+ * @param {{}} props
  */
 const SearchResultFeed = ({ item, navigation, screen = '' }) => {
   const WIDTH = handleSearchResultItemWidth();

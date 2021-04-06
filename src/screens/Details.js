@@ -8,7 +8,7 @@ import { handleFetchSearchResultById } from '../features/searchResult/index';
 
 /**
  *
- * @param {{}} navigation
+ * @param {{}} props
  */
 const Details = ({ navigation, route }) => {
   const { fonts } = useTheme();

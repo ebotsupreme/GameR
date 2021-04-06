@@ -10,7 +10,7 @@ import { handleSearchResultFeedPlaceholder } from '../utility/index';
 
 /**
  *
- * @param {{}} navigation
+ * @param {{}} props
  */
 const SearchResults = ({ navigation, route }) => {
   const { fonts } = useTheme();

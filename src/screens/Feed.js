@@ -11,7 +11,7 @@ import { handleSearchResultFeedPlaceholder } from '../utility/index';
 
 /**
  *
- * @param {{}} navigation
+ * @param {{}} props
  */
 const Feed = ({ navigation }) => {
   const { colors, fonts } = useTheme();
@@ -21,9 +21,6 @@ const Feed = ({ navigation }) => {
     popularFeed,
     isPopularFeedLoaded,
   } = useSelector((state) => state.popularFeed);
-  const { isLoadingMealFeed, isMealFeedLoaded } = useSelector(
-    (state) => state.mealFeed,
-  );
 
   useEffect(() => {
     dispatch(handleFetchPopularFeed);
@@ -52,9 +49,6 @@ const Feed = ({ navigation }) => {
         </View>
         <View>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>Meal</Text>
-          {/* NOTE: Meal feed has no loading state, so it is temporary using
-              the popularFeed loading state. The existing placeholder does not
-              cover the card meta text */}
           <FeedCarousel
             data={mealTypes ? mealTypes : handleSearchResultFeedPlaceholder()}
             renderItemComponent={(item) => (

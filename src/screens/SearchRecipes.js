@@ -4,7 +4,7 @@ import { useTheme } from 'react-native-paper';
 
 /**
  *
- * @param {{}} navigation
+ * @param {{}} props
  */
 const SearchRecipes = ({ navigation }) => {
   const { fonts } = useTheme();
