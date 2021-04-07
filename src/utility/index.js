@@ -11,6 +11,7 @@ import {
   handleSearchResultItemWidth,
 } from './SearchResultImageDimensions';
 import { handleSearchResultFeedPlaceholder } from './SearchResultFeedPlaceholder';
+import { handleFetchFeedType, handleReturnFeedData } from './FetchFeedTypeData';
 
 export {
   handleCarouselWidth,
@@ -22,4 +23,6 @@ export {
   handleSearchResultScreenWidth,
   handleSearchResultItemWidth,
   handleSearchResultFeedPlaceholder,
+  handleFetchFeedType,
+  handleReturnFeedData,
 };
