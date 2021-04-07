@@ -30,10 +30,8 @@ const handleFetchCuisineFeedByTitle = createAsyncThunk(
     // }
 
     const feedData = await handleFetchFeedType(title);
-    // const feedData = await onFetchCuisineTypeData(title);
     const response = await handleReturnFeedData(feedData)
       .then((data) => {
-        console.log('handleFetchCuisineFeedByTtitle Data', data);
         return data;
       })
       .catch((e) => {

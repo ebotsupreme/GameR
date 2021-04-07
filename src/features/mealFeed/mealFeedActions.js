@@ -18,9 +18,7 @@ const handleFetchMealFeedByTitle = createAsyncThunk(
     // return response.data;
 
     const feedData = await handleFetchFeedType(title);
-    // const feedData = await onFetchMealTypeData(title);
     const response = await handleReturnFeedData(feedData)
-      // const response = await returnFeedData(feedData)
       .then((data) => {
         return data;
       })
