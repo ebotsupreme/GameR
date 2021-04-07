@@ -4,6 +4,7 @@ import { useTheme } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { handleFetchMealFeedByTitle } from '../features/mealFeed/index';
+import { handleFetchCuisineFeedByTitle } from '../features/cuisineFeed/index';
 import { SearchResultFeed } from './index';
 import { SearchResultSkeletonCard } from '../common/components/index';
 import { handleSearchResultFeedPlaceholder } from '../utility/index';
@@ -16,6 +17,9 @@ const SearchResults = ({ navigation, route }) => {
   const { fonts } = useTheme();
   const dispatch = useDispatch();
   const { mealFeed, isMealFeedLoaded } = useSelector((state) => state.mealFeed);
+  const { cuisineFeed, isCuisineFeedLoaded } = useSelector(
+    (state) => state.cuisineFeed,
+  );
   const { title, screen } = route.params;
   /**
    * NOTE: this will need to handle the searched image results
@@ -26,7 +30,7 @@ const SearchResults = ({ navigation, route }) => {
       dispatch(handleFetchMealFeedByTitle(title));
     }
     if (title && screen === 'cuisineFeed') {
-      console.log('dispatch cuisine action');
+      dispatch(handleFetchCuisineFeedByTitle(title));
     }
   }, [dispatch, title, screen]);
   /**

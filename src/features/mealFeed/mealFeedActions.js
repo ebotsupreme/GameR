@@ -65,14 +65,14 @@ const returnFeedData = (feedData) => {
  */
 const handleFetchMealFeedByTitle = createAsyncThunk(
   'mealFeed/handleFetchMealFeedByTitle',
-  async (mealType, thunkAPI) => {
+  async (title, thunkAPI) => {
     // NOTE: TEMPORARY DISABLED DUE TO API CALL LIMIT
     // const response = await api.get(
     //   `/recipes/complexSearch?apiKey=${Config.API}&type=${mealType}&number=50`,
     // );
     // return response.data;
 
-    const feedData = await onFetchMealTypeData(mealType);
+    const feedData = await onFetchMealTypeData(title);
     const response = await returnFeedData(feedData)
       .then((data) => {
         return data;
