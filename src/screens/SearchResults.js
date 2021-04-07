@@ -4,6 +4,7 @@ import { useTheme } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { handleFetchMealFeedByTitle } from '../features/mealFeed/index';
+import { handleFetchCuisineFeedByTitle } from '../features/cuisineFeed/index';
 import { SearchResultFeed } from './index';
 import { SearchResultSkeletonCard } from '../common/components/index';
 import { handleSearchResultFeedPlaceholder } from '../utility/index';
@@ -16,16 +17,50 @@ const SearchResults = ({ navigation, route }) => {
   const { fonts } = useTheme();
   const dispatch = useDispatch();
   const { mealFeed, isMealFeedLoaded } = useSelector((state) => state.mealFeed);
+  const { cuisineFeed, isCuisineFeedLoaded } = useSelector(
+    (state) => state.cuisineFeed,
+  );
   const { title, screen } = route.params;
   /**
    * NOTE: this will need to handle the searched image results
    * of either the searched recipe OR searched meal type / category
    */
   useEffect(() => {
-    if (title) {
+    if (title && screen === 'mealFeed') {
       dispatch(handleFetchMealFeedByTitle(title));
     }
-  }, [dispatch, title]);
+    if (title && screen === 'cuisineFeed') {
+      dispatch(handleFetchCuisineFeedByTitle(title));
+    }
+  }, [dispatch, title, screen]);
+  /**
+   *
+   * @param {string} screenName
+   */
+  const renderFLatListData = (screenName) => {
+    switch (screenName) {
+      case 'mealFeed':
+        return isMealFeedLoaded
+          ? mealFeed.results
+          : handleSearchResultFeedPlaceholder();
+      case 'cuisineFeed':
+        return isCuisineFeedLoaded
+          ? cuisineFeed.results
+          : handleSearchResultFeedPlaceholder();
+    }
+  };
+  /**
+   *
+   * @param {string} screenName
+   */
+  const renderFeedLoadedState = (screenName) => {
+    switch (screenName) {
+      case 'mealFeed':
+        return isMealFeedLoaded;
+      case 'cuisineFeed':
+        return isCuisineFeedLoaded;
+    }
+  };
   /**
    *
    * @param {{}} item
@@ -43,16 +78,14 @@ const SearchResults = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={
-          isMealFeedLoaded
-            ? mealFeed.results
-            : handleSearchResultFeedPlaceholder()
-        }
+        data={renderFLatListData(screen)}
         renderItem={
-          isMealFeedLoaded ? renderSearchResultFeed : renderPlaceholder
+          renderFeedLoadedState(screen)
+            ? renderSearchResultFeed
+            : renderPlaceholder
         }
         keyExtractor={(item) =>
-          isMealFeedLoaded ? item.id.toString() : item.toString()
+          renderFeedLoadedState(screen) ? item.id.toString() : item.toString()
         }
         numColumns={2}
       />

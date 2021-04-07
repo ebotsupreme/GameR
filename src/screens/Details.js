@@ -37,6 +37,9 @@ const Details = ({ navigation, route }) => {
       case 'mealFeed':
         dispatch(handleFetchSearchResultById(id));
         break;
+      case 'cuisineFeed':
+        dispatch(handleFetchSearchResultById(id));
+        break;
     }
   };
 
