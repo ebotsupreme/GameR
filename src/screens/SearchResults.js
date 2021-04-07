@@ -35,6 +35,34 @@ const SearchResults = ({ navigation, route }) => {
   }, [dispatch, title, screen]);
   /**
    *
+   * @param {string} screenName
+   */
+  const renderFLatListData = (screenName) => {
+    switch (screenName) {
+      case 'mealFeed':
+        return isMealFeedLoaded
+          ? mealFeed.results
+          : handleSearchResultFeedPlaceholder();
+      case 'cuisineFeed':
+        return isCuisineFeedLoaded
+          ? cuisineFeed.results
+          : handleSearchResultFeedPlaceholder();
+    }
+  };
+  /**
+   *
+   * @param {string} screenName
+   */
+  const renderFeedLoadedState = (screenName) => {
+    switch (screenName) {
+      case 'mealFeed':
+        return isMealFeedLoaded;
+      case 'cuisineFeed':
+        return isCuisineFeedLoaded;
+    }
+  };
+  /**
+   *
    * @param {{}} item
    */
   const renderSearchResultFeed = ({ item }) => (
@@ -50,16 +78,14 @@ const SearchResults = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={
-          isMealFeedLoaded
-            ? mealFeed.results
-            : handleSearchResultFeedPlaceholder()
-        }
+        data={renderFLatListData(screen)}
         renderItem={
-          isMealFeedLoaded ? renderSearchResultFeed : renderPlaceholder
+          renderFeedLoadedState(screen)
+            ? renderSearchResultFeed
+            : renderPlaceholder
         }
         keyExtractor={(item) =>
-          isMealFeedLoaded ? item.id.toString() : item.toString()
+          renderFeedLoadedState(screen) ? item.id.toString() : item.toString()
         }
         numColumns={2}
       />
