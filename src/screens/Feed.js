@@ -8,6 +8,7 @@ import { FeedCard } from '../common/components/index';
 import { mealTypes } from '../json/meal/index';
 import { cuisineTypes } from '../json/cuisine/index';
 import { handleFetchPopularFeed } from '../features/popularFeed/index';
+import { handleFetchHealthyFeed } from '../features/healthyFeed/index';
 import { handleSearchResultFeedPlaceholder } from '../utility/index';
 
 /**
@@ -19,12 +20,18 @@ const Feed = ({ navigation }) => {
   const dispatch = useDispatch();
   const {
     isLoadingPopularFeed,
-    popularFeed,
     isPopularFeedLoaded,
+    popularFeed,
   } = useSelector((state) => state.popularFeed);
+  const {
+    isLoadingHealthyFeed,
+    isHealthyFeedLoaded,
+    healthyFeed,
+  } = useSelector((state) => state.healthyFeed);
 
   useEffect(() => {
     dispatch(handleFetchPopularFeed);
+    dispatch(handleFetchHealthyFeed);
   }, [dispatch]);
 
   return (
@@ -78,22 +85,31 @@ const Feed = ({ navigation }) => {
             )}
           />
         </View>
-        <View style={styles.feedContainer}>
-          <Text style={[styles.feedTitle, { color: colors.accent }]}>
-            Seasonal / Holiday
-          </Text>
-        </View>
-        <View style={styles.feedContainer}>
+        <View>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
             Healthy
           </Text>
+          <FeedCarousel
+            data={
+              isHealthyFeedLoaded
+                ? healthyFeed
+                : handleSearchResultFeedPlaceholder()
+            }
+            renderItemComponent={(item) => (
+              <FeedCard
+                {...{ item, navigation, isLoadingHealthyFeed }}
+                type="single"
+                screen="healthyFeed"
+              />
+            )}
+          />
         </View>
         <View
           style={{
             flex: 1,
           }}>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
-            Recent
+            Random
           </Text>
         </View>
         <Button
