@@ -4,7 +4,7 @@ import { startLoading, hasError, popularFeedSuccess } from './index';
 import { api } from '../../api/index';
 
 // test data
-import PopularRecipesFeedData from '../../json/popularRecipesFeed.json';
+import PopularRecipesFeedData from '../../json/popular/popularRecipesFeed.json';
 
 /**
  *

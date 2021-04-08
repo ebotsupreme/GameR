@@ -80,11 +80,6 @@ const Feed = ({ navigation }) => {
         </View>
         <View style={styles.feedContainer}>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
-            Seasonal / Holiday
-          </Text>
-        </View>
-        <View style={styles.feedContainer}>
-          <Text style={[styles.feedTitle, { color: colors.accent }]}>
             Healthy
           </Text>
         </View>
@@ -93,7 +88,7 @@ const Feed = ({ navigation }) => {
             flex: 1,
           }}>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
-            Recent
+            Random
           </Text>
         </View>
         <Button
