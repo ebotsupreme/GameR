@@ -17,25 +17,25 @@ export const handleFetchPopularFeed = async (dispatch) => {
     /*
   dispatch(startLoading());
   try {
-    // await api.get('/users').then((response) => { // example
     await api
-      .get(`/recipes/random?apiKey=${Config.API}&limitLicense=false&number=10`)
+      .get(
+        `/recipes/complexSearch?apiKey=${Config.API}&sort=popularity&number=10`,
+      )
       .then((response) => {
-        // console.log('response.data.recipes', response.data.recipes);
-        dispatch(popularFeedSuccess(response.data.recipes));
+        console.log('response.data', response.data.results);
+        dispatch(popularFeedSuccess(response.data.results));
       });
   } catch (e) {
     console.error(e.message);
     dispatch(hasError(e.message));
   }
-  */
+*/
   }
 
   dispatch(startLoading());
   try {
     const response = await handleReturnFeedData(PopularRecipesFeedData);
-    // console.log('response', response);
-    dispatch(popularFeedSuccess(response[0].recipes));
+    dispatch(popularFeedSuccess(response.results));
   } catch (e) {
     console.log('error', e);
     dispatch(hasError(e.message));

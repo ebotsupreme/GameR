@@ -18,8 +18,8 @@ export const handleFetchHealthyFeed = async (dispatch) => {
         `/recipes/complexSearch?apiKey=${Config.API}&sort=healthiness&number=10`,
       )
       .then((response) => {
-        console.log('response.data', response.data);
-        dispatch(healthyFeedSuccess(response.data));
+        console.log('response.data.results', response.data.results);
+        dispatch(healthyFeedSuccess(response.data.results));
       });
   } catch (e) {
     console.log('error:', e);
