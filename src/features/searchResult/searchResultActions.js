@@ -25,24 +25,29 @@ const fetchSearchResultData = new Promise((resolve, reject) => {
 const handleFetchSearchResultById = createAsyncThunk(
   'searchResult/handleFetchSearchResultById',
   async (id, thunkAPI) => {
-    // NOTE: TEMPORARY DISABLED DUE TO API CALL LIMIT
-    // try {
-    //   console.log('start', id);
-    //   const response = await api.get(
-    //     `/recipes/${id}/information?apiKey=${Config.API}&includeNutrition=true`,
-    //   );
-    //   console.log('RD:', JSON.stringify(response, null, 4));
-    //   return response.data;
-    // } catch (e) {
-    //   console.log('error', e);
-    //   /**
-    //    * API limit error
-    //    */
-    //   if (e.message === 'Request failed with status code 402') {
-    //     return 'Your daily points limit of 150 has been reached. Please upgrade your plan to continue using the API.';
-    //   }
-    //   return e.message;
-    // }
+    /**
+     * NOTE: TEMPORARY DISABLED DUE TO API CALL LIMIT
+     */
+    {
+      /*
+    try {
+      console.log('start', id);
+      const response = await api.get(
+        `/recipes/${id}/information?apiKey=${Config.API}&includeNutrition=true`,
+      );
+      console.log('RD:', JSON.stringify(response, null, 4));
+      return response.data;
+    } catch (e) {
+      console.log('error', e);
+
+       //NOTE: API limit error
+      if (e.message === 'Request failed with status code 402') {
+        return 'Your daily points limit of 150 has been reached. Please upgrade your plan to continue using the API.';
+      }
+      return e.message;
+    }
+  */
+    }
 
     const response = await fetchSearchResultData.then((data) => data);
     return response;

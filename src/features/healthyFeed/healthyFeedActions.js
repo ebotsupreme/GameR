@@ -31,7 +31,6 @@ export const handleFetchHealthyFeed = async (dispatch) => {
   dispatch(startLoading());
   try {
     const response = await handleReturnFeedData(HealthyRecipesFeedData);
-    console.log('response.results: ', response.results);
     dispatch(healthyFeedSuccess(response.results));
   } catch (e) {
     console.log('error: ', e);

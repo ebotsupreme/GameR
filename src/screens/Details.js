@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
+import { handleFetchHealthyFeed } from '../features/healthyFeed';
 
 import { handleFetchPopularFeed } from '../features/popularFeed/index';
 import { handleFetchSearchResultById } from '../features/searchResult/index';
@@ -38,6 +39,9 @@ const Details = ({ navigation, route }) => {
         dispatch(handleFetchSearchResultById(id));
         break;
       case 'cuisineFeed':
+        dispatch(handleFetchSearchResultById(id));
+        break;
+      case 'healthyFeed':
         dispatch(handleFetchSearchResultById(id));
         break;
     }
