@@ -8,6 +8,7 @@ import { FeedCard } from '../common/components/index';
 import { mealTypes } from '../json/meal/index';
 import { cuisineTypes } from '../json/cuisine/index';
 import { handleFetchPopularFeed } from '../features/popularFeed/index';
+import { handleFetchHealthyFeed } from '../features/healthyFeed/index';
 import { handleSearchResultFeedPlaceholder } from '../utility/index';
 
 /**
@@ -19,12 +20,18 @@ const Feed = ({ navigation }) => {
   const dispatch = useDispatch();
   const {
     isLoadingPopularFeed,
-    popularFeed,
     isPopularFeedLoaded,
+    popularFeed,
   } = useSelector((state) => state.popularFeed);
+  const {
+    isLoadingHealthyFeed,
+    isHealthyFeedLoaded,
+    healthyFeed,
+  } = useSelector((state) => state.healthyFeed);
 
   useEffect(() => {
     dispatch(handleFetchPopularFeed);
+    dispatch(handleFetchHealthyFeed);
   }, [dispatch]);
 
   return (

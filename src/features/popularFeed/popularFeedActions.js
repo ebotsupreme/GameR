@@ -2,8 +2,7 @@ import Config from 'react-native-config';
 
 import { startLoading, hasError, popularFeedSuccess } from './index';
 import { api } from '../../api/index';
-
-// test data
+import { handleReturnFeedData } from '../../utility/index';
 import PopularRecipesFeedData from '../../json/popular/popularRecipesFeed.json';
 
 /**
@@ -11,7 +10,9 @@ import PopularRecipesFeedData from '../../json/popular/popularRecipesFeed.json';
  * @param {{}} dispatch
  */
 export const handleFetchPopularFeed = async (dispatch) => {
-  // NOTE: TEMPORARY DISABLED DUE TO API CALL LIMIT
+  /**
+   * NOTE: TEMPORARY DISABLED DUE TO API CALL LIMIT
+   */
   {
     /*
   dispatch(startLoading());
@@ -30,19 +31,13 @@ export const handleFetchPopularFeed = async (dispatch) => {
   */
   }
 
-  const fetchPopularTestFeed = new Promise((resolve, reject) => {
-    dispatch(startLoading());
-
-    setTimeout(() => {
-      let data = PopularRecipesFeedData;
-      if (data.length === 0) {
-        reject('Error, feed empty');
-      }
-      resolve(data);
-    }, 500);
-  });
-
-  fetchPopularTestFeed
-    .then((data) => dispatch(popularFeedSuccess(data[0].recipes)))
-    .catch((e) => dispatch(hasError(e.message)));
+  dispatch(startLoading());
+  try {
+    const response = await handleReturnFeedData(PopularRecipesFeedData);
+    // console.log('response', response);
+    dispatch(popularFeedSuccess(response[0].recipes));
+  } catch (e) {
+    console.log('error', e);
+    dispatch(hasError(e.message));
+  }
 };
