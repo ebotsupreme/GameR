@@ -16,10 +16,11 @@ const FeedCard = ({
   item,
   navigation,
   isLoadingPopularFeed,
+  isLoadingHealthyFeed,
   type = '',
   screen = '',
 }) => {
-  if (type === 'multi') {
+  if (type === 'multi' || type === 'single') {
     item = item.item;
   }
   const WIDTH = handleItemWidthAndHeight();
@@ -37,7 +38,7 @@ const FeedCard = ({
     return navigation.navigate('Details', { id: item.id, screen });
   };
 
-  if (isLoadingPopularFeed || item === undefined) {
+  if (isLoadingPopularFeed || isLoadingHealthyFeed || item === undefined) {
     return <SkeletonCard width={0} height={0} />;
   }
 

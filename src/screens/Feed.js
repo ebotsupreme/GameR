@@ -85,10 +85,24 @@ const Feed = ({ navigation }) => {
             )}
           />
         </View>
-        <View style={styles.feedContainer}>
+        <View>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
             Healthy
           </Text>
+          <FeedCarousel
+            data={
+              isHealthyFeedLoaded
+                ? healthyFeed
+                : handleSearchResultFeedPlaceholder()
+            }
+            renderItemComponent={(item) => (
+              <FeedCard
+                {...{ item, navigation, isLoadingHealthyFeed }}
+                type="single"
+                screen="healthyFeed"
+              />
+            )}
+          />
         </View>
         <View
           style={{

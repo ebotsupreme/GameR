@@ -2,7 +2,7 @@
  *
  * @param {{}} item
  */
-const handleFeedImgSrc = (item) => {
+const onFeedImgSrc = (item) => {
   switch (item.title) {
     case 'Breakfast':
       return require('../assets/breakfast.jpg');
@@ -46,5 +46,20 @@ const handleFeedImgSrc = (item) => {
       return require('../assets/padThai.jpg');
   }
 };
+/**
+ *
+ * @param {string} type
+ * @param {{}} item
+ */
+const handleDisplayFeedImageSrc = (type, item) => {
+  switch (type) {
+    case 'multi':
+      return onFeedImgSrc(item);
+    default:
+      return {
+        uri: item.image,
+      };
+  }
+};
 
-export { handleFeedImgSrc };
+export { handleDisplayFeedImageSrc };
