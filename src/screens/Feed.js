@@ -9,6 +9,7 @@ import { mealTypes } from '../json/meal/index';
 import { cuisineTypes } from '../json/cuisine/index';
 import { handleFetchPopularFeed } from '../features/popularFeed/index';
 import { handleFetchHealthyFeed } from '../features/healthyFeed/index';
+import { handleFetchRandomFeed } from '../features/randomFeed/randomFeedActions';
 import { handleSearchResultFeedPlaceholder } from '../utility/index';
 
 /**
@@ -28,10 +29,14 @@ const Feed = ({ navigation }) => {
     isHealthyFeedLoaded,
     healthyFeed,
   } = useSelector((state) => state.healthyFeed);
+  const { isLoadingRandomFeed, isRandomFeedLoaded, randomFeed } = useSelector(
+    (state) => state.randomFeed,
+  );
 
   useEffect(() => {
     dispatch(handleFetchPopularFeed);
     dispatch(handleFetchHealthyFeed);
+    dispatch(handleFetchRandomFeed);
   }, [dispatch]);
 
   return (

@@ -20,7 +20,7 @@ const FeedCard = ({
   type = '',
   screen = '',
 }) => {
-  if (type === 'multi' || type === 'single') {
+  if (type) {
     item = item.item;
   }
   const WIDTH = handleItemWidthAndHeight();
