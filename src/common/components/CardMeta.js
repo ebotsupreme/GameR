@@ -10,9 +10,7 @@ const CardMeta = ({ item, type = '' }) => {
   const { fonts } = useTheme();
   return (
     <View style={styles.container}>
-      <Text style={[styles.title, type === 'multi' && { fontSize: 16 }]}>
-        {item.title}
-      </Text>
+      <Text style={styles.title}>{item.title}</Text>
     </View>
   );
 };
@@ -26,7 +24,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'AirbnbCerealApp-Black',
-    fontSize: 14,
+    fontSize: 16,
     color: '#FFF',
   },
 });

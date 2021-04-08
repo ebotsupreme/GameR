@@ -6,10 +6,10 @@ import { createSlice } from '@reduxjs/toolkit';
 const popularFeedSlice = createSlice({
   name: 'popularFeed',
   initialState: {
-    popularFeed: [],
     isLoadingPopularFeed: false,
-    error: false,
     isPopularFeedLoaded: false,
+    error: false,
+    popularFeed: [],
   },
   reducers: {
     startLoading: (state) => {
