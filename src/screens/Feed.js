@@ -11,7 +11,8 @@ import { handleFetchPopularFeed } from '../features/popularFeed/index';
 import { handleFetchHealthyFeed } from '../features/healthyFeed/index';
 import { handleFetchRandomFeed } from '../features/randomFeed/randomFeedActions';
 import { handleSearchResultFeedPlaceholder } from '../utility/index';
-
+import { SearchResults } from '../screens/index';
+import VirtualizedView from '../common/components/VirtualizedView';
 /**
  *
  * @param {{}} props
@@ -41,7 +42,7 @@ const Feed = ({ navigation }) => {
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
-      <ScrollView>
+      <VirtualizedView>
         <View>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
             Popular
@@ -109,19 +110,24 @@ const Feed = ({ navigation }) => {
             )}
           />
         </View>
-        <View
-          style={{
-            flex: 1,
-          }}>
-          <Text style={[styles.feedTitle, { color: colors.accent }]}>
+        <View>
+          <Text
+            style={[
+              styles.feedTitle,
+              { color: colors.accent, marginVertical: 0 },
+            ]}>
             Random
           </Text>
+          <SearchResults
+            {...{ navigation, isRandomFeedLoaded, randomFeed }}
+            screenType="random"
+          />
         </View>
         <Button
           onPress={() => navigation.navigate('Redux Test')}
           title="Redux Test"
         />
-      </ScrollView>
+      </VirtualizedView>
     </View>
   );
 };

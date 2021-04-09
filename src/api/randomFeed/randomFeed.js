@@ -18,8 +18,11 @@ const handleFetchRandomFeedResponse = async () => {
     );
     return await response.data.results;
   } catch (e) {
+    /**
+     * FIXME: look into how this error will be caught.
+     */
     console.log('e: ', e);
-    hasError(e.message);
+    return e.message;
   }
 };
 
