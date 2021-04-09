@@ -1,7 +1,4 @@
-import Config from 'react-native-config';
-
 import { startLoading, hasError, randomFeedSuccess } from './index';
-import { api } from '../../api/index';
 import { handleFetchRandomFeedResponse } from '../../api/randomFeed/index';
 import { handleReturnFeedData } from '../../utility/index';
 import RandomRecipesFeedData from '../../json/random/randomRecipesFeed.json';
