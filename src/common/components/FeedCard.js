@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, StyleSheet, Pressable } from 'react-native';
-import { FEATURED_ITEM_WIDTH } from '../../utility/FeaturedDimensions';
 import {
   handleItemWidthAndHeight,
   HORIZONTAL_MARGIN,
@@ -29,7 +28,6 @@ const FeedCard = ({
   let WIDTH = handleItemWidthAndHeight();
   let HEIGHT = WIDTH;
   const FEATURED_WIDTH = handleFeaturedWidth();
-  // const CONTAINER_WIDTH = ITEM_WIDTH;
 
   if (screen === 'featuredFeed') {
     WIDTH = FEATURED_WIDTH - 30;
@@ -54,7 +52,15 @@ const FeedCard = ({
     isLoadingFeaturedFeed ||
     item === undefined
   ) {
-    return <SkeletonCard width={0} height={0} />;
+    return (
+      <SkeletonCard
+        width={WIDTH}
+        height={HEIGHT}
+        itemWidth={ITEM_WIDTH}
+        horizontalMargin={HORIZONTAL_MARGIN}
+        screen={screen}
+      />
+    );
   }
 
   return (
