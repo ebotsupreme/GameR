@@ -1,11 +1,5 @@
 import Config from 'react-native-config';
 
-import {
-  startLoading,
-  hasError,
-  randomFeedSuccess,
-} from '../../features/randomFeed/index';
-
 import { api } from '../index';
 
 /**

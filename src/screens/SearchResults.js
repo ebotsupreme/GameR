@@ -38,8 +38,7 @@ const SearchResults = ({
     if (title && screen === 'cuisineFeed') {
       dispatch(handleFetchCuisineFeedByTitle(title));
     }
-    console.log('st', screenType);
-  }, [dispatch, title, screen, screenType]);
+  }, [dispatch, title, screen]);
   /**
    *
    * @param {string} screenName
