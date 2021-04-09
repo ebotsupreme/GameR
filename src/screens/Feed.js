@@ -9,13 +9,15 @@ import { mealTypes } from '../json/meal/index';
 import { cuisineTypes } from '../json/cuisine/index';
 import { handleFetchPopularFeed } from '../features/popularFeed/index';
 import { handleFetchHealthyFeed } from '../features/healthyFeed/index';
+import { handleFetchRandomFeed } from '../features/randomFeed/randomFeedActions';
 import { handleSearchResultFeedPlaceholder } from '../utility/index';
-
+import { SearchResults } from '../screens/index';
+import VirtualizedView from '../common/components/VirtualizedView';
 /**
  *
  * @param {{}} props
  */
-const Feed = ({ navigation }) => {
+const Feed = ({ navigation }, props) => {
   const { colors, fonts } = useTheme();
   const dispatch = useDispatch();
   const {
@@ -28,15 +30,19 @@ const Feed = ({ navigation }) => {
     isHealthyFeedLoaded,
     healthyFeed,
   } = useSelector((state) => state.healthyFeed);
+  const { isLoadingRandomFeed, isRandomFeedLoaded, randomFeed } = useSelector(
+    (state) => state.randomFeed,
+  );
 
   useEffect(() => {
     dispatch(handleFetchPopularFeed);
     dispatch(handleFetchHealthyFeed);
+    dispatch(handleFetchRandomFeed);
   }, [dispatch]);
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
-      <ScrollView>
+      <VirtualizedView {...props}>
         <View>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
             Popular
@@ -104,19 +110,24 @@ const Feed = ({ navigation }) => {
             )}
           />
         </View>
-        <View
-          style={{
-            flex: 1,
-          }}>
-          <Text style={[styles.feedTitle, { color: colors.accent }]}>
+        <View>
+          <Text
+            style={[
+              styles.feedTitle,
+              { color: colors.accent, marginVertical: 0 },
+            ]}>
             Random
           </Text>
+          <SearchResults
+            {...{ navigation, isRandomFeedLoaded, randomFeed }}
+            screenType="random"
+          />
         </View>
         <Button
           onPress={() => navigation.navigate('Redux Test')}
           title="Redux Test"
         />
-      </ScrollView>
+      </VirtualizedView>
     </View>
   );
 };

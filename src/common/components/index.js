@@ -6,6 +6,7 @@ import CardImage from './CardImage';
 import CardMeta from './CardMeta';
 import SkeletonCard from './SkeletonCard';
 import SearchResultSkeletonCard from './SearchResultSkeletonCard';
+import VirtualizedView from './VirtualizedView';
 
 export {
   Logo,
@@ -16,4 +17,5 @@ export {
   CardMeta,
   SkeletonCard,
   SearchResultSkeletonCard,
+  VirtualizedView,
 };

@@ -13,14 +13,20 @@ import { handleSearchResultFeedPlaceholder } from '../utility/index';
  *
  * @param {{}} props
  */
-const SearchResults = ({ navigation, route }) => {
+const SearchResults = ({
+  navigation,
+  route,
+  screenType,
+  isRandomFeedLoaded,
+  randomFeed,
+}) => {
   const { fonts } = useTheme();
   const dispatch = useDispatch();
   const { mealFeed, isMealFeedLoaded } = useSelector((state) => state.mealFeed);
   const { cuisineFeed, isCuisineFeedLoaded } = useSelector(
     (state) => state.cuisineFeed,
   );
-  const { title, screen } = route.params;
+  const { title, screen } = route ? route.params : '';
   /**
    * NOTE: this will need to handle the searched image results
    * of either the searched recipe OR searched meal type / category
@@ -47,18 +53,24 @@ const SearchResults = ({ navigation, route }) => {
         return isCuisineFeedLoaded
           ? cuisineFeed.results
           : handleSearchResultFeedPlaceholder();
+      case 'random':
+        return isRandomFeedLoaded
+          ? randomFeed
+          : handleSearchResultFeedPlaceholder();
     }
   };
   /**
    *
    * @param {string} screenName
    */
-  const renderFeedLoadedState = (screenName) => {
-    switch (screenName) {
+  const renderFeedLoadedState = (screenName = '', randomScreen = '') => {
+    switch (screenName ? screenName : randomScreen) {
       case 'mealFeed':
         return isMealFeedLoaded;
       case 'cuisineFeed':
         return isCuisineFeedLoaded;
+      case 'random':
+        return isRandomFeedLoaded;
     }
   };
   /**
@@ -66,7 +78,7 @@ const SearchResults = ({ navigation, route }) => {
    * @param {{}} item
    */
   const renderSearchResultFeed = ({ item }) => (
-    <SearchResultFeed {...{ item, navigation, screen }} />
+    <SearchResultFeed {...{ item, navigation, screen, screenType }} />
   );
   /**
    *
@@ -76,16 +88,26 @@ const SearchResults = ({ navigation, route }) => {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[
+        styles.container,
+        screenType && { paddingVertical: 0, paddingHorizontal: 0 },
+      ]}>
       <FlatList
-        data={renderFLatListData(screen)}
+        data={
+          screenType
+            ? renderFLatListData(screenType)
+            : renderFLatListData(screen)
+        }
         renderItem={
-          renderFeedLoadedState(screen)
+          renderFeedLoadedState(screen, screenType)
             ? renderSearchResultFeed
             : renderPlaceholder
         }
         keyExtractor={(item) =>
-          renderFeedLoadedState(screen) ? item.id.toString() : item.toString()
+          renderFeedLoadedState(screen, screenType)
+            ? item.id.toString()
+            : item.toString()
         }
         numColumns={2}
       />

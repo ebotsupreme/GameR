@@ -10,15 +10,23 @@ import { searchGradientColors } from '../styles/index';
  *
  * @param {{}} props
  */
-const SearchResultFeed = ({ item, navigation, screen = '' }) => {
+const SearchResultFeed = ({
+  item,
+  navigation,
+  screen = '',
+  screenType = '',
+}) => {
   const WIDTH = handleSearchResultItemWidth();
   const HEIGHT = WIDTH;
-
   return (
     <>
       <Pressable
         onPress={() => navigation.navigate('Details', { id: item.id, screen })}
-        style={[styles.container, { width: WIDTH - 10, height: HEIGHT - 10 }]}>
+        style={[
+          styles.container,
+          { width: WIDTH - 10, height: HEIGHT - 10 },
+          screenType && { margin: 0 },
+        ]}>
         {item.image ? (
           <Image
             style={[styles.image, { width: WIDTH - 10, height: HEIGHT - 10 }]}
