@@ -15,7 +15,7 @@ const CardMeta = ({ item, type = '', screen = '', width }) => {
         screen === 'featuredFeed' && { maxWidth: width - 40 },
       ]}>
       <Text
-        style={[styles.title, screen === 'featuredFeed' && { fontSize: 24 }]}>
+        style={[styles.title, screen === 'featuredFeed' && { fontSize: 26 }]}>
         {item.title}
       </Text>
     </View>

@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
   },
   feedTitle: {
     fontFamily: 'AirbnbCerealApp-Bold',
-    fontSize: 18,
+    fontSize: 20,
     paddingHorizontal: 15,
     marginTop: 10,
     marginBottom: 12,
