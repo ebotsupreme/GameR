@@ -6,11 +6,18 @@ import { useTheme } from 'react-native-paper';
  *
  * @param {{}} props
  */
-const CardMeta = ({ item, type = '' }) => {
+const CardMeta = ({ item, type = '', screen = '', width }) => {
   const { fonts } = useTheme();
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{item.title}</Text>
+    <View
+      style={[
+        styles.container,
+        screen === 'featuredFeed' && { maxWidth: width - 40 },
+      ]}>
+      <Text
+        style={[styles.title, screen === 'featuredFeed' && { fontSize: 24 }]}>
+        {item.title}
+      </Text>
     </View>
   );
 };

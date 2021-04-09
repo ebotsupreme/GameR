@@ -75,7 +75,7 @@ const FeedCard = ({
           onPress={() => onPressableScreen()}
           style={{ width: WIDTH, height: HEIGHT }}>
           <CardImage {...{ item, width: WIDTH, height: HEIGHT, type }} />
-          <CardMeta {...{ item, width: WIDTH, height: HEIGHT, type }} />
+          <CardMeta {...{ item, width: WIDTH, height: HEIGHT, type, screen }} />
         </Pressable>
       </View>
     </View>
