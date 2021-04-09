@@ -3,5 +3,6 @@ import {
   hasError,
   featuredFeedSuccess,
 } from './featuredFeedSlice';
+import { handleFetchFeaturedFeed } from './featuredFeedActions';
 
-export { startLoading, hasError, featuredFeedSuccess };
+export { startLoading, hasError, featuredFeedSuccess, handleFetchFeaturedFeed };

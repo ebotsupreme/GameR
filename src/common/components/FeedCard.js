@@ -1,9 +1,11 @@
 import React from 'react';
 import { View, StyleSheet, Pressable } from 'react-native';
+import { FEATURED_ITEM_WIDTH } from '../../utility/FeaturedDimensions';
 import {
   handleItemWidthAndHeight,
   HORIZONTAL_MARGIN,
   ITEM_WIDTH,
+  handleFeaturedWidth,
 } from '../../utility/index';
 import { CardImage, CardMeta } from './index';
 import SkeletonCard from './SkeletonCard';
@@ -17,14 +19,22 @@ const FeedCard = ({
   navigation,
   isLoadingPopularFeed,
   isLoadingHealthyFeed,
+  isLoadingFeaturedFeed,
   type = '',
   screen = '',
 }) => {
   if (type) {
     item = item.item;
   }
-  const WIDTH = handleItemWidthAndHeight();
-  const HEIGHT = WIDTH;
+  let WIDTH = handleItemWidthAndHeight();
+  let HEIGHT = WIDTH;
+  const FEATURED_WIDTH = handleFeaturedWidth();
+  // const CONTAINER_WIDTH = ITEM_WIDTH;
+
+  if (screen === 'featuredFeed') {
+    WIDTH = FEATURED_WIDTH - 30;
+    HEIGHT = WIDTH;
+  }
   /**
    *
    */
@@ -38,7 +48,12 @@ const FeedCard = ({
     return navigation.navigate('Details', { id: item.id, screen });
   };
 
-  if (isLoadingPopularFeed || isLoadingHealthyFeed || item === undefined) {
+  if (
+    isLoadingPopularFeed ||
+    isLoadingHealthyFeed ||
+    isLoadingFeaturedFeed ||
+    item === undefined
+  ) {
     return <SkeletonCard width={0} height={0} />;
   }
 
@@ -47,7 +62,7 @@ const FeedCard = ({
       style={
         (styles.container,
         {
-          width: ITEM_WIDTH,
+          width: screen === 'featuredFeed' ? WIDTH : ITEM_WIDTH,
           height: HEIGHT,
           paddingHorizontal: HORIZONTAL_MARGIN,
         })

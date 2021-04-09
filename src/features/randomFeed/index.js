@@ -1,3 +1,3 @@
 import { startLoading, hasError, randomFeedSuccess } from './randomFeedSlice';
-
-export { startLoading, hasError, randomFeedSuccess };
+import { handleFetchRandomFeed } from './randomFeedActions';
+export { startLoading, hasError, randomFeedSuccess, handleFetchRandomFeed };
