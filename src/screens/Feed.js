@@ -17,7 +17,7 @@ import VirtualizedView from '../common/components/VirtualizedView';
  *
  * @param {{}} props
  */
-const Feed = ({ navigation }) => {
+const Feed = ({ navigation }, props) => {
   const { colors, fonts } = useTheme();
   const dispatch = useDispatch();
   const {
@@ -42,7 +42,7 @@ const Feed = ({ navigation }) => {
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
-      <VirtualizedView>
+      <VirtualizedView {...props}>
         <View>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
             Popular
