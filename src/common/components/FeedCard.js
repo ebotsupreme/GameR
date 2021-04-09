@@ -4,6 +4,7 @@ import {
   handleItemWidthAndHeight,
   HORIZONTAL_MARGIN,
   ITEM_WIDTH,
+  handleFeaturedWidth,
 } from '../../utility/index';
 import { CardImage, CardMeta } from './index';
 import SkeletonCard from './SkeletonCard';
@@ -17,14 +18,21 @@ const FeedCard = ({
   navigation,
   isLoadingPopularFeed,
   isLoadingHealthyFeed,
+  isLoadingFeaturedFeed,
   type = '',
   screen = '',
 }) => {
   if (type) {
     item = item.item;
   }
-  const WIDTH = handleItemWidthAndHeight();
-  const HEIGHT = WIDTH;
+  let WIDTH = handleItemWidthAndHeight();
+  let HEIGHT = WIDTH;
+  const FEATURED_WIDTH = handleFeaturedWidth();
+
+  if (screen === 'featuredFeed') {
+    WIDTH = FEATURED_WIDTH - 30;
+    HEIGHT = WIDTH;
+  }
   /**
    *
    */
@@ -38,8 +46,21 @@ const FeedCard = ({
     return navigation.navigate('Details', { id: item.id, screen });
   };
 
-  if (isLoadingPopularFeed || isLoadingHealthyFeed || item === undefined) {
-    return <SkeletonCard width={0} height={0} />;
+  if (
+    isLoadingPopularFeed ||
+    isLoadingHealthyFeed ||
+    isLoadingFeaturedFeed ||
+    item === undefined
+  ) {
+    return (
+      <SkeletonCard
+        width={WIDTH}
+        height={HEIGHT}
+        itemWidth={ITEM_WIDTH}
+        horizontalMargin={HORIZONTAL_MARGIN}
+        screen={screen}
+      />
+    );
   }
 
   return (
@@ -47,7 +68,7 @@ const FeedCard = ({
       style={
         (styles.container,
         {
-          width: ITEM_WIDTH,
+          width: screen === 'featuredFeed' ? WIDTH : ITEM_WIDTH,
           height: HEIGHT,
           paddingHorizontal: HORIZONTAL_MARGIN,
         })
@@ -60,7 +81,7 @@ const FeedCard = ({
           onPress={() => onPressableScreen()}
           style={{ width: WIDTH, height: HEIGHT }}>
           <CardImage {...{ item, width: WIDTH, height: HEIGHT, type }} />
-          <CardMeta {...{ item, width: WIDTH, height: HEIGHT, type }} />
+          <CardMeta {...{ item, width: WIDTH, height: HEIGHT, type, screen }} />
         </Pressable>
       </View>
     </View>

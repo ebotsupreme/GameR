@@ -5,6 +5,7 @@ import searchResultReducer from '../features/searchResult/searchResultSlice';
 import cuisineFeedReducer from '../features/cuisineFeed/cuisineFeedSlice';
 import healthyFeedReducer from '../features/healthyFeed/healthyFeedSlice';
 import randomFeedReducer from '../features/randomFeed/randomFeedSlice';
+import featuredFeedReducer from '../features/featuredFeed/featuredFeedSlice';
 
 const rootReducer = combineReducers({
   popularFeed: popularFeedReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   cuisineFeed: cuisineFeedReducer,
   healthyFeed: healthyFeedReducer,
   randomFeed: randomFeedReducer,
+  featuredFeed: featuredFeedReducer,
 });
 
 export default rootReducer;

@@ -9,7 +9,8 @@ import { mealTypes } from '../json/meal/index';
 import { cuisineTypes } from '../json/cuisine/index';
 import { handleFetchPopularFeed } from '../features/popularFeed/index';
 import { handleFetchHealthyFeed } from '../features/healthyFeed/index';
-import { handleFetchRandomFeed } from '../features/randomFeed/randomFeedActions';
+import { handleFetchRandomFeed } from '../features/randomFeed/index';
+import { handleFetchFeaturedFeed } from '../features/featuredFeed/index';
 import { handleSearchResultFeedPlaceholder } from '../utility/index';
 import { SearchResults } from '../screens/index';
 import VirtualizedView from '../common/components/VirtualizedView';
@@ -33,16 +34,36 @@ const Feed = ({ navigation }, props) => {
   const { isLoadingRandomFeed, isRandomFeedLoaded, randomFeed } = useSelector(
     (state) => state.randomFeed,
   );
+  const {
+    isLoadingFeaturedFeed,
+    isFeaturedFeedLoaded,
+    featuredFeed,
+  } = useSelector((state) => state.featuredFeed);
 
   useEffect(() => {
     dispatch(handleFetchPopularFeed);
     dispatch(handleFetchHealthyFeed);
     dispatch(handleFetchRandomFeed);
+    dispatch(handleFetchFeaturedFeed);
   }, [dispatch]);
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <VirtualizedView {...props}>
+        <View style={{ paddingHorizontal: 10 }}>
+          <Text
+            style={[
+              styles.feedTitle,
+              { color: colors.accent, paddingHorizontal: 5 },
+            ]}>
+            Featured
+          </Text>
+          <FeedCard
+            {...{ navigation, isLoadingFeaturedFeed }}
+            item={isFeaturedFeedLoaded ? featuredFeed : {}}
+            screen="featuredFeed"
+          />
+        </View>
         <View>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>
             Popular
@@ -141,7 +162,7 @@ const styles = StyleSheet.create({
   },
   feedTitle: {
     fontFamily: 'AirbnbCerealApp-Bold',
-    fontSize: 18,
+    fontSize: 20,
     paddingHorizontal: 15,
     marginTop: 10,
     marginBottom: 12,

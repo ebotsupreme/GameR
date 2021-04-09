@@ -3,7 +3,7 @@ import Config from 'react-native-config';
 import { startLoading, hasError, healthyFeedSuccess } from './index';
 import { api } from '../../api/index';
 import { handleReturnFeedData } from '../../utility/index';
-import HealthyRecipesFeedData from '../../json/healthy/healthyRecipesFeedData.json';
+import HealthyRecipesFeed from '../../json/healthy/healthyRecipesFeed.json';
 
 export const handleFetchHealthyFeed = async (dispatch) => {
   /**
@@ -30,7 +30,7 @@ export const handleFetchHealthyFeed = async (dispatch) => {
 
   dispatch(startLoading());
   try {
-    const response = await handleReturnFeedData(HealthyRecipesFeedData);
+    const response = await handleReturnFeedData(HealthyRecipesFeed);
     dispatch(healthyFeedSuccess(response.results));
   } catch (e) {
     console.log('error: ', e);

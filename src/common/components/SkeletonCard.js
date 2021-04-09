@@ -1,19 +1,16 @@
 import React from 'react';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 
-import {
-  handleItemWidthAndHeight,
-  HORIZONTAL_MARGIN,
-  ITEM_WIDTH,
-} from '../../utility/index';
-
 /**
  *
  */
-const SkeletonCard = () => {
-  const WIDTH = handleItemWidthAndHeight();
-  const HEIGHT = WIDTH;
-
+const SkeletonCard = ({
+  screen,
+  itemWidth,
+  width,
+  height,
+  horizontalMargin,
+}) => {
   return (
     <SkeletonPlaceholder backgroundColor="#DADADB">
       <SkeletonPlaceholder.Item
@@ -22,12 +19,13 @@ const SkeletonCard = () => {
         alignItems="center"
         position="relative"
         borderRadius={10}
-        width={ITEM_WIDTH}
-        height={HEIGHT}
-        paddingHorizontal={HORIZONTAL_MARGIN}>
+        width={screen === 'featuredFeed' ? width : itemWidth}
+        height={height}
+        paddingHorizontal={screen === 'featuredFeed' ? 10 : horizontalMargin}
+        marginHorizontal={screen === 'featuredFeed' ? 5 : 0}>
         <SkeletonPlaceholder.Item
-          width={WIDTH}
-          height={HEIGHT}
+          width={width}
+          height={height}
           borderRadius={10}
         />
       </SkeletonPlaceholder.Item>
