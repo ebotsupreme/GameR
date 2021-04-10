@@ -11,18 +11,23 @@ export const handleFetchRandomFeed = async (dispatch) => {
   /**
    *  NOTE: TEMPORARY DISABLED DUE TO API CALL LIMIT
    */
-  {
-    /*
-  dispatch(startLoading());
-  try {
-    const payload = await handleFetchRandomFeedResponse();
-    dispatch(randomFeedSuccess(payload));
-  } catch (e) {
-    console.log('e: ', e);
-    dispatch(hasError(e.message));
-  }
-*/
-  }
+  // dispatch(startLoading());
+  // try {
+  //   const payload = await handleFetchRandomFeedResponse();
+  //   dispatch(randomFeedSuccess(payload));
+  // } catch (e) {
+  //   let errorMessage = '';
+  //   console.log('error', e);
+  //   /**
+  //    * API limit error
+  //    */
+  //   errorMessage = e.message;
+  //   if (e.message === 'Request failed with status code 402') {
+  //     errorMessage =
+  //       'Your daily points limit of 150 has been reached. Please upgrade your plan to continue using the API.';
+  //   }
+  //   dispatch(hasError(errorMessage));
+  // }
 
   dispatch(startLoading());
   try {

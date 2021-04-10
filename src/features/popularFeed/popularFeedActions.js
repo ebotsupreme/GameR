@@ -1,7 +1,5 @@
-import Config from 'react-native-config';
-
 import { startLoading, hasError, popularFeedSuccess } from './index';
-import { api } from '../../api/index';
+import { handleFetchPopularFeedResponse } from '../../api/popularFeed/index';
 import { handleReturnFeedData } from '../../utility/index';
 import PopularRecipesFeedData from '../../json/popular/popularRecipesFeed.json';
 
@@ -13,24 +11,23 @@ export const handleFetchPopularFeed = async (dispatch) => {
   /**
    * NOTE: TEMPORARY DISABLED DUE TO API CALL LIMIT
    */
-  {
-    /*
-  dispatch(startLoading());
-  try {
-    await api
-      .get(
-        `/recipes/complexSearch?apiKey=${Config.API}&sort=popularity&number=10`,
-      )
-      .then((response) => {
-        console.log('response.data', response.data.results);
-        dispatch(popularFeedSuccess(response.data.results));
-      });
-  } catch (e) {
-    console.error(e.message);
-    dispatch(hasError(e.message));
-  }
-*/
-  }
+  // dispatch(startLoading());
+  // try {
+  //   const payload = await handleFetchPopularFeedResponse();
+  //   dispatch(popularFeedSuccess(payload));
+  // } catch (e) {
+  //   let errorMessage = '';
+  //   console.log('error', e);
+  //   /**
+  //    * API limit error
+  //    */
+  //   errorMessage = e.message;
+  //   if (e.message === 'Request failed with status code 402') {
+  //     errorMessage =
+  //       'Your daily points limit of 150 has been reached. Please upgrade your plan to continue using the API.';
+  //   }
+  //   dispatch(hasError(errorMessage));
+  // }
 
   dispatch(startLoading());
   try {

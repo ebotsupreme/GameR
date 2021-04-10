@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import Config from 'react-native-config';
 
-import { api } from '../../api/index';
+import { handleFetchCuisineFeedResponse } from '../../api/cuisineFeed/index';
 import { handleFetchFeedType, handleReturnFeedData } from '../../utility/index';
 
 /**
@@ -9,24 +8,25 @@ import { handleFetchFeedType, handleReturnFeedData } from '../../utility/index';
  */
 const handleFetchCuisineFeedByTitle = createAsyncThunk(
   'cuisineFeed/handleFetchCuisineFeedByTitle',
-  async (title) => {
-    // NOTE: TEMPORARY DISABLED DUE TO API CALL LIMIT
+  async (title, thunkAPI) => {
+    /**
+     * NOTE: TEMPORARY DISABLED DUE TO API CALL LIMIT
+     */
     // try {
-    //   console.log('handleFetchCuisineFeedByTitle', title);
-    //   const response = await api.get(
-    //     `/recipes/complexSearch?apiKey=${Config.API}&cuisine=${title}&number=25`,
-    //   );
-    //   console.log('response.data', response.data);
-    //   return response.data;
+    //   const response = await handleFetchCuisineFeedResponse(title);
+    //   return response.results;
     // } catch (e) {
+    //   let errorMessage = '';
     //   console.log('error', e);
     //   /**
     //    * API limit error
     //    */
+    //   errorMessage = e.message;
     //   if (e.message === 'Request failed with status code 402') {
-    //     return 'Your daily points limit of 150 has been reached. Please upgrade your plan to continue using the API.';
+    //     errorMessage =
+    //       'Your daily points limit of 150 has been reached. Please upgrade your plan to continue using the API.';
     //   }
-    //   return e.message;
+    //   return errorMessage;
     // }
 
     const feedData = await handleFetchFeedType(title);
@@ -37,7 +37,7 @@ const handleFetchCuisineFeedByTitle = createAsyncThunk(
       .catch((e) => {
         console.log('error', e);
       });
-    return response;
+    return response.results;
   },
 );
 

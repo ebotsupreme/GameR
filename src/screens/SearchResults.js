@@ -47,11 +47,11 @@ const SearchResults = ({
     switch (screenName) {
       case 'mealFeed':
         return isMealFeedLoaded
-          ? mealFeed.results
+          ? mealFeed
           : handleSearchResultFeedPlaceholder();
       case 'cuisineFeed':
         return isCuisineFeedLoaded
-          ? cuisineFeed.results
+          ? cuisineFeed
           : handleSearchResultFeedPlaceholder();
       case 'random':
         return isRandomFeedLoaded
