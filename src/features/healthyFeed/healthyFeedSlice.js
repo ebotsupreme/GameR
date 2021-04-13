@@ -1,5 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+/**
+ *
+ */
 const healthyFeedSlice = createSlice({
   name: 'healthyFeed',
   initialState: {

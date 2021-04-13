@@ -36,7 +36,7 @@ const FeedCard = ({
   /**
    *
    */
-  const onPressableScreen = () => {
+  const onNavigateToScreen = () => {
     if (type === 'multi') {
       return navigation.navigate('Search Results', {
         title: item.title,
@@ -78,7 +78,7 @@ const FeedCard = ({
           width: WIDTH,
         }}>
         <Pressable
-          onPress={() => onPressableScreen()}
+          onPress={() => onNavigateToScreen()}
           style={{ width: WIDTH, height: HEIGHT }}>
           <CardImage {...{ item, width: WIDTH, height: HEIGHT, type }} />
           <CardMeta {...{ item, width: WIDTH, height: HEIGHT, type, screen }} />

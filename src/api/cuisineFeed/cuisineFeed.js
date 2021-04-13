@@ -2,6 +2,10 @@ import Config from 'react-native-config';
 
 import { api } from '../index';
 
+/**
+ *
+ * @param {string} title
+ */
 const handleFetchCuisineFeedResponse = async (title) => {
   try {
     const response = await api.get(

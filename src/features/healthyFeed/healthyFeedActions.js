@@ -3,6 +3,10 @@ import { handleFetchHealthyFeedResponse } from '../../api/healthyFeed/index';
 import { handleReturnFeedData } from '../../utility/index';
 import HealthyRecipesFeed from '../../json/healthy/healthyRecipesFeed.json';
 
+/**
+ *
+ * @param {{}} dispatch
+ */
 export const handleFetchHealthyFeed = async (dispatch) => {
   /**
    *  NOTE: TEMPORARY DISABLED DUE TO API CALL LIMIT

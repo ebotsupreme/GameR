@@ -7,6 +7,9 @@ import healthyFeedReducer from '../features/healthyFeed/healthyFeedSlice';
 import randomFeedReducer from '../features/randomFeed/randomFeedSlice';
 import featuredFeedReducer from '../features/featuredFeed/featuredFeedSlice';
 
+/**
+ *
+ */
 const rootReducer = combineReducers({
   popularFeed: popularFeedReducer,
   mealFeed: mealFeedReducer,

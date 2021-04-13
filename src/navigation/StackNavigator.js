@@ -42,7 +42,7 @@ const optionStyle = (colors) => {
         icon="cast"
         color={colors.colors.primary}
         size={20}
-        onPress={() => console.log('pressed')}
+        onPress={() => {}}
       />
     ),
     headerTitleAlign: 'left',

@@ -1,6 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { handleFetchCuisineFeedByTitle } from './cuisineFeedActions';
 
+/**
+ *
+ */
 const cuisineSlice = createSlice({
   name: 'cuisineFeed',
   initialState: {

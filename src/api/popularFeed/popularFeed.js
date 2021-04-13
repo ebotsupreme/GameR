@@ -2,6 +2,9 @@ import Config from 'react-native-config';
 
 import { api } from '../index';
 
+/**
+ *
+ */
 const handleFetchPopularFeedResponse = async () => {
   try {
     const response = await api.get(

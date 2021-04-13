@@ -26,7 +26,7 @@ const SearchResults = ({
   const { cuisineFeed, isCuisineFeedLoaded } = useSelector(
     (state) => state.cuisineFeed,
   );
-  const { title, screen } = route ? route.params : '';
+  const { title, screen } = route ? route.params : {};
   /**
    * NOTE: this will need to handle the searched image results
    * of either the searched recipe OR searched meal type / category
