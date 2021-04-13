@@ -11,10 +11,10 @@ const handleCarouselWidth = () => {
  */
 const handleItemWidthAndHeight = () => {
   const carouselWidth = handleCarouselWidth();
-  return Math.round(carouselWidth * 0.33);
+  return Math.round(carouselWidth * 0.37);
 };
 const HORIZONTAL_MARGIN = 5;
-const ITEM_WIDTH = handleItemWidthAndHeight() + HORIZONTAL_MARGIN * 2;
+const ITEM_WIDTH = handleItemWidthAndHeight() + HORIZONTAL_MARGIN * 2 + 5;
 
 export {
   handleCarouselWidth,

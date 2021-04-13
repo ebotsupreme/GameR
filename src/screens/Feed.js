@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, Button, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -48,7 +48,11 @@ const Feed = ({ navigation }, props) => {
   }, [dispatch]);
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background }]}>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: colors.background, paddingTop: 10 },
+      ]}>
       <VirtualizedView {...props}>
         <View style={{ paddingHorizontal: 10 }}>
           <Text
@@ -144,10 +148,13 @@ const Feed = ({ navigation }, props) => {
             screenType="random"
           />
         </View>
-        <Button
+        {/* { TODO: enable later for db & authentication
+          <Button
           onPress={() => navigation.navigate('Redux Test')}
           title="Redux Test"
         />
+        } */}
+        <View style={{ paddingBottom: 15 }} />
       </VirtualizedView>
     </View>
   );

@@ -9,7 +9,6 @@ import { handleCarouselWidth, ITEM_WIDTH } from '../../utility/index';
  */
 const FeedCarousel = ({ data, renderItemComponent }) => {
   const carouselRef = useRef(null);
-
   return (
     <Carousel
       data={data}
