@@ -22,12 +22,13 @@ import {
   southern,
   thai,
 } from '../json/cuisine/index';
+import { searchResult } from '../json/searchResult/index';
 /**
  *
  * @param {string} feedType
  */
-const handleFetchFeedType = async (feedType) => {
-  switch (feedType) {
+const handleFetchFeedType = async (feedType = '', feedId = '') => {
+  switch (feedType || feedId) {
     case 'Breakfast':
       return breakfastFeedData;
     case 'Appetizer':
@@ -68,6 +69,8 @@ const handleFetchFeedType = async (feedType) => {
       return southern;
     case 'Thai':
       return thai;
+    case feedId:
+      return searchResult;
   }
 };
 /**

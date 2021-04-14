@@ -4,10 +4,10 @@ import { handleFetchSearchResultById } from './searchResultActions';
 const searchResultSlice = createSlice({
   name: 'searchResult',
   initialState: {
-    searchResult: [],
     isLoadingSearchResult: false,
-    error: false,
     isSearchResultLoaded: false,
+    error: false,
+    searchResult: [],
   },
   reducers: {},
   extraReducers: {
