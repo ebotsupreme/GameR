@@ -4,10 +4,9 @@ import {
   handleItemWidthAndHeight,
   HORIZONTAL_MARGIN,
   ITEM_WIDTH,
-  handleFeaturedWidth,
+  handleWindowWidth,
 } from '../../utility/index';
-import { CardImage, CardMeta } from './index';
-import SkeletonCard from './SkeletonCard';
+import { CardImage, CardMeta, SkeletonCard } from './index';
 
 /**
  *
@@ -29,7 +28,7 @@ const FeedCard = ({
   }
   let WIDTH = handleItemWidthAndHeight();
   let HEIGHT = WIDTH;
-  const FEATURED_WIDTH = handleFeaturedWidth();
+  const FEATURED_WIDTH = handleWindowWidth();
 
   if (screen === 'featuredFeed') {
     WIDTH = FEATURED_WIDTH - 30;

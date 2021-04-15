@@ -15,14 +15,16 @@ const SkeletonCard = ({
     <SkeletonPlaceholder backgroundColor="#DADADB">
       <SkeletonPlaceholder.Item
         flexDirection="row"
-        justifyContent="center"
-        alignItems="center"
+        justifyContent={screen === 'Feed' ? 'flex-start' : 'center'}
+        alignItems={screen === 'Feed' ? 'flex-start' : 'center'}
         position="relative"
         borderRadius={10}
         width={screen === 'featuredFeed' ? width : itemWidth}
         height={height}
         paddingHorizontal={screen === 'featuredFeed' ? 10 : horizontalMargin}
-        marginHorizontal={screen === 'featuredFeed' ? 5 : 0}>
+        marginHorizontal={screen === 'featuredFeed' ? 5 : 0}
+        marginTop={screen === 'Feed' && 10}
+        marginBottom={screen === 'Feed' && 12}>
         <SkeletonPlaceholder.Item
           width={width}
           height={height}
