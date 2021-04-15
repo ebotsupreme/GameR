@@ -41,10 +41,10 @@ const SearchResults = ({
   }, [dispatch, title, screen]);
   /**
    *
-   * @param {string} screenName
+   * @param {string} feedName
    */
-  const renderFLatListData = (screenName) => {
-    switch (screenName) {
+  const renderFLatListData = (feedName) => {
+    switch (feedName) {
       case 'mealFeed':
         return isMealFeedLoaded
           ? mealFeed
@@ -61,10 +61,10 @@ const SearchResults = ({
   };
   /**
    *
-   * @param {string} screenName
+   * @param {string} feedName
    */
-  const renderFeedLoadedState = (screenName = '', randomScreen = '') => {
-    switch (screenName ? screenName : randomScreen) {
+  const renderFeedLoadedState = (feedName = '', feedRandom = '') => {
+    switch (feedName ? feedName : feedRandom) {
       case 'mealFeed':
         return isMealFeedLoaded;
       case 'cuisineFeed':

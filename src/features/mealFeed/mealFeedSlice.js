@@ -14,22 +14,22 @@ const mealFeedSlice = createSlice({
     isMealFeedLoaded: false,
   },
   reducers: {
-    startLoading: (state) => {
-      state.isLoadingMealFeed = true;
-    },
-    hasError: (state, action) => {
-      state.error = action.payload;
-      state.isLoadingMealFeed = false;
-    },
-    hasMealType: (state, action) => {
-      state.mealType = action.payload;
-      state.isLoadingMealFeed = false;
-    },
-    mealFeedSuccess: (state, action) => {
-      state.mealFeed = action.payload;
-      state.isLoadingMealFeed = false;
-      state.isMealFeedLoaded = true;
-    },
+    // startLoading: (state) => {
+    //   state.isLoadingMealFeed = true;
+    // },
+    // hasError: (state, action) => {
+    //   state.error = action.payload;
+    //   state.isLoadingMealFeed = false;
+    // },
+    // hasMealType: (state, action) => {
+    //   state.mealType = action.payload;
+    //   state.isLoadingMealFeed = false;
+    // },
+    // mealFeedSuccess: (state, action) => {
+    //   state.mealFeed = action.payload;
+    //   state.isLoadingMealFeed = false;
+    //   state.isMealFeedLoaded = true;
+    // },
   },
   extraReducers: {
     [handleFetchMealFeedByTitle.pending]: (state, action) => {

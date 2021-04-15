@@ -14,6 +14,7 @@ import { handleFetchFeaturedFeed } from '../features/featuredFeed/index';
 import { handleSearchResultFeedPlaceholder } from '../utility/index';
 import { SearchResults } from '../screens/index';
 import VirtualizedView from '../common/components/VirtualizedView';
+
 /**
  *
  * @param {{}} props
@@ -31,7 +32,7 @@ const Feed = ({ navigation }, props) => {
     isHealthyFeedLoaded,
     healthyFeed,
   } = useSelector((state) => state.healthyFeed);
-  const { isLoadingRandomFeed, isRandomFeedLoaded, randomFeed } = useSelector(
+  const { isRandomFeedLoaded, randomFeed } = useSelector(
     (state) => state.randomFeed,
   );
   const {
@@ -129,7 +130,7 @@ const Feed = ({ navigation }, props) => {
             renderItemComponent={(item) => (
               <FeedCard
                 {...{ item, navigation, isLoadingHealthyFeed }}
-                type="single"
+                type
                 screen="healthyFeed"
               />
             )}
