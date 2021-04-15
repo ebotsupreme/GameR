@@ -1,7 +1,7 @@
 import { startLoading, hasError, featuredFeedSuccess } from './index';
 import { handleFetchFeaturedFeedResponse } from '../../api/featuredFeed/index';
 import { handleReturnFeedData } from '../../utility/index';
-import featuredFeedData from '../../json/featured/featuredRecipeFeed.json';
+import { featuredFeed } from '../../json/featured/index';
 
 /**
  *
@@ -31,7 +31,7 @@ export const handleFetchFeaturedFeed = async (dispatch) => {
 
   dispatch(startLoading());
   try {
-    const response = await handleReturnFeedData(featuredFeedData);
+    const response = await handleReturnFeedData(featuredFeed);
     dispatch(featuredFeedSuccess(response.recipes[0]));
   } catch (e) {
     /**

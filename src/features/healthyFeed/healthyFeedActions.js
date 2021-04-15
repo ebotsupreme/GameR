@@ -1,7 +1,7 @@
 import { startLoading, hasError, healthyFeedSuccess } from './index';
 import { handleFetchHealthyFeedResponse } from '../../api/healthyFeed/index';
 import { handleReturnFeedData } from '../../utility/index';
-import HealthyRecipesFeed from '../../json/healthy/healthyRecipesFeed.json';
+import { healthyFeed } from '../../json/healthy/index';
 
 /**
  *
@@ -31,7 +31,7 @@ export const handleFetchHealthyFeed = async (dispatch) => {
 
   dispatch(startLoading());
   try {
-    const response = await handleReturnFeedData(HealthyRecipesFeed);
+    const response = await handleReturnFeedData(healthyFeed);
     dispatch(healthyFeedSuccess(response.results));
   } catch (e) {
     console.log('error: ', e);

@@ -1,7 +1,7 @@
 import { startLoading, hasError, randomFeedSuccess } from './index';
 import { handleFetchRandomFeedResponse } from '../../api/randomFeed/index';
 import { handleReturnFeedData } from '../../utility/index';
-import RandomRecipesFeedData from '../../json/random/randomRecipesFeed.json';
+import { randomFeed } from '../../json/random/index';
 
 /**
  *
@@ -31,7 +31,7 @@ export const handleFetchRandomFeed = async (dispatch) => {
 
   dispatch(startLoading());
   try {
-    const response = await handleReturnFeedData(RandomRecipesFeedData);
+    const response = await handleReturnFeedData(randomFeed);
     dispatch(randomFeedSuccess(response.results));
   } catch (e) {
     /**

@@ -1,7 +1,7 @@
 import { startLoading, hasError, popularFeedSuccess } from './index';
 import { handleFetchPopularFeedResponse } from '../../api/popularFeed/index';
 import { handleReturnFeedData } from '../../utility/index';
-import PopularRecipesFeedData from '../../json/popular/popularRecipesFeed.json';
+import { popularFeed } from '../../json/popular/index';
 
 /**
  *
@@ -31,7 +31,7 @@ export const handleFetchPopularFeed = async (dispatch) => {
 
   dispatch(startLoading());
   try {
-    const response = await handleReturnFeedData(PopularRecipesFeedData);
+    const response = await handleReturnFeedData(popularFeed);
     dispatch(popularFeedSuccess(response.results));
   } catch (e) {
     console.log('error', e);
