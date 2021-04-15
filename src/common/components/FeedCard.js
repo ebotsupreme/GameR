@@ -17,6 +17,8 @@ const FeedCard = ({
   item,
   navigation,
   isLoadingPopularFeed,
+  isLoadingMealFeed,
+  isLoadingCuisineFeed,
   isLoadingHealthyFeed,
   isLoadingFeaturedFeed,
   type = '',
@@ -48,6 +50,8 @@ const FeedCard = ({
 
   if (
     isLoadingPopularFeed ||
+    isLoadingMealFeed ||
+    isLoadingCuisineFeed ||
     isLoadingHealthyFeed ||
     isLoadingFeaturedFeed ||
     item === undefined

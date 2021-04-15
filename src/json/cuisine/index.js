@@ -1,4 +1,4 @@
-import cuisineTypes from './cuisineTypes.json';
+import cuisineTypes from './cuisine.json';
 import american from './american.json';
 import chinese from './chinese.json';
 import indian from './indian.json';

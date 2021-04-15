@@ -1,9 +1,4 @@
-import {
-  startLoading,
-  hasError,
-  mealFeedSuccess,
-  hasMealType,
-} from './mealFeedSlice';
+import { startLoading, hasError, mealFeedSuccess } from './mealFeedSlice';
 import {
   handleFetchMealFeed,
   handleFetchMealFeedByTitle,
@@ -13,7 +8,6 @@ export {
   startLoading,
   hasError,
   mealFeedSuccess,
-  hasMealType,
   handleFetchMealFeed,
   handleFetchMealFeedByTitle,
 };

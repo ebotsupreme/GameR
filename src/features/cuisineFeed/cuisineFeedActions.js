@@ -2,6 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { handleFetchCuisineFeedResponse } from '../../api/cuisineFeed/index';
 import { handleFetchFeedType, handleReturnFeedData } from '../../utility/index';
+import { startLoading, hasError, cuisineFeedSuccess } from './index';
+import { cuisineTypes } from '../../json/cuisine/index';
 
 /**
  *
@@ -41,4 +43,15 @@ const handleFetchCuisineFeedByTitle = createAsyncThunk(
   },
 );
 
-export { handleFetchCuisineFeedByTitle };
+const handleFetchCuisineFeed = async (dispatch) => {
+  dispatch(startLoading());
+  try {
+    const response = await handleReturnFeedData(cuisineTypes);
+    dispatch(cuisineFeedSuccess(response));
+  } catch (e) {
+    console.log('error: ', e);
+    dispatch(hasError(e.message));
+  }
+};
+
+export { handleFetchCuisineFeed, handleFetchCuisineFeedByTitle };

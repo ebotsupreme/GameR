@@ -7,29 +7,27 @@ import { handleFetchMealFeedByTitle } from './mealFeedActions';
 const mealFeedSlice = createSlice({
   name: 'mealFeed',
   initialState: {
-    mealFeed: [],
     isLoadingMealFeed: false,
-    error: false,
-    mealType: '',
     isMealFeedLoaded: false,
+    error: false,
+    mealFeed: [],
+    mealType: [],
   },
   reducers: {
-    // startLoading: (state) => {
-    //   state.isLoadingMealFeed = true;
-    // },
-    // hasError: (state, action) => {
-    //   state.error = action.payload;
-    //   state.isLoadingMealFeed = false;
-    // },
-    // hasMealType: (state, action) => {
-    //   state.mealType = action.payload;
-    //   state.isLoadingMealFeed = false;
-    // },
-    // mealFeedSuccess: (state, action) => {
-    //   state.mealFeed = action.payload;
-    //   state.isLoadingMealFeed = false;
-    //   state.isMealFeedLoaded = true;
-    // },
+    startLoading: (state) => {
+      state.isLoadingMealFeed = true;
+      state.isMealFeedLoaded = false;
+    },
+    hasError: (state, action) => {
+      state.error = action.payload;
+      state.isLoadingMealFeed = false;
+      state.isMealFeedLoaded = false;
+    },
+    mealFeedSuccess: (state, action) => {
+      state.mealType = action.payload;
+      state.isLoadingMealFeed = false;
+      state.isMealFeedLoaded = true;
+    },
   },
   extraReducers: {
     [handleFetchMealFeedByTitle.pending]: (state, action) => {
@@ -52,7 +50,6 @@ const mealFeedSlice = createSlice({
 export const {
   startLoading,
   hasError,
-  hasMealType,
   mealFeedSuccess,
 } = mealFeedSlice.actions;
 export default mealFeedSlice.reducer;

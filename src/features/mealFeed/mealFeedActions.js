@@ -3,6 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { startLoading, hasError, mealFeedSuccess } from './index';
 import { handleFetchMealFeedResponse } from '../../api/mealFeed/index';
 import { handleFetchFeedType, handleReturnFeedData } from '../../utility/index';
+import { mealTypes } from '../../json/meal/index';
 
 /**
  *
@@ -46,21 +47,15 @@ const handleFetchMealFeedByTitle = createAsyncThunk(
  *
  * @param {{}} dispatch
  */
-const handleFetchMealFeed = async (dispatch, getState) => {
-  // const breakfast = 'breakfast';
-  // dispatch(startLoading());
-  // try {
-  //   await api
-  //     .get(
-  //       `/recipes/complexSearch?apiKey=${Config.API}&type=${breakfast}&number=5`,
-  //     )
-  //     .then((response) => {
-  //       dispatch(mealFeedSuccess(response.data));
-  //     });
-  // } catch (e) {
-  //   console.error(e.message);
-  //   dispatch(hasError(e.message));
-  // }
+const handleFetchMealFeed = async (dispatch) => {
+  dispatch(startLoading());
+  try {
+    const response = await handleReturnFeedData(mealTypes);
+    dispatch(mealFeedSuccess(response));
+  } catch (e) {
+    console.log('error: ', e);
+    dispatch(hasError(e.message));
+  }
 };
 
 export { handleFetchMealFeed, handleFetchMealFeedByTitle };

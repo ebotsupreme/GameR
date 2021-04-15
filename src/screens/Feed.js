@@ -5,9 +5,9 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import FeedCarousel from '../common/components/FeedCarousel';
 import { FeedCard } from '../common/components/index';
-import { mealTypes } from '../json/meal/index';
-import { cuisineTypes } from '../json/cuisine/index';
 import { handleFetchPopularFeed } from '../features/popularFeed/index';
+import { handleFetchMealFeed } from '../features/mealFeed/index';
+import { handleFetchCuisineFeed } from '../features/cuisineFeed/index';
 import { handleFetchHealthyFeed } from '../features/healthyFeed/index';
 import { handleFetchRandomFeed } from '../features/randomFeed/index';
 import { handleFetchFeaturedFeed } from '../features/featuredFeed/index';
@@ -27,6 +27,14 @@ const Feed = ({ navigation }, props) => {
     isPopularFeedLoaded,
     popularFeed,
   } = useSelector((state) => state.popularFeed);
+  const { isLoadingMealFeed, isMealFeedLoaded, mealType } = useSelector(
+    (state) => state.mealFeed,
+  );
+  const {
+    isLoadingCuisineFeed,
+    isCuisineFeedLoaded,
+    cuisineType,
+  } = useSelector((state) => state.cuisineFeed);
   const {
     isLoadingHealthyFeed,
     isHealthyFeedLoaded,
@@ -43,6 +51,8 @@ const Feed = ({ navigation }, props) => {
 
   useEffect(() => {
     dispatch(handleFetchPopularFeed);
+    dispatch(handleFetchMealFeed);
+    dispatch(handleFetchCuisineFeed);
     dispatch(handleFetchHealthyFeed);
     dispatch(handleFetchRandomFeed);
     dispatch(handleFetchFeaturedFeed);
@@ -90,10 +100,12 @@ const Feed = ({ navigation }, props) => {
         <View>
           <Text style={[styles.feedTitle, { color: colors.accent }]}>Meal</Text>
           <FeedCarousel
-            data={mealTypes ? mealTypes : handleSearchResultFeedPlaceholder()}
+            data={
+              isMealFeedLoaded ? mealType : handleSearchResultFeedPlaceholder()
+            }
             renderItemComponent={(item) => (
               <FeedCard
-                {...{ item, navigation }}
+                {...{ item, navigation, isLoadingMealFeed }}
                 type="multi"
                 screen="mealFeed"
               />
@@ -106,11 +118,13 @@ const Feed = ({ navigation }, props) => {
           </Text>
           <FeedCarousel
             data={
-              cuisineTypes ? cuisineTypes : handleSearchResultFeedPlaceholder()
+              isCuisineFeedLoaded
+                ? cuisineType
+                : handleSearchResultFeedPlaceholder()
             }
             renderItemComponent={(item) => (
               <FeedCard
-                {...{ item, navigation }}
+                {...{ item, navigation, isLoadingCuisineFeed }}
                 type="multi"
                 screen="cuisineFeed"
               />

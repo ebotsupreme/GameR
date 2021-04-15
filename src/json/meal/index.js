@@ -1,4 +1,4 @@
-import mealTypes from './mealTypes.json';
+import mealTypes from './meal.json';
 import breakfastFeedData from './breakfastMealType.json';
 import appetizerFeedData from './appetizerMealType.json';
 import soupFeedData from './soupMealType.json';
