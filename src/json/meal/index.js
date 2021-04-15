@@ -1,25 +1,25 @@
 import mealTypes from './meal.json';
-import breakfastFeedData from './breakfastMealType.json';
-import appetizerFeedData from './appetizerMealType.json';
-import soupFeedData from './soupMealType.json';
-import saladFeedData from './saladMealType.json';
-import breadFeedData from './breadMealType.json';
-import sideDishFeedData from './sideDishMealType.json';
-import mainCourseFeedData from './mainCourseMealType.json';
-import dessertFeedData from './dessertMealType.json';
-import sauceFeedData from './sauceMealType.json';
-import drinkFeedData from './drinkMealType.json';
+import breakfast from './breakfast.json';
+import appetizer from './appetizer.json';
+import soup from './soup.json';
+import salad from './salad.json';
+import bread from './bread.json';
+import sideDish from './sideDish.json';
+import mainCourse from './mainCourse.json';
+import dessert from './dessert';
+import sauce from './sauce.json';
+import drink from './drink.json';
 
 export {
   mealTypes,
-  breakfastFeedData,
-  appetizerFeedData,
-  soupFeedData,
-  saladFeedData,
-  breadFeedData,
-  sideDishFeedData,
-  mainCourseFeedData,
-  dessertFeedData,
-  sauceFeedData,
-  drinkFeedData,
+  breakfast,
+  appetizer,
+  soup,
+  salad,
+  bread,
+  sideDish,
+  mainCourse,
+  dessert,
+  sauce,
+  drink,
 };
