@@ -4,10 +4,9 @@ import {
   handleItemWidthAndHeight,
   HORIZONTAL_MARGIN,
   ITEM_WIDTH,
-  handleFeaturedWidth,
+  handleWindowWidth,
 } from '../../utility/index';
-import { CardImage, CardMeta } from './index';
-import SkeletonCard from './SkeletonCard';
+import { CardImage, CardMeta, SkeletonCard } from './index';
 
 /**
  *
@@ -17,6 +16,8 @@ const FeedCard = ({
   item,
   navigation,
   isLoadingPopularFeed,
+  isLoadingMealFeed,
+  isLoadingCuisineFeed,
   isLoadingHealthyFeed,
   isLoadingFeaturedFeed,
   type = '',
@@ -27,7 +28,7 @@ const FeedCard = ({
   }
   let WIDTH = handleItemWidthAndHeight();
   let HEIGHT = WIDTH;
-  const FEATURED_WIDTH = handleFeaturedWidth();
+  const FEATURED_WIDTH = handleWindowWidth();
 
   if (screen === 'featuredFeed') {
     WIDTH = FEATURED_WIDTH - 30;
@@ -36,7 +37,7 @@ const FeedCard = ({
   /**
    *
    */
-  const onPressableScreen = () => {
+  const onNavigateToScreen = () => {
     if (type === 'multi') {
       return navigation.navigate('Search Results', {
         title: item.title,
@@ -48,6 +49,8 @@ const FeedCard = ({
 
   if (
     isLoadingPopularFeed ||
+    isLoadingMealFeed ||
+    isLoadingCuisineFeed ||
     isLoadingHealthyFeed ||
     isLoadingFeaturedFeed ||
     item === undefined
@@ -78,7 +81,7 @@ const FeedCard = ({
           width: WIDTH,
         }}>
         <Pressable
-          onPress={() => onPressableScreen()}
+          onPress={() => onNavigateToScreen()}
           style={{ width: WIDTH, height: HEIGHT }}>
           <CardImage {...{ item, width: WIDTH, height: HEIGHT, type }} />
           <CardMeta {...{ item, width: WIDTH, height: HEIGHT, type, screen }} />

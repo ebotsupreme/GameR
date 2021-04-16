@@ -1,19 +1,25 @@
 import React, { useEffect } from 'react';
-import { View, Text, Button, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
 
 import FeedCarousel from '../common/components/FeedCarousel';
 import { FeedCard } from '../common/components/index';
-import { mealTypes } from '../json/meal/index';
-import { cuisineTypes } from '../json/cuisine/index';
 import { handleFetchPopularFeed } from '../features/popularFeed/index';
+import { handleFetchMealFeed } from '../features/mealFeed/index';
+import { handleFetchCuisineFeed } from '../features/cuisineFeed/index';
 import { handleFetchHealthyFeed } from '../features/healthyFeed/index';
 import { handleFetchRandomFeed } from '../features/randomFeed/index';
 import { handleFetchFeaturedFeed } from '../features/featuredFeed/index';
-import { handleSearchResultFeedPlaceholder } from '../utility/index';
+import {
+  handleSearchResultFeedPlaceholder,
+  WIDTH,
+  HEIGHT,
+} from '../utility/index';
 import { SearchResults } from '../screens/index';
 import VirtualizedView from '../common/components/VirtualizedView';
+import { SkeletonCard } from '../common/components/index';
+
 /**
  *
  * @param {{}} props
@@ -26,12 +32,20 @@ const Feed = ({ navigation }, props) => {
     isPopularFeedLoaded,
     popularFeed,
   } = useSelector((state) => state.popularFeed);
+  const { isLoadingMealFeed, isMealFeedLoaded, mealType } = useSelector(
+    (state) => state.mealFeed,
+  );
+  const {
+    isLoadingCuisineFeed,
+    isCuisineFeedLoaded,
+    cuisineType,
+  } = useSelector((state) => state.cuisineFeed);
   const {
     isLoadingHealthyFeed,
     isHealthyFeedLoaded,
     healthyFeed,
   } = useSelector((state) => state.healthyFeed);
-  const { isLoadingRandomFeed, isRandomFeedLoaded, randomFeed } = useSelector(
+  const { isRandomFeedLoaded, randomFeed } = useSelector(
     (state) => state.randomFeed,
   );
   const {
@@ -42,22 +56,37 @@ const Feed = ({ navigation }, props) => {
 
   useEffect(() => {
     dispatch(handleFetchPopularFeed);
+    dispatch(handleFetchMealFeed);
+    dispatch(handleFetchCuisineFeed);
     dispatch(handleFetchHealthyFeed);
     dispatch(handleFetchRandomFeed);
     dispatch(handleFetchFeaturedFeed);
   }, [dispatch]);
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background }]}>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: colors.background, paddingTop: 10 },
+      ]}>
       <VirtualizedView {...props}>
         <View style={{ paddingHorizontal: 10 }}>
-          <Text
-            style={[
-              styles.feedTitle,
-              { color: colors.accent, paddingHorizontal: 5 },
-            ]}>
-            Featured
-          </Text>
+          {isFeaturedFeedLoaded ? (
+            <Text
+              style={[
+                styles.feedTitle,
+                { color: colors.accent, paddingHorizontal: 5 },
+              ]}>
+              Featured
+            </Text>
+          ) : (
+            <SkeletonCard
+              width={WIDTH}
+              height={HEIGHT}
+              horizontalMargin={5}
+              screen="Feed"
+            />
+          )}
           <FeedCard
             {...{ navigation, isLoadingFeaturedFeed }}
             item={isFeaturedFeedLoaded ? featuredFeed : {}}
@@ -65,9 +94,18 @@ const Feed = ({ navigation }, props) => {
           />
         </View>
         <View>
-          <Text style={[styles.feedTitle, { color: colors.accent }]}>
-            Popular
-          </Text>
+          {isPopularFeedLoaded ? (
+            <Text style={[styles.feedTitle, { color: colors.accent }]}>
+              Popular
+            </Text>
+          ) : (
+            <SkeletonCard
+              width={WIDTH}
+              height={HEIGHT}
+              horizontalMargin={15}
+              screen="Feed"
+            />
+          )}
           <FeedCarousel
             data={
               isPopularFeedLoaded
@@ -83,12 +121,25 @@ const Feed = ({ navigation }, props) => {
           />
         </View>
         <View>
-          <Text style={[styles.feedTitle, { color: colors.accent }]}>Meal</Text>
+          {isMealFeedLoaded ? (
+            <Text style={[styles.feedTitle, { color: colors.accent }]}>
+              Meal
+            </Text>
+          ) : (
+            <SkeletonCard
+              width={WIDTH}
+              height={HEIGHT}
+              horizontalMargin={15}
+              screen="Feed"
+            />
+          )}
           <FeedCarousel
-            data={mealTypes ? mealTypes : handleSearchResultFeedPlaceholder()}
+            data={
+              isMealFeedLoaded ? mealType : handleSearchResultFeedPlaceholder()
+            }
             renderItemComponent={(item) => (
               <FeedCard
-                {...{ item, navigation }}
+                {...{ item, navigation, isLoadingMealFeed }}
                 type="multi"
                 screen="mealFeed"
               />
@@ -96,16 +147,27 @@ const Feed = ({ navigation }, props) => {
           />
         </View>
         <View>
-          <Text style={[styles.feedTitle, { color: colors.accent }]}>
-            Cuisine
-          </Text>
+          {isCuisineFeedLoaded ? (
+            <Text style={[styles.feedTitle, { color: colors.accent }]}>
+              Cuisine
+            </Text>
+          ) : (
+            <SkeletonCard
+              width={WIDTH}
+              height={HEIGHT}
+              horizontalMargin={15}
+              screen="Feed"
+            />
+          )}
           <FeedCarousel
             data={
-              cuisineTypes ? cuisineTypes : handleSearchResultFeedPlaceholder()
+              isCuisineFeedLoaded
+                ? cuisineType
+                : handleSearchResultFeedPlaceholder()
             }
             renderItemComponent={(item) => (
               <FeedCard
-                {...{ item, navigation }}
+                {...{ item, navigation, isLoadingCuisineFeed }}
                 type="multi"
                 screen="cuisineFeed"
               />
@@ -113,9 +175,18 @@ const Feed = ({ navigation }, props) => {
           />
         </View>
         <View>
-          <Text style={[styles.feedTitle, { color: colors.accent }]}>
-            Healthy
-          </Text>
+          {isHealthyFeedLoaded ? (
+            <Text style={[styles.feedTitle, { color: colors.accent }]}>
+              Healthy
+            </Text>
+          ) : (
+            <SkeletonCard
+              width={WIDTH}
+              height={HEIGHT}
+              horizontalMargin={15}
+              screen="Feed"
+            />
+          )}
           <FeedCarousel
             data={
               isHealthyFeedLoaded
@@ -125,29 +196,41 @@ const Feed = ({ navigation }, props) => {
             renderItemComponent={(item) => (
               <FeedCard
                 {...{ item, navigation, isLoadingHealthyFeed }}
-                type="single"
+                type
                 screen="healthyFeed"
               />
             )}
           />
         </View>
         <View>
-          <Text
-            style={[
-              styles.feedTitle,
-              { color: colors.accent, marginVertical: 0 },
-            ]}>
-            Random
-          </Text>
+          {isRandomFeedLoaded ? (
+            <Text
+              style={[
+                styles.feedTitle,
+                { color: colors.accent, marginVertical: 0 },
+              ]}>
+              Random
+            </Text>
+          ) : (
+            <SkeletonCard
+              width={WIDTH}
+              height={HEIGHT}
+              horizontalMargin={15}
+              screen="Feed"
+            />
+          )}
           <SearchResults
             {...{ navigation, isRandomFeedLoaded, randomFeed }}
             screenType="random"
           />
         </View>
-        <Button
+        {/* { TODO: enable later for db & authentication
+          <Button
           onPress={() => navigation.navigate('Redux Test')}
           title="Redux Test"
         />
+        } */}
+        <View style={{ paddingBottom: 15 }} />
       </VirtualizedView>
     </View>
   );

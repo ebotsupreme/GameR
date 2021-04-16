@@ -1,7 +1,7 @@
 import { startLoading, hasError, randomFeedSuccess } from './index';
 import { handleFetchRandomFeedResponse } from '../../api/randomFeed/index';
 import { handleReturnFeedData } from '../../utility/index';
-import RandomRecipesFeedData from '../../json/random/randomRecipesFeed.json';
+import { randomFeed } from '../../json/random/index';
 
 /**
  *
@@ -11,22 +11,27 @@ export const handleFetchRandomFeed = async (dispatch) => {
   /**
    *  NOTE: TEMPORARY DISABLED DUE TO API CALL LIMIT
    */
-  {
-    /*
-  dispatch(startLoading());
-  try {
-    const payload = await handleFetchRandomFeedResponse();
-    dispatch(randomFeedSuccess(payload));
-  } catch (e) {
-    console.log('e: ', e);
-    dispatch(hasError(e.message));
-  }
-*/
-  }
+  // dispatch(startLoading());
+  // try {
+  //   const payload = await handleFetchRandomFeedResponse();
+  //   dispatch(randomFeedSuccess(payload));
+  // } catch (e) {
+  //   let errorMessage = '';
+  //   console.log('error', e);
+  //   /**
+  //    * API limit error
+  //    */
+  //   errorMessage = e.message;
+  //   if (e.message === 'Request failed with status code 402') {
+  //     errorMessage =
+  //       'Your daily points limit of 150 has been reached. Please upgrade your plan to continue using the API.';
+  //   }
+  //   dispatch(hasError(errorMessage));
+  // }
 
   dispatch(startLoading());
   try {
-    const response = await handleReturnFeedData(RandomRecipesFeedData);
+    const response = await handleReturnFeedData(randomFeed);
     dispatch(randomFeedSuccess(response.results));
   } catch (e) {
     /**

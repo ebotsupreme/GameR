@@ -1,3 +1,13 @@
-import { handleFetchCuisineFeedByTitle } from './cuisineFeedActions';
+import { startLoading, hasError, cuisineFeedSuccess } from './cuisineFeedSlice';
+import {
+  handleFetchCuisineFeed,
+  handleFetchCuisineFeedByTitle,
+} from './cuisineFeedActions';
 
-export { handleFetchCuisineFeedByTitle };
+export {
+  startLoading,
+  hasError,
+  cuisineFeedSuccess,
+  handleFetchCuisineFeed,
+  handleFetchCuisineFeedByTitle,
+};

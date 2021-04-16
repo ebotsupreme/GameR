@@ -14,8 +14,15 @@ const Search = () => {
   const navigation = useNavigation();
   const { fonts } = useTheme();
 
+  /**
+   *
+   * @param {string} query
+   */
   const onChangeSearch = (query) => setSearchQuery(query);
 
+  /**
+   *
+   */
   const onFocusSearch = () => {
     navigation.navigate('Search Recipes');
   };

@@ -9,7 +9,7 @@ const Drawer = createDrawerNavigator();
  */
 const DrawerNavigator = () => (
   <Drawer.Navigator drawerPosition="right" initialRouteName="Feed">
-    {/* TODO replace this with account section or remove */}
+    {/* TODO: replace this with account section or remove */}
     <Drawer.Screen name="Feed" component={BottomTabNavigator} />
     <Drawer.Screen name="Saved Recipes" component={SavedRecipeStackNavigator} />
   </Drawer.Navigator>

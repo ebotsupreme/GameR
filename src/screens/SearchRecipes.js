@@ -10,6 +10,14 @@ const SearchRecipes = ({ navigation }) => {
   const { fonts } = useTheme();
 
   /**
+   *
+   * @param {string} screen
+   */
+  const onNavigateToScreen = (screen) => {
+    return navigation.navigate(screen, { title: '', screen });
+  };
+
+  /**
    * this will need to handle the search for feed
    * and the search for saved recipes
    */
@@ -17,7 +25,7 @@ const SearchRecipes = ({ navigation }) => {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text style={fonts.light}>Search Recipes Screen</Text>
       <Button
-        onPress={() => navigation.navigate('Search Results')}
+        onPress={() => onNavigateToScreen('Search Results')}
         title="Search Results"
       />
     </View>

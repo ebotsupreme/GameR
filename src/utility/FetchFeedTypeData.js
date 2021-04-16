@@ -1,14 +1,14 @@
 import {
-  breakfastFeedData,
-  appetizerFeedData,
-  soupFeedData,
-  saladFeedData,
-  breadFeedData,
-  sideDishFeedData,
-  mainCourseFeedData,
-  dessertFeedData,
-  sauceFeedData,
-  drinkFeedData,
+  breakfast,
+  appetizer,
+  soup,
+  salad,
+  bread,
+  sideDish,
+  mainCourse,
+  dessert,
+  sauce,
+  drink,
 } from '../json/meal/index';
 import {
   american,
@@ -22,32 +22,33 @@ import {
   southern,
   thai,
 } from '../json/cuisine/index';
+import { searchResult } from '../json/searchResult/index';
 /**
  *
  * @param {string} feedType
  */
-const handleFetchFeedType = async (feedType) => {
-  switch (feedType) {
+const handleFetchFeedType = async (feedType = '', feedId = '') => {
+  switch (feedType || feedId) {
     case 'Breakfast':
-      return breakfastFeedData;
+      return breakfast;
     case 'Appetizer':
-      return appetizerFeedData;
+      return appetizer;
     case 'Soup':
-      return soupFeedData;
+      return soup;
     case 'Salad':
-      return saladFeedData;
+      return salad;
     case 'Bread':
-      return breadFeedData;
+      return bread;
     case 'Side Dish':
-      return sideDishFeedData;
+      return sideDish;
     case 'Main Course':
-      return mainCourseFeedData;
+      return mainCourse;
     case 'Dessert':
-      return dessertFeedData;
+      return dessert;
     case 'Sauce':
-      return sauceFeedData;
+      return sauce;
     case 'Drink':
-      return drinkFeedData;
+      return drink;
     case 'American':
       return american;
     case 'Chinese':
@@ -68,6 +69,8 @@ const handleFetchFeedType = async (feedType) => {
       return southern;
     case 'Thai':
       return thai;
+    case feedId:
+      return searchResult;
   }
 };
 /**

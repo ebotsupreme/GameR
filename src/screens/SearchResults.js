@@ -26,7 +26,7 @@ const SearchResults = ({
   const { cuisineFeed, isCuisineFeedLoaded } = useSelector(
     (state) => state.cuisineFeed,
   );
-  const { title, screen } = route ? route.params : '';
+  const { title, screen } = route ? route.params : {};
   /**
    * NOTE: this will need to handle the searched image results
    * of either the searched recipe OR searched meal type / category
@@ -41,17 +41,17 @@ const SearchResults = ({
   }, [dispatch, title, screen]);
   /**
    *
-   * @param {string} screenName
+   * @param {string} feedName
    */
-  const renderFLatListData = (screenName) => {
-    switch (screenName) {
+  const renderFLatListData = (feedName) => {
+    switch (feedName) {
       case 'mealFeed':
         return isMealFeedLoaded
-          ? mealFeed.results
+          ? mealFeed
           : handleSearchResultFeedPlaceholder();
       case 'cuisineFeed':
         return isCuisineFeedLoaded
-          ? cuisineFeed.results
+          ? cuisineFeed
           : handleSearchResultFeedPlaceholder();
       case 'random':
         return isRandomFeedLoaded
@@ -61,10 +61,10 @@ const SearchResults = ({
   };
   /**
    *
-   * @param {string} screenName
+   * @param {string} feedName
    */
-  const renderFeedLoadedState = (screenName = '', randomScreen = '') => {
-    switch (screenName ? screenName : randomScreen) {
+  const renderFeedLoadedState = (feedName = '', feedRandom = '') => {
+    switch (feedName ? feedName : feedRandom) {
       case 'mealFeed':
         return isMealFeedLoaded;
       case 'cuisineFeed':

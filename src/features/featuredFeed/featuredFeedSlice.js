@@ -1,5 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+/**
+ *
+ */
 const featuredFeedSlice = createSlice({
   name: 'featuredFeed',
   initialState: {
