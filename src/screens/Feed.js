@@ -93,7 +93,7 @@ const Feed = ({ navigation }, props) => {
     dispatch(handleFetchRandomFeed);
     dispatch(handleFetchFeaturedFeed);
     wait(2000).then(() => setRefreshing(false));
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(handleFetchPopularFeed);
