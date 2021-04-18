@@ -6,6 +6,7 @@ import { FlatList } from 'react-native';
  * @param {{}} props
  */
 const VirtualizedView = (props) => {
+  const { onRefresh, refreshing } = props;
   /**
    *
    */
@@ -13,11 +14,13 @@ const VirtualizedView = (props) => {
 
   return (
     <FlatList
+      onRefresh={onRefresh}
+      refreshing={refreshing}
       data={[]}
       ListEmptyComponent={null}
       keyExtractor={() => 'dummy'}
       renderItem={null}
-      ListHeaderComponent={() => renderListHeaderComponent()}
+      ListHeaderComponent={renderListHeaderComponent}
     />
   );
 };

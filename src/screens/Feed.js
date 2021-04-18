@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
@@ -27,34 +27,55 @@ import { SkeletonCard } from '../common/components/index';
 const Feed = ({ navigation }, props) => {
   const { colors, fonts } = useTheme();
   const dispatch = useDispatch();
+  const [refreshing, setRefreshing] = useState(false);
+  /**
+   *
+   */
   const {
     isLoadingPopularFeed,
     isPopularFeedLoaded,
     popularFeed,
   } = useSelector((state) => state.popularFeed);
+  /**
+   *
+   */
   const { isLoadingMealFeed, isMealFeedLoaded, mealType } = useSelector(
     (state) => state.mealFeed,
   );
+  /**
+   *
+   */
   const {
     isLoadingCuisineFeed,
     isCuisineFeedLoaded,
     cuisineType,
   } = useSelector((state) => state.cuisineFeed);
+  /**
+   *
+   */
   const {
     isLoadingHealthyFeed,
     isHealthyFeedLoaded,
     healthyFeed,
   } = useSelector((state) => state.healthyFeed);
+  /**
+   *
+   */
   const { isRandomFeedLoaded, randomFeed } = useSelector(
     (state) => state.randomFeed,
   );
+  /**
+   *
+   */
   const {
     isLoadingFeaturedFeed,
     isFeaturedFeedLoaded,
     featuredFeed,
   } = useSelector((state) => state.featuredFeed);
-
-  useEffect(() => {
+  /**
+   *
+   */
+  const onDispatchFeed = useCallback(() => {
     dispatch(handleFetchPopularFeed);
     dispatch(handleFetchMealFeed);
     dispatch(handleFetchCuisineFeed);
@@ -62,6 +83,24 @@ const Feed = ({ navigation }, props) => {
     dispatch(handleFetchRandomFeed);
     dispatch(handleFetchFeaturedFeed);
   }, [dispatch]);
+  /**
+   *
+   * @param {number} timeout
+   */
+  const wait = (timeout) =>
+    new Promise((resolve) => setTimeout(resolve, timeout));
+  /**
+   *
+   */
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    onDispatchFeed();
+    wait(2000).then(() => setRefreshing(false));
+  }, [onDispatchFeed]);
+
+  useEffect(() => {
+    onDispatchFeed();
+  }, [dispatch, onDispatchFeed]);
 
   return (
     <View
@@ -69,7 +108,7 @@ const Feed = ({ navigation }, props) => {
         styles.container,
         { backgroundColor: colors.background, paddingTop: 10 },
       ]}>
-      <VirtualizedView {...props}>
+      <VirtualizedView {...props} onRefresh={onRefresh} refreshing={refreshing}>
         <View style={{ paddingHorizontal: 10 }}>
           {isFeaturedFeedLoaded ? (
             <Text
