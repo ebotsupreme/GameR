@@ -74,6 +74,17 @@ const Feed = ({ navigation }, props) => {
   } = useSelector((state) => state.featuredFeed);
   /**
    *
+   */
+  const onDispatchFeed = useCallback(() => {
+    dispatch(handleFetchPopularFeed);
+    dispatch(handleFetchMealFeed);
+    dispatch(handleFetchCuisineFeed);
+    dispatch(handleFetchHealthyFeed);
+    dispatch(handleFetchRandomFeed);
+    dispatch(handleFetchFeaturedFeed);
+  }, [dispatch]);
+  /**
+   *
    * @param {number} timeout
    */
   const wait = (timeout) =>
@@ -83,26 +94,13 @@ const Feed = ({ navigation }, props) => {
    */
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    /**
-     * NOTE: this may need refactoring
-     */
-    dispatch(handleFetchPopularFeed);
-    dispatch(handleFetchMealFeed);
-    dispatch(handleFetchCuisineFeed);
-    dispatch(handleFetchHealthyFeed);
-    dispatch(handleFetchRandomFeed);
-    dispatch(handleFetchFeaturedFeed);
+    onDispatchFeed();
     wait(2000).then(() => setRefreshing(false));
-  }, [dispatch]);
+  }, [onDispatchFeed]);
 
   useEffect(() => {
-    dispatch(handleFetchPopularFeed);
-    dispatch(handleFetchMealFeed);
-    dispatch(handleFetchCuisineFeed);
-    dispatch(handleFetchHealthyFeed);
-    dispatch(handleFetchRandomFeed);
-    dispatch(handleFetchFeaturedFeed);
-  }, [dispatch]);
+    onDispatchFeed();
+  }, [dispatch, onDispatchFeed]);
 
   return (
     <View
