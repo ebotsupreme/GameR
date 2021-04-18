@@ -14,13 +14,13 @@ const VirtualizedView = (props) => {
 
   return (
     <FlatList
-      onRefresh={() => onRefresh()}
+      onRefresh={onRefresh}
       refreshing={refreshing}
       data={[]}
       ListEmptyComponent={null}
       keyExtractor={() => 'dummy'}
       renderItem={null}
-      ListHeaderComponent={() => renderListHeaderComponent()}
+      ListHeaderComponent={renderListHeaderComponent}
     />
   );
 };
