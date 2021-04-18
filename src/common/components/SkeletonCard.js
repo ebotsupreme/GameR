@@ -23,8 +23,8 @@ const SkeletonCard = ({
         height={height}
         paddingHorizontal={screen === 'featuredFeed' ? 10 : horizontalMargin}
         marginHorizontal={screen === 'featuredFeed' ? 5 : 0}
-        marginTop={screen === 'Feed' && 10}
-        marginBottom={screen === 'Feed' && 12}>
+        marginTop={screen === 'Feed' ? 10 : 0}
+        marginBottom={screen === 'Feed' ? 12 : 0}>
         <SkeletonPlaceholder.Item
           width={width}
           height={height}
