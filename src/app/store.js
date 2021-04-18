@@ -6,7 +6,12 @@ import rootReducer from './rootReducer';
  */
 const store = configureStore({
   reducer: rootReducer,
-  middleware: [...getDefaultMiddleware({ immutableCheck: false })],
+  middleware: [
+    ...getDefaultMiddleware({
+      immutableCheck: false,
+      serializableCheck: false,
+    }),
+  ],
 });
 
 export default store;
