@@ -1,5 +1,12 @@
 import React, { useEffect } from 'react';
-import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  Image,
+  FlatList,
+} from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -19,19 +26,21 @@ const Details = ({ navigation, route }) => {
   const WIDTH = handleWindowWidth();
   const HEIGHT = WIDTH;
   const { id, screen } = route.params;
-  const { searchResult } = useSelector((state) => state.searchResult);
+  const { searchResult, isSearchResultLoaded } = useSelector(
+    (state) => state.searchResult,
+  );
   const searchResultPayload = searchResult ? searchResult : [];
 
   useEffect(() => {
     dispatch(handleFetchSearchResultById(id));
   }, [dispatch, id]);
 
-  if (searchResultPayload) {
-    // console.log(
-    //   'searchResultPayload',
-    //   JSON.stringify(searchResultPayload, null, 4),
-    // );
-  }
+  // if (isSearchResultLoaded) {
+  //   console.log(
+  //     'searchResultPayload',
+  //     JSON.stringify(searchResultPayload, null, 4),
+  //   );
+  // }
 
   return (
     <View style={styles.container}>
@@ -59,8 +68,18 @@ const Details = ({ navigation, route }) => {
           />
         </View>
         <View>
+          {/* <FlatList
+              data={
+                isSearchResultLoaded ? searchResultPayload : {}
+              }
+              renderItem={}
+              keyExtractor={}
+            /> */}
           {/* indredients */}
-          <ListDetails />
+          <ListDetails
+            // serving={}
+            details={isSearchResultLoaded ? searchResultPayload : []}
+          />
         </View>
         <View>{/* Nutrients */}</View>
       </ScrollView>
