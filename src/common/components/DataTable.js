@@ -2,46 +2,127 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { DataTable, useTheme } from 'react-native-paper';
 
-const ListDetails = ({ details = {} }) => {
+/**
+ *
+ * @param {{}} details
+ * @param {screen} detailType
+ */
+const ListDetails = ({ details = {}, detailType = '' }) => {
   const { fonts } = useTheme();
+  let payload = [];
   // console.log('details', details);
   // console.log('details nutrition ingredients', details.nutrition.ingredients);
-  // console.log('details.nutrition.ingredients', details.nutrition.ingredients);
-  // const ingredients = details ? details.nutrition.ingredients : {};
-  // console.log('ingredients: ', ingredients);
-  if (details.nutrition) {
-    console.log('details', details.nutrition);
-  }
+  /**
+   *
+   */
+  const onDeterminePayloadType = () => {
+    if (detailType === 'Ingredients') {
+      payload = details.nutrition.ingredients;
+    }
+    if (detailType === 'Nutrients') {
+      const filteredNutritonInfo = onFilterNutritionCriteria(
+        details.nutrition.nutrients,
+      );
+      payload = filteredNutritonInfo;
+    }
+    return payload;
+  };
+  /**
+   *
+   * @param {{}} nutrients
+   */
+  const onFilterNutritionCriteria = (nutrients) => {
+    return onFIlterNutrition(nutrients);
+  };
+  /**
+   *
+   * @param {{}} payloadToFilter
+   */
+  const onFIlterNutrition = (payloadToFilter) => {
+    const filtered = payloadToFilter.filter((nutrient) => {
+      return filterByNutrientName(nutrient.name);
+    });
+    return filtered;
+  };
+  /**
+   *
+   * @param {string} nutrientName
+   */
+  const filterByNutrientName = (nutrientName) => {
+    switch (nutrientName) {
+      case 'Calories':
+        return nutrientName;
+      case 'Fat':
+        return nutrientName;
+      case 'Saturated Fat':
+        return nutrientName;
+      case 'Carbohydrates':
+        return nutrientName;
+      case 'Sugar':
+        return nutrientName;
+      case 'Cholestrol':
+        return nutrientName;
+      case 'Sodium':
+        return nutrientName;
+      case 'Protein':
+        return nutrientName;
+      case 'Fiber':
+        return nutrientName;
+    }
+  };
 
+  /**
+   * NOTE: This component is for ingredients, nutrition, and instructions
+   * Nutrition: Calories, Fat, Saturated Fat, Carbohydrates, Sugar,
+   *   Cholestrol, Sodium, Protein, Fiber.
+   */
   return (
     <DataTable>
       {details.nutrition ? (
         <>
           <DataTable.Row>
-            <View style={styles.ingredients}>
-              <Text style={styles.subTitle}>Ingredients</Text>
-              <Text style={[styles.serving, fonts.light]}>
-                for{' '}
-                {details.servings > 1
-                  ? details.servings + ' servings'
-                  : details.servings + ' serving'}
-              </Text>
-            </View>
+            {detailType === 'Ingredients' && (
+              <View style={styles.sectionTitle}>
+                <Text style={styles.subTitle}>{detailType}</Text>
+                <Text style={[styles.serving, fonts.light]}>
+                  for{' '}
+                  {details.servings > 1
+                    ? details.servings + ' servings'
+                    : details.servings + ' serving'}
+                </Text>
+              </View>
+            )}
+            {detailType === 'Nutrients' && (
+              <View style={styles.sectionTitle}>
+                <Text style={styles.subTitle}>Nutrition Info</Text>
+              </View>
+            )}
           </DataTable.Row>
-          {details.nutrition.ingredients.map((ingredient, index) => (
+          {onDeterminePayloadType().map((payloadDetail, index) => (
             <DataTable.Row key={index}>
               <DataTable.Cell>
-                <Text style={styles.name}>{ingredient.name}</Text>
+                <Text style={styles.name}>{payloadDetail.name}</Text>
               </DataTable.Cell>
               <DataTable.Cell style={styles.amountContainer}>
-                <Text style={styles.amount}>{ingredient.amount}</Text>
-                <Text style={styles.unit}> {ingredient.unit}</Text>
+                <Text style={styles.amount}>{payloadDetail.amount}</Text>
+                <Text style={styles.unit}> {payloadDetail.unit}</Text>
               </DataTable.Cell>
             </DataTable.Row>
           ))}
+          {detailType === 'Nutrients' && (
+            <DataTable.Row>
+              <DataTable.Cell>
+                <Text style={styles.basedOnservingSize}>
+                  Based on one serving size.
+                </Text>
+              </DataTable.Cell>
+            </DataTable.Row>
+          )}
         </>
       ) : (
-        // TODO: ADD Skelton Card
+        /**
+         * TODO: ADD Skelton Card
+         */
         <DataTable.Row>
           <DataTable.Cell>
             <Text>Details Unavailable</Text>
@@ -60,9 +141,15 @@ const styles = StyleSheet.create({
   serving: {
     fontSize: 18,
   },
-  ingredients: {
-    paddingTop: 8,
-    paddingBottom: 20,
+  basedOnservingSize: {
+    fontFamily: 'AirbnbCerealApp-Black',
+    fontSize: 16,
+    color: 'grey',
+  },
+  sectionTitle: {
+    justifyContent: 'flex-start',
+    paddingTop: 10,
+    paddingBottom: 12,
   },
   name: {
     fontFamily: 'AirbnbCerealApp-Black',

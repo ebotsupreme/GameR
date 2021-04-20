@@ -1,12 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  StyleSheet,
-  Image,
-  FlatList,
-} from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -68,20 +61,19 @@ const Details = ({ navigation, route }) => {
           />
         </View>
         <View>
-          {/* <FlatList
-              data={
-                isSearchResultLoaded ? searchResultPayload : {}
-              }
-              renderItem={}
-              keyExtractor={}
-            /> */}
           {/* indredients */}
           <ListDetails
-            // serving={}
             details={isSearchResultLoaded ? searchResultPayload : []}
+            detailType={'Ingredients'}
           />
         </View>
-        <View>{/* Nutrients */}</View>
+        <View>
+          {/* Nutrients */}
+          <ListDetails
+            details={isSearchResultLoaded ? searchResultPayload : []}
+            detailType={'Nutrients'}
+          />
+        </View>
       </ScrollView>
     </View>
   );
