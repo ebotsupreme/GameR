@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { DataTable, useTheme } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 /**
  *
@@ -115,32 +116,47 @@ const ListDetails = ({ details = [], detailType = '' }) => {
             {detailType === 'Nutrients' && (
               <>
                 <DataTable.Cell>
-                  <View style={{ justifyContent: 'center', paddingTop: 5 }}>
+                  <View style={styles.nutritionInfoTitle}>
                     <Text style={styles.subTitle}>Nutrition Info</Text>
                   </View>
                 </DataTable.Cell>
                 <DataTable.Cell />
                 <DataTable.Cell style={styles.positionCellRight}>
                   <Pressable onPress={onViewNutritionInfo}>
-                    {/* {({ pressed }) => (
-                    <Text>{pressed ? 'pressed' : 'press me'}</Text>
-                  )} */}
                     {isNutrition ? (
-                      <Text
-                        style={[
-                          styles.showHideInfo,
-                          { color: colors.primary, paddingTop: 3 },
-                        ]}>
-                        Hide Info
-                      </Text>
+                      <View style={styles.alginDataInARow}>
+                        <Text
+                          style={[
+                            styles.showHideInfo,
+                            styles.dataCellPaddingTop,
+                            { color: colors.primary },
+                          ]}>
+                          Hide Info
+                        </Text>
+                        <Icon
+                          name="minus"
+                          size={16}
+                          color={colors.primary}
+                          style={styles.nutritionInfoIcon}
+                        />
+                      </View>
                     ) : (
-                      <Text
-                        style={[
-                          styles.showHideInfo,
-                          { color: colors.primary, paddingTop: 3 },
-                        ]}>
-                        Show Info
-                      </Text>
+                      <View style={styles.alginDataInARow}>
+                        <Text
+                          style={[
+                            styles.showHideInfo,
+                            styles.dataCellPaddingTop,
+                            { color: colors.primary },
+                          ]}>
+                          Show Info
+                        </Text>
+                        <Icon
+                          name="plus"
+                          size={16}
+                          color={colors.primary}
+                          style={styles.nutritionInfoIcon}
+                        />
+                      </View>
                     )}
                   </Pressable>
                 </DataTable.Cell>
@@ -244,6 +260,22 @@ const styles = StyleSheet.create({
   showHideInfo: {
     fontFamily: 'AirbnbCerealApp-Bold',
     fontSize: 18,
+  },
+  alginDataInARow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  nutritionInfoTitle: {
+    justifyContent: 'center',
+    paddingTop: 5,
+  },
+  dataCellPaddingTop: {
+    paddingTop: 3,
+  },
+  nutritionInfoIcon: {
+    alignSelf: 'center',
+    paddingTop: 3,
+    paddingLeft: 5,
   },
 });
 
