@@ -3,8 +3,9 @@ import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { DataTable, useTheme } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { SkeletonCard } from '../components/index';
-import { handleSearchResultFeedPlaceholder } from '../../utility/index';
+import { SkeletonCard } from '../../../common/components/index';
+import { handleSearchResultFeedPlaceholder } from '../../../utility/index';
+import { handleFilterNutritionCriteria } from '../../../functions/Details/index';
 
 /**
  *
@@ -25,69 +26,8 @@ const ListDetails = ({
     details.nutrition && nutrients ? details.nutrition.nutrients : [];
   const { fonts, colors } = useTheme();
   const [isNutrition, setIsNutrition] = useState(false);
-  let payload = [];
   // console.log('details', details);
-  // console.log('details ingredients', details.nutrition.ingredients);
-  // console.log('details nutrition', details.nutrition.nutrients);
 
-  /**
-   * NOTE: Keeping this for now. Will remove in future.
-   */
-  const onDeterminePayloadType = () => {
-    if (detailType === 'Ingredients') {
-      payload = details.nutrition.ingredients;
-      return payload;
-    }
-    if (detailType === 'Nutrients') {
-      const filteredNutritonInfo = onFilterNutritionCriteria(
-        details.nutrition.nutrients,
-      );
-      payload = filteredNutritonInfo;
-      return payload;
-    }
-  };
-  /**
-   *
-   * @param {{}} allNutrients
-   */
-  const onFilterNutritionCriteria = (allNutrients) => {
-    return onFilterNutrition(allNutrients);
-  };
-  /**
-   *
-   * @param {{}} payloadToFilter
-   */
-  const onFilterNutrition = (payloadToFilter) => {
-    return payloadToFilter.filter((nutrient) => {
-      return onFilterByNutrientName(nutrient.name);
-    });
-  };
-  /**
-   *
-   * @param {string} nutrientName
-   */
-  const onFilterByNutrientName = (nutrientName) => {
-    switch (nutrientName) {
-      case 'Calories':
-        return nutrientName;
-      case 'Fat':
-        return nutrientName;
-      case 'Saturated Fat':
-        return nutrientName;
-      case 'Carbohydrates':
-        return nutrientName;
-      case 'Sugar':
-        return nutrientName;
-      case 'Cholestrol':
-        return nutrientName;
-      case 'Sodium':
-        return nutrientName;
-      case 'Protein':
-        return nutrientName;
-      case 'Fiber':
-        return nutrientName;
-    }
-  };
   /**
    *
    */
@@ -203,7 +143,7 @@ const ListDetails = ({
             </DataTable.Row>
           )}
           {isNutrition &&
-            onListInfo(onFilterNutritionCriteria(nutrientPayload))}
+            onListInfo(handleFilterNutritionCriteria(nutrientPayload))}
           {isNutrition && (
             <DataTable.Row>
               <DataTable.Cell>

@@ -6,12 +6,12 @@ import { HeaderNavigator } from '../navigation/index';
 
 import {
   Feed,
-  Details,
   SavedRecipes,
   SearchRecipes,
   SearchResults,
   ReduxTest,
 } from '../screens/index';
+import Details from '../screens/Details/index';
 
 const Stack = createStackNavigator();
 /**

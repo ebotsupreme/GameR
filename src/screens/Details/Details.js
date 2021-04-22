@@ -3,10 +3,13 @@ import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { handleFetchSearchResultById } from '../features/searchResult/index';
-import { handleDisplayFeedImageSrc, handleWindowWidth } from '../utility/index';
-import ListDetails from '../common/components/DataTable';
-import { SkeletonCard } from '../common/components/index';
+import { handleFetchSearchResultById } from '../../features/searchResult/index';
+import {
+  handleDisplayFeedImageSrc,
+  handleWindowWidth,
+} from '../../utility/index';
+import { SkeletonCard } from '../../common/components/index';
+import ListDetails from './components/index';
 
 /**
  *
