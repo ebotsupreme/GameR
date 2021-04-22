@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { handleFetchSearchResultById } from '../features/searchResult/index';
 import { handleDisplayFeedImageSrc, handleWindowWidth } from '../utility/index';
 import ListDetails from '../common/components/DataTable';
+import { SkeletonCard } from '../common/components/index';
 
 /**
  *
@@ -22,7 +23,7 @@ const Details = ({ navigation, route }) => {
   const { searchResult, isSearchResultLoaded } = useSelector(
     (state) => state.searchResult,
   );
-  const searchResultPayload = searchResult ? searchResult : [];
+  const { searchResultPayload } = searchResult ? searchResult : [];
 
   useEffect(() => {
     dispatch(handleFetchSearchResultById(id));
@@ -39,40 +40,91 @@ const Details = ({ navigation, route }) => {
     <View style={styles.container}>
       <ScrollView>
         <View>
-          <Text style={styles.title}>{searchResultPayload.title}</Text>
-          <View style={styles.subTitle}>
-            <Text
-              style={[fonts.light, styles.readyIn, styles.paddingHorizontal]}>
-              Ready in: {searchResultPayload.readyInMinutes} mins
-            </Text>
-            <Text
-              style={[fonts.light, styles.readyIn, styles.paddingHorizontal]}>
-              Likes: {searchResultPayload.aggregateLikes}
-            </Text>
-          </View>
+          {isSearchResultLoaded ? (
+            <>
+              <Text style={styles.title}>{searchResult.title}</Text>
+            </>
+          ) : (
+            <SkeletonCard
+              width={WIDTH - 30}
+              height={HEIGHT / 9}
+              screen="Details"
+              horizontalMargin={15}
+              paddingTop={10}
+              paddingBottom={5}
+              marginTop={10}
+              marginBottom={5}
+            />
+          )}
+          {isSearchResultLoaded ? (
+            <View style={styles.subTitle}>
+              <Text
+                style={[fonts.light, styles.readyIn, styles.paddingHorizontal]}>
+                Ready in: {searchResult.readyInMinutes} mins
+              </Text>
+              <Text
+                style={[fonts.light, styles.readyIn, styles.paddingHorizontal]}>
+                Likes: {searchResult.aggregateLikes}
+              </Text>
+            </View>
+          ) : (
+            <View style={styles.subTitle}>
+              <SkeletonCard
+                width={WIDTH / 3 + 6}
+                height={HEIGHT / 12}
+                screen="Details"
+                horizontalMargin={15}
+                marginTop={15}
+                marginBottom={15}
+              />
+              <SkeletonCard
+                width={WIDTH / 5 + 8}
+                height={HEIGHT / 12}
+                screen="Details"
+                horizontalMargin={15}
+                marginTop={15}
+                marginBottom={15}
+              />
+            </View>
+          )}
         </View>
         <View>
-          <Image
-            style={{ width: WIDTH, height: HEIGHT }}
-            source={
-              searchResultPayload.image &&
-              handleDisplayFeedImageSrc(type, item, searchResultPayload.image)
-            }
-          />
+          {isSearchResultLoaded ? (
+            <Image
+              style={{ width: WIDTH, height: HEIGHT }}
+              source={
+                searchResult.image &&
+                handleDisplayFeedImageSrc(type, item, searchResult.image)
+              }
+            />
+          ) : (
+            <SkeletonCard
+              width={WIDTH}
+              height={HEIGHT}
+              screen="Details"
+              marginHorizontal={15}
+              borderRadius={0}
+            />
+          )}
         </View>
         <View>
           {/* indredients */}
           <ListDetails
-            details={isSearchResultLoaded ? searchResultPayload : []}
-            detailType={'Ingredients'}
+            details={isSearchResultLoaded ? searchResult : []}
+            ingredients="Ingredients"
+            nutrients="Nutrients"
+            width={WIDTH}
+            height={HEIGHT}
           />
         </View>
         <View>
           {/* Nutrients */}
-          <ListDetails
-            details={isSearchResultLoaded ? searchResultPayload : []}
+          {/* <ListDetails
+            details={isSearchResultLoaded ? searchResult : []}
             detailType={'Nutrients'}
-          />
+            width={WIDTH}
+            height={HEIGHT}
+          /> */}
         </View>
       </ScrollView>
     </View>

@@ -3,26 +3,33 @@ import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { DataTable, useTheme } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import { SkeletonCard } from '../components/index';
+import { handleSearchResultFeedPlaceholder } from '../../utility/index';
+
 /**
  *
  * @param {{}} details
  * @param {screen} detailType
  */
-const ListDetails = ({ details = [], detailType = '' }) => {
+const ListDetails = ({
+  details = [],
+  detailType = '',
+  width,
+  height,
+  ingredients,
+  nutrients,
+}) => {
   const ingredientPayload =
-    details.nutrition && detailType === 'Ingredients'
-      ? details.nutrition.ingredients
-      : [];
+    details.nutrition && ingredients ? details.nutrition.ingredients : [];
   const nutrientPayload =
-    details.nutrition && detailType === 'Nutrients'
-      ? details.nutrition.nutrients
-      : [];
+    details.nutrition && nutrients ? details.nutrition.nutrients : [];
   const { fonts, colors } = useTheme();
   const isIngredient = true;
   const [isNutrition, setIsNutrition] = useState(false);
   let payload = [];
   // console.log('details', details);
-  // console.log('details nutrition ingredients', details.nutrition.ingredients);
+  // console.log('details ingredients', details.nutrition.ingredients);
+  // console.log('details nutrition', details.nutrition.nutrients);
 
   /**
    * NOTE: Keeping this for now. Will remove in future.
@@ -44,8 +51,8 @@ const ListDetails = ({ details = [], detailType = '' }) => {
    *
    * @param {{}} nutrients
    */
-  const onFilterNutritionCriteria = (nutrients) => {
-    return onFilterNutrition(nutrients);
+  const onFilterNutritionCriteria = (allNutrients) => {
+    return onFilterNutrition(allNutrients);
   };
   /**
    *
@@ -102,9 +109,9 @@ const ListDetails = ({ details = [], detailType = '' }) => {
       {details.nutrition ? (
         <>
           <DataTable.Row>
-            {detailType === 'Ingredients' && (
+            {ingredients && (
               <View style={styles.sectionTitle}>
-                <Text style={styles.subTitle}>{detailType}</Text>
+                <Text style={styles.subTitle}>{ingredients}</Text>
                 <Text style={[styles.serving, fonts.light]}>
                   for{' '}
                   {details.servings > 1
@@ -112,55 +119,6 @@ const ListDetails = ({ details = [], detailType = '' }) => {
                     : details.servings + ' serving'}
                 </Text>
               </View>
-            )}
-            {detailType === 'Nutrients' && (
-              <>
-                <DataTable.Cell>
-                  <View style={styles.nutritionInfoTitle}>
-                    <Text style={styles.subTitle}>Nutrition Info</Text>
-                  </View>
-                </DataTable.Cell>
-                <DataTable.Cell />
-                <DataTable.Cell style={styles.positionCellRight}>
-                  <Pressable onPress={onViewNutritionInfo}>
-                    {isNutrition ? (
-                      <View style={styles.alginDataInARow}>
-                        <Text
-                          style={[
-                            styles.showHideInfo,
-                            styles.dataCellPaddingTop,
-                            { color: colors.primary },
-                          ]}>
-                          Hide Info
-                        </Text>
-                        <Icon
-                          name="minus"
-                          size={16}
-                          color={colors.primary}
-                          style={styles.nutritionInfoIcon}
-                        />
-                      </View>
-                    ) : (
-                      <View style={styles.alginDataInARow}>
-                        <Text
-                          style={[
-                            styles.showHideInfo,
-                            styles.dataCellPaddingTop,
-                            { color: colors.primary },
-                          ]}>
-                          Show Info
-                        </Text>
-                        <Icon
-                          name="plus"
-                          size={16}
-                          color={colors.primary}
-                          style={styles.nutritionInfoIcon}
-                        />
-                      </View>
-                    )}
-                  </Pressable>
-                </DataTable.Cell>
-              </>
             )}
           </DataTable.Row>
           {
@@ -180,6 +138,52 @@ const ListDetails = ({ details = [], detailType = '' }) => {
                 );
               })
           }
+          {nutrients && (
+            <DataTable.Row style={styles.alginDataInARow}>
+              <DataTable.Cell>
+                <View style={styles.nutritionInfoTitle}>
+                  <Text style={styles.subTitle}>Nutrition Info</Text>
+                </View>
+              </DataTable.Cell>
+              <DataTable.Cell style={{ justifyContent: 'flex-end' }}>
+                <Pressable onPress={onViewNutritionInfo}>
+                  {isNutrition ? (
+                    <View style={[styles.alginDataInARow]}>
+                      <Text
+                        style={[
+                          styles.showHideInfo,
+                          { color: colors.primary },
+                        ]}>
+                        Hide Info
+                      </Text>
+                      <Icon
+                        name="minus"
+                        size={16}
+                        color={colors.primary}
+                        style={styles.nutritionInfoIcon}
+                      />
+                    </View>
+                  ) : (
+                    <View style={styles.alginDataInARow}>
+                      <Text
+                        style={[
+                          styles.showHideInfo,
+                          { color: colors.primary },
+                        ]}>
+                        Show Info
+                      </Text>
+                      <Icon
+                        name="plus"
+                        size={16}
+                        color={colors.primary}
+                        style={styles.nutritionInfoIcon}
+                      />
+                    </View>
+                  )}
+                </Pressable>
+              </DataTable.Cell>
+            </DataTable.Row>
+          )}
           {
             // NOTE: if inside a separate handler, this does not render
             isNutrition &&
@@ -208,14 +212,83 @@ const ListDetails = ({ details = [], detailType = '' }) => {
           )}
         </>
       ) : (
-        /**
-         * TODO: ADD Skelton Card
-         */
-        <DataTable.Row>
-          <DataTable.Cell>
-            <Text>Details Unavailable</Text>
-          </DataTable.Cell>
-        </DataTable.Row>
+        <>
+          <DataTable.Row>
+            <View style={[styles.sectionTitle]}>
+              <SkeletonCard
+                width={width / 3 + 5}
+                height={height / 14 - 4}
+                screen="DataTable"
+                horizontalMargin={0}
+                marginTop={0}
+                marginBottom={0}
+                justifyContent={'flex-start'}
+              />
+              <View style={{ paddingVertical: 3 }} />
+              <SkeletonCard
+                width={width / 3 - 10}
+                height={height / 16 - 4}
+                screen="DataTable"
+                horizontalMargin={0}
+                marginTop={0}
+                marginBottom={0}
+                justifyContent={'flex-start'}
+              />
+            </View>
+          </DataTable.Row>
+          {handleSearchResultFeedPlaceholder(6).map((index) => (
+            <DataTable.Row key={index}>
+              <DataTable.Cell style={{ paddingTop: 5 }}>
+                <SkeletonCard
+                  width={width / 4 + 6}
+                  height={height / 14 - 4}
+                  screen="DataTable"
+                  horizontalMargin={0}
+                  marginTop={0}
+                  marginBottom={0}
+                  justifyContent={'flex-start'}
+                />
+              </DataTable.Cell>
+              <DataTable.Cell
+                style={{ justifyContent: 'flex-end', paddingTop: 5 }}>
+                <SkeletonCard
+                  width={width / 4 - 4}
+                  height={height / 14 - 4}
+                  screen="DataTable"
+                  horizontalMargin={0}
+                  marginTop={0}
+                  marginBottom={0}
+                  justifyContent={'flex-end'}
+                />
+              </DataTable.Cell>
+            </DataTable.Row>
+          ))}
+          <DataTable.Row>
+            <DataTable.Cell style={{ paddingTop: 5 }}>
+              <SkeletonCard
+                width={width / 3 + 5}
+                height={height / 14 - 4}
+                screen="DataTable"
+                horizontalMargin={0}
+                marginTop={0}
+                marginBottom={0}
+                justifyContent={'flex-start'}
+              />
+            </DataTable.Cell>
+            <DataTable.Cell
+              style={{ justifyContent: 'flex-end', paddingTop: 5 }}>
+              <SkeletonCard
+                width={width / 4 + 6}
+                height={height / 14 - 4}
+                screen="DataTable"
+                horizontalMargin={0}
+                marginTop={0}
+                marginBottom={0}
+                justifyContent={'flex-end'}
+              />
+            </DataTable.Cell>
+          </DataTable.Row>
+        </>
       )}
     </DataTable>
   );
@@ -248,7 +321,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     position: 'absolute',
     right: 0,
-    top: 12,
+    top: 10,
   },
   amount: {
     fontSize: 19,
@@ -266,11 +339,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   nutritionInfoTitle: {
-    justifyContent: 'center',
     paddingTop: 5,
-  },
-  dataCellPaddingTop: {
-    paddingTop: 3,
   },
   nutritionInfoIcon: {
     alignSelf: 'center',

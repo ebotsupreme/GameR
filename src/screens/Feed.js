@@ -124,6 +124,7 @@ const Feed = ({ navigation }, props) => {
               height={HEIGHT}
               horizontalMargin={5}
               screen="Feed"
+              justifyContent={'flex-start'}
             />
           )}
           <FeedCard
@@ -143,6 +144,7 @@ const Feed = ({ navigation }, props) => {
               height={HEIGHT}
               horizontalMargin={15}
               screen="Feed"
+              justifyContent={'flex-start'}
             />
           )}
           <FeedCarousel
@@ -170,6 +172,7 @@ const Feed = ({ navigation }, props) => {
               height={HEIGHT}
               horizontalMargin={15}
               screen="Feed"
+              justifyContent={'flex-start'}
             />
           )}
           <FeedCarousel
@@ -196,6 +199,7 @@ const Feed = ({ navigation }, props) => {
               height={HEIGHT}
               horizontalMargin={15}
               screen="Feed"
+              justifyContent={'flex-start'}
             />
           )}
           <FeedCarousel
@@ -224,6 +228,7 @@ const Feed = ({ navigation }, props) => {
               height={HEIGHT}
               horizontalMargin={15}
               screen="Feed"
+              justifyContent={'flex-start'}
             />
           )}
           <FeedCarousel
@@ -256,6 +261,7 @@ const Feed = ({ navigation }, props) => {
               height={HEIGHT}
               horizontalMargin={15}
               screen="Feed"
+              justifyContent={'flex-start'}
             />
           )}
           <SearchResults
