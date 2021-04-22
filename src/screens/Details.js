@@ -81,6 +81,7 @@ const Details = ({ navigation, route }) => {
                 width={WIDTH / 5 + 8}
                 height={HEIGHT / 12}
                 screen="Details"
+                d
                 horizontalMargin={15}
                 marginTop={15}
                 marginBottom={15}
@@ -108,7 +109,6 @@ const Details = ({ navigation, route }) => {
           )}
         </View>
         <View>
-          {/* indredients */}
           <ListDetails
             details={isSearchResultLoaded ? searchResult : []}
             ingredients="Ingredients"
@@ -116,15 +116,6 @@ const Details = ({ navigation, route }) => {
             width={WIDTH}
             height={HEIGHT}
           />
-        </View>
-        <View>
-          {/* Nutrients */}
-          {/* <ListDetails
-            details={isSearchResultLoaded ? searchResult : []}
-            detailType={'Nutrients'}
-            width={WIDTH}
-            height={HEIGHT}
-          /> */}
         </View>
       </ScrollView>
     </View>

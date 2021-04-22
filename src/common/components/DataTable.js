@@ -24,7 +24,6 @@ const ListDetails = ({
   const nutrientPayload =
     details.nutrition && nutrients ? details.nutrition.nutrients : [];
   const { fonts, colors } = useTheme();
-  const isIngredient = true;
   const [isNutrition, setIsNutrition] = useState(false);
   let payload = [];
   // console.log('details', details);
@@ -49,7 +48,7 @@ const ListDetails = ({
   };
   /**
    *
-   * @param {{}} nutrients
+   * @param {{}} allNutrients
    */
   const onFilterNutritionCriteria = (allNutrients) => {
     return onFilterNutrition(allNutrients);
@@ -59,13 +58,9 @@ const ListDetails = ({
    * @param {{}} payloadToFilter
    */
   const onFilterNutrition = (payloadToFilter) => {
-    /**
-     *
-     */
-    const filtered = payloadToFilter.filter((nutrient) => {
+    return payloadToFilter.filter((nutrient) => {
       return onFilterByNutrientName(nutrient.name);
     });
-    return filtered;
   };
   /**
    *
@@ -100,6 +95,77 @@ const ListDetails = ({
     setIsNutrition(!isNutrition);
   };
   /**
+   *
+   * @param {{}} payloadData
+   * @param {requestCallback} filter
+   */
+  const onListInfo = (payloadData, filter) => {
+    let dataToMap = payloadData || filter;
+
+    return dataToMap.map((payloadDetail, index) => {
+      return (
+        <DataTable.Row key={index}>
+          <DataTable.Cell>
+            <Text style={styles.name}>{payloadDetail.name}</Text>
+          </DataTable.Cell>
+          <DataTable.Cell style={styles.positionCellRight}>
+            <Text style={styles.amount}>{payloadDetail.amount}</Text>
+            <Text style={styles.unit}> {payloadDetail.unit}</Text>
+          </DataTable.Cell>
+        </DataTable.Row>
+      );
+    });
+  };
+  /**
+   *
+   * @param {string} showOrHide
+   */
+  const onShowHideInfo = (showOrHide) => (
+    <View style={[styles.alginDataInARow]}>
+      <Text style={[styles.showHideInfo, { color: colors.primary }]}>
+        {`${showOrHide} Info`}
+      </Text>
+      <Icon
+        name={showOrHide === 'Hide' ? 'minus' : 'plus'}
+        size={16}
+        color={colors.primary}
+        style={styles.nutritionInfoIcon}
+      />
+    </View>
+  );
+  /**
+   *
+   */
+  const onSkeletonListInfo = () => {
+    return handleSearchResultFeedPlaceholder(6).map((index) => (
+      <DataTable.Row key={index}>
+        <DataTable.Cell style={{ paddingTop: 5 }}>
+          <SkeletonCard
+            width={width / 4 + 6}
+            height={height / 14 - 4}
+            screen="DataTable"
+            horizontalMargin={0}
+            marginTop={0}
+            marginBottom={0}
+            justifyContent={'flex-start'}
+          />
+        </DataTable.Cell>
+        <DataTable.Cell style={{ justifyContent: 'flex-end', paddingTop: 5 }}>
+          <SkeletonCard
+            width={width / 4 - 4}
+            height={height / 14 - 4}
+            screen="DataTable"
+            horizontalMargin={0}
+            marginTop={0}
+            marginBottom={0}
+            justifyContent={'flex-end'}
+          />
+        </DataTable.Cell>
+      </DataTable.Row>
+    ));
+  };
+
+  /**
    * NOTE: This component is for ingredients, nutrition, and instructions
    * Nutrition: Calories, Fat, Saturated Fat, Carbohydrates, Sugar,
    *   Cholestrol, Sodium, Protein, Fiber.
@@ -109,35 +175,17 @@ const ListDetails = ({
       {details.nutrition ? (
         <>
           <DataTable.Row>
-            {ingredients && (
-              <View style={styles.sectionTitle}>
-                <Text style={styles.subTitle}>{ingredients}</Text>
-                <Text style={[styles.serving, fonts.light]}>
-                  for{' '}
-                  {details.servings > 1
-                    ? details.servings + ' servings'
-                    : details.servings + ' serving'}
-                </Text>
-              </View>
-            )}
+            <View style={styles.sectionTitle}>
+              <Text style={styles.subTitle}>{ingredients}</Text>
+              <Text style={[styles.serving, fonts.light]}>
+                for{' '}
+                {details.servings > 1
+                  ? details.servings + ' servings'
+                  : details.servings + ' serving'}
+              </Text>
+            </View>
           </DataTable.Row>
-          {
-            // NOTE: if inside a separate handler, this does not render
-            isIngredient &&
-              ingredientPayload.map((payloadDetail, index) => {
-                return (
-                  <DataTable.Row key={index}>
-                    <DataTable.Cell>
-                      <Text style={styles.name}>{payloadDetail.name}</Text>
-                    </DataTable.Cell>
-                    <DataTable.Cell style={styles.positionCellRight}>
-                      <Text style={styles.amount}>{payloadDetail.amount}</Text>
-                      <Text style={styles.unit}> {payloadDetail.unit}</Text>
-                    </DataTable.Cell>
-                  </DataTable.Row>
-                );
-              })
-          }
+          {ingredients && onListInfo(ingredientPayload)}
           {nutrients && (
             <DataTable.Row style={styles.alginDataInARow}>
               <DataTable.Cell>
@@ -147,60 +195,15 @@ const ListDetails = ({
               </DataTable.Cell>
               <DataTable.Cell style={{ justifyContent: 'flex-end' }}>
                 <Pressable onPress={onViewNutritionInfo}>
-                  {isNutrition ? (
-                    <View style={[styles.alginDataInARow]}>
-                      <Text
-                        style={[
-                          styles.showHideInfo,
-                          { color: colors.primary },
-                        ]}>
-                        Hide Info
-                      </Text>
-                      <Icon
-                        name="minus"
-                        size={16}
-                        color={colors.primary}
-                        style={styles.nutritionInfoIcon}
-                      />
-                    </View>
-                  ) : (
-                    <View style={styles.alginDataInARow}>
-                      <Text
-                        style={[
-                          styles.showHideInfo,
-                          { color: colors.primary },
-                        ]}>
-                        Show Info
-                      </Text>
-                      <Icon
-                        name="plus"
-                        size={16}
-                        color={colors.primary}
-                        style={styles.nutritionInfoIcon}
-                      />
-                    </View>
-                  )}
+                  {isNutrition
+                    ? onShowHideInfo('Hide')
+                    : onShowHideInfo('Show')}
                 </Pressable>
               </DataTable.Cell>
             </DataTable.Row>
           )}
-          {
-            // NOTE: if inside a separate handler, this does not render
-            isNutrition &&
-              onFilterNutritionCriteria(nutrientPayload).map((info, index) => {
-                return (
-                  <DataTable.Row key={index}>
-                    <DataTable.Cell>
-                      <Text style={styles.name}>{info.name}</Text>
-                    </DataTable.Cell>
-                    <DataTable.Cell style={styles.positionCellRight}>
-                      <Text style={styles.amount}>{info.amount}</Text>
-                      <Text style={styles.unit}> {info.unit}</Text>
-                    </DataTable.Cell>
-                  </DataTable.Row>
-                );
-              })
-          }
+          {isNutrition &&
+            onListInfo(onFilterNutritionCriteria(nutrientPayload))}
           {isNutrition && (
             <DataTable.Row>
               <DataTable.Cell>
@@ -236,33 +239,7 @@ const ListDetails = ({
               />
             </View>
           </DataTable.Row>
-          {handleSearchResultFeedPlaceholder(6).map((index) => (
-            <DataTable.Row key={index}>
-              <DataTable.Cell style={{ paddingTop: 5 }}>
-                <SkeletonCard
-                  width={width / 4 + 6}
-                  height={height / 14 - 4}
-                  screen="DataTable"
-                  horizontalMargin={0}
-                  marginTop={0}
-                  marginBottom={0}
-                  justifyContent={'flex-start'}
-                />
-              </DataTable.Cell>
-              <DataTable.Cell
-                style={{ justifyContent: 'flex-end', paddingTop: 5 }}>
-                <SkeletonCard
-                  width={width / 4 - 4}
-                  height={height / 14 - 4}
-                  screen="DataTable"
-                  horizontalMargin={0}
-                  marginTop={0}
-                  marginBottom={0}
-                  justifyContent={'flex-end'}
-                />
-              </DataTable.Cell>
-            </DataTable.Row>
-          ))}
+          {onSkeletonListInfo()}
           <DataTable.Row>
             <DataTable.Cell style={{ paddingTop: 5 }}>
               <SkeletonCard
