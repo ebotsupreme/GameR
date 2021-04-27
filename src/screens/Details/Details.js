@@ -23,6 +23,9 @@ const Details = ({ navigation, route }) => {
   const WIDTH = handleWindowWidth();
   const HEIGHT = WIDTH;
   const { id, screen } = route.params;
+  /**
+   *
+   */
   const { searchResult, isSearchResultLoaded } = useSelector(
     (state) => state.searchResult,
   );

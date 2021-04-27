@@ -14,7 +14,6 @@ import { handleFilterNutritionCriteria } from '../../../functions/Details/index'
  */
 const ListDetails = ({
   details = [],
-  detailType = '',
   width,
   height,
   ingredients,
