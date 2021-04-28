@@ -5,6 +5,7 @@ import {
   SavedRecipeStackNavigator,
 } from './StackNavigator';
 import BottomTabNavigator from './TabNavigator';
+import handleNavigateToScreen from './navigateToScreen';
 
 export {
   DrawerNavigator,
@@ -12,4 +13,5 @@ export {
   MainStackNavigator,
   SavedRecipeStackNavigator,
   BottomTabNavigator,
+  handleNavigateToScreen,
 };
