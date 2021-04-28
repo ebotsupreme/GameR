@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
 import { useTheme } from 'react-native-paper';
-import { useSelector, useDispatch } from 'react-redux';
 
-import { handleFetchSearchResultById } from '../../features/searchResult/index';
+import useFetchSearchResultById from '../../functions/searchResult/index';
 import {
   handleDisplayFeedImageSrc,
   handleWindowWidth,
@@ -17,7 +16,6 @@ import ListDetails from './components/index';
  */
 const Details = ({ navigation, route }) => {
   const { fonts } = useTheme();
-  const dispatch = useDispatch();
   const type = true;
   const item = '';
   const WIDTH = handleWindowWidth();
@@ -26,20 +24,11 @@ const Details = ({ navigation, route }) => {
   /**
    *
    */
-  const { searchResult, isSearchResultLoaded } = useSelector(
-    (state) => state.searchResult,
-  );
-  const { searchResultPayload } = searchResult ? searchResult : [];
+  const { searchResult, isSearchResultLoaded } = useFetchSearchResultById(id);
 
-  useEffect(() => {
-    dispatch(handleFetchSearchResultById(id));
-  }, [dispatch, id]);
-
+  // NOTE: this is still in use
   // if (isSearchResultLoaded) {
-  //   console.log(
-  //     'searchResultPayload',
-  //     JSON.stringify(searchResultPayload, null, 4),
-  //   );
+  //   console.log('searchResult', JSON.stringify(searchResult, null, 4));
   // }
 
   return (
