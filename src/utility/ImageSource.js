@@ -51,13 +51,13 @@ const onFeedImgSrc = (item) => {
  * @param {string} type
  * @param {{}} item
  */
-const handleDisplayFeedImageSrc = (type, item) => {
+const handleDisplayFeedImageSrc = (type, item, image) => {
   switch (type) {
     case 'multi':
       return onFeedImgSrc(item);
     default:
       return {
-        uri: item.image,
+        uri: image,
       };
   }
 };

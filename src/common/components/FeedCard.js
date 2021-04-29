@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Pressable } from 'react-native';
+
 import {
   handleItemWidthAndHeight,
   HORIZONTAL_MARGIN,
@@ -7,6 +8,7 @@ import {
   handleWindowWidth,
 } from '../../utility/index';
 import { CardImage, CardMeta, SkeletonCard } from './index';
+import { handleNavigateToScreen } from '../../navigation/index';
 
 /**
  *
@@ -34,18 +36,6 @@ const FeedCard = ({
     WIDTH = FEATURED_WIDTH - 30;
     HEIGHT = WIDTH;
   }
-  /**
-   *
-   */
-  const onNavigateToScreen = () => {
-    if (type === 'multi') {
-      return navigation.navigate('Search Results', {
-        title: item.title,
-        screen,
-      });
-    }
-    return navigation.navigate('Details', { id: item.id, screen });
-  };
 
   if (
     isLoadingPopularFeed ||
@@ -81,7 +71,7 @@ const FeedCard = ({
           width: WIDTH,
         }}>
         <Pressable
-          onPress={() => onNavigateToScreen()}
+          onPress={() => handleNavigateToScreen(type, navigation, item, screen)}
           style={{ width: WIDTH, height: HEIGHT }}>
           <CardImage {...{ item, width: WIDTH, height: HEIGHT, type }} />
           <CardMeta {...{ item, width: WIDTH, height: HEIGHT, type, screen }} />

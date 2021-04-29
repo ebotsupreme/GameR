@@ -1,16 +1,18 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { useTheme } from 'react-native-paper';
-import { useSelector, useDispatch } from 'react-redux';
 
 import FeedCarousel from '../common/components/FeedCarousel';
 import { FeedCard } from '../common/components/index';
-import { handleFetchPopularFeed } from '../features/popularFeed/index';
-import { handleFetchMealFeed } from '../features/mealFeed/index';
-import { handleFetchCuisineFeed } from '../features/cuisineFeed/index';
-import { handleFetchHealthyFeed } from '../features/healthyFeed/index';
-import { handleFetchRandomFeed } from '../features/randomFeed/index';
-import { handleFetchFeaturedFeed } from '../features/featuredFeed/index';
+import {
+  useFetchPopularFeed,
+  useFetchMealFeed,
+  useFetchCuisineFeed,
+  useFetchHealthyFeed,
+  useFetchRandomFeed,
+  useFetchFeaturedFeed,
+  useRefreshControl,
+} from '../functions/Feed/index';
 import {
   handleSearchResultFeedPlaceholder,
   WIDTH,
@@ -26,44 +28,7 @@ import { SkeletonCard } from '../common/components/index';
  */
 const Feed = ({ navigation }, props) => {
   const { colors, fonts } = useTheme();
-  const dispatch = useDispatch();
-  const [refreshing, setRefreshing] = useState(false);
-  /**
-   *
-   */
-  const {
-    isLoadingPopularFeed,
-    isPopularFeedLoaded,
-    popularFeed,
-  } = useSelector((state) => state.popularFeed);
-  /**
-   *
-   */
-  const { isLoadingMealFeed, isMealFeedLoaded, mealType } = useSelector(
-    (state) => state.mealFeed,
-  );
-  /**
-   *
-   */
-  const {
-    isLoadingCuisineFeed,
-    isCuisineFeedLoaded,
-    cuisineType,
-  } = useSelector((state) => state.cuisineFeed);
-  /**
-   *
-   */
-  const {
-    isLoadingHealthyFeed,
-    isHealthyFeedLoaded,
-    healthyFeed,
-  } = useSelector((state) => state.healthyFeed);
-  /**
-   *
-   */
-  const { isRandomFeedLoaded, randomFeed } = useSelector(
-    (state) => state.randomFeed,
-  );
+  const { refreshing, onRefresh } = useRefreshControl();
   /**
    *
    */
@@ -71,36 +36,39 @@ const Feed = ({ navigation }, props) => {
     isLoadingFeaturedFeed,
     isFeaturedFeedLoaded,
     featuredFeed,
-  } = useSelector((state) => state.featuredFeed);
+  } = useFetchFeaturedFeed();
   /**
    *
    */
-  const onDispatchFeed = useCallback(() => {
-    dispatch(handleFetchPopularFeed);
-    dispatch(handleFetchMealFeed);
-    dispatch(handleFetchCuisineFeed);
-    dispatch(handleFetchHealthyFeed);
-    dispatch(handleFetchRandomFeed);
-    dispatch(handleFetchFeaturedFeed);
-  }, [dispatch]);
-  /**
-   *
-   * @param {number} timeout
-   */
-  const wait = (timeout) =>
-    new Promise((resolve) => setTimeout(resolve, timeout));
+  const {
+    isLoadingPopularFeed,
+    isPopularFeedLoaded,
+    popularFeed,
+  } = useFetchPopularFeed();
   /**
    *
    */
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    onDispatchFeed();
-    wait(2000).then(() => setRefreshing(false));
-  }, [onDispatchFeed]);
-
-  useEffect(() => {
-    onDispatchFeed();
-  }, [dispatch, onDispatchFeed]);
+  const { isLoadingMealFeed, isMealFeedLoaded, mealType } = useFetchMealFeed();
+  /**
+   *
+   */
+  const {
+    isLoadingCuisineFeed,
+    isCuisineFeedLoaded,
+    cuisineType,
+  } = useFetchCuisineFeed();
+  /**
+   *
+   */
+  const {
+    isLoadingHealthyFeed,
+    isHealthyFeedLoaded,
+    healthyFeed,
+  } = useFetchHealthyFeed();
+  /**
+   *
+   */
+  const { isRandomFeedLoaded, randomFeed } = useFetchRandomFeed();
 
   return (
     <View
@@ -124,6 +92,7 @@ const Feed = ({ navigation }, props) => {
               height={HEIGHT}
               horizontalMargin={5}
               screen="Feed"
+              justifyContent={'flex-start'}
             />
           )}
           <FeedCard
@@ -143,6 +112,7 @@ const Feed = ({ navigation }, props) => {
               height={HEIGHT}
               horizontalMargin={15}
               screen="Feed"
+              justifyContent={'flex-start'}
             />
           )}
           <FeedCarousel
@@ -170,6 +140,7 @@ const Feed = ({ navigation }, props) => {
               height={HEIGHT}
               horizontalMargin={15}
               screen="Feed"
+              justifyContent={'flex-start'}
             />
           )}
           <FeedCarousel
@@ -196,6 +167,7 @@ const Feed = ({ navigation }, props) => {
               height={HEIGHT}
               horizontalMargin={15}
               screen="Feed"
+              justifyContent={'flex-start'}
             />
           )}
           <FeedCarousel
@@ -224,6 +196,7 @@ const Feed = ({ navigation }, props) => {
               height={HEIGHT}
               horizontalMargin={15}
               screen="Feed"
+              justifyContent={'flex-start'}
             />
           )}
           <FeedCarousel
@@ -256,6 +229,7 @@ const Feed = ({ navigation }, props) => {
               height={HEIGHT}
               horizontalMargin={15}
               screen="Feed"
+              justifyContent={'flex-start'}
             />
           )}
           <SearchResults

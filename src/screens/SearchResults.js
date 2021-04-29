@@ -1,13 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, FlatList, SafeAreaView } from 'react-native';
 import { useTheme } from 'react-native-paper';
-import { useSelector, useDispatch } from 'react-redux';
 
-import { handleFetchMealFeedByTitle } from '../features/mealFeed/index';
-import { handleFetchCuisineFeedByTitle } from '../features/cuisineFeed/index';
+import {
+  useFetchMealFeedByTitle,
+  useFetchCuisineFeedByTitle,
+} from '../functions/Feed/index';
+import {
+  handleRenderFLatListData,
+  handleRenderFeedLoadedState,
+} from '../functions/searchResult/index';
 import { SearchResultFeed } from './index';
 import { SearchResultSkeletonCard } from '../common/components/index';
-import { handleSearchResultFeedPlaceholder } from '../utility/index';
 
 /**
  *
@@ -21,58 +25,24 @@ const SearchResults = ({
   randomFeed,
 }) => {
   const { fonts } = useTheme();
-  const dispatch = useDispatch();
-  const { mealFeed, isMealFeedLoaded } = useSelector((state) => state.mealFeed);
-  const { cuisineFeed, isCuisineFeedLoaded } = useSelector(
-    (state) => state.cuisineFeed,
-  );
   const { title, screen } = route ? route.params : {};
+  /**
+   *
+   */
+  const { cuisineFeed, isCuisineFeedLoaded } = useFetchCuisineFeedByTitle(
+    title,
+    screen,
+  );
+  /**
+   *
+   */
+  const { mealFeed, isMealFeedLoaded } = useFetchMealFeedByTitle(title, screen);
+
   /**
    * NOTE: this will need to handle the searched image results
    * of either the searched recipe OR searched meal type / category
    */
-  useEffect(() => {
-    if (title && screen === 'mealFeed') {
-      dispatch(handleFetchMealFeedByTitle(title));
-    }
-    if (title && screen === 'cuisineFeed') {
-      dispatch(handleFetchCuisineFeedByTitle(title));
-    }
-  }, [dispatch, title, screen]);
-  /**
-   *
-   * @param {string} feedName
-   */
-  const renderFLatListData = (feedName) => {
-    switch (feedName) {
-      case 'mealFeed':
-        return isMealFeedLoaded
-          ? mealFeed
-          : handleSearchResultFeedPlaceholder();
-      case 'cuisineFeed':
-        return isCuisineFeedLoaded
-          ? cuisineFeed
-          : handleSearchResultFeedPlaceholder();
-      case 'random':
-        return isRandomFeedLoaded
-          ? randomFeed
-          : handleSearchResultFeedPlaceholder();
-    }
-  };
-  /**
-   *
-   * @param {string} feedName
-   */
-  const renderFeedLoadedState = (feedName = '', feedRandom = '') => {
-    switch (feedName ? feedName : feedRandom) {
-      case 'mealFeed':
-        return isMealFeedLoaded;
-      case 'cuisineFeed':
-        return isCuisineFeedLoaded;
-      case 'random':
-        return isRandomFeedLoaded;
-    }
-  };
+
   /**
    *
    * @param {{}} item
@@ -88,24 +58,48 @@ const SearchResults = ({
   );
 
   return (
-    <SafeAreaView
-      style={[
-        styles.container,
-        screenType && { paddingVertical: 0, paddingHorizontal: 0 },
-      ]}>
+    <SafeAreaView style={[styles.container, screenType && styles.paddingZero]}>
       <FlatList
         data={
           screenType
-            ? renderFLatListData(screenType)
-            : renderFLatListData(screen)
+            ? handleRenderFLatListData(
+                screenType,
+                isMealFeedLoaded,
+                mealFeed,
+                isCuisineFeedLoaded,
+                cuisineFeed,
+                isRandomFeedLoaded,
+                randomFeed,
+              )
+            : handleRenderFLatListData(
+                screen,
+                isMealFeedLoaded,
+                mealFeed,
+                isCuisineFeedLoaded,
+                cuisineFeed,
+                isRandomFeedLoaded,
+                randomFeed,
+              )
         }
         renderItem={
-          renderFeedLoadedState(screen, screenType)
+          handleRenderFeedLoadedState(
+            screen,
+            screenType,
+            isMealFeedLoaded,
+            isCuisineFeedLoaded,
+            isRandomFeedLoaded,
+          )
             ? renderSearchResultFeed
             : renderPlaceholder
         }
         keyExtractor={(item) =>
-          renderFeedLoadedState(screen, screenType)
+          handleRenderFeedLoadedState(
+            screen,
+            screenType,
+            isMealFeedLoaded,
+            isCuisineFeedLoaded,
+            isRandomFeedLoaded,
+          )
             ? item.id.toString()
             : item.toString()
         }
@@ -123,6 +117,9 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 15,
     backgroundColor: '#FFF',
+  },
+  paddingZero: {
+    padding: 0,
   },
 });
 

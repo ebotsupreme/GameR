@@ -46,11 +46,11 @@ const theme = {
     },
     light: {
       fontFamily: 'AirbnbCerealApp-Light',
-      // fontWeight: '300',
+      fontWeight: '300',
     },
     thin: {
       fontFamily: 'AirbnbCerealApp-Light',
-      // fontWeight: '100',
+      fontWeight: '100',
     },
     airbnbCereal: {
       black: 'AirbnbCerealApp-Black',

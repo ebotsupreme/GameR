@@ -16,7 +16,7 @@ const CardImage = ({ item, width, height, type = '' }) => {
       {item.image ? (
         <Image
           style={[styles.container, { width, height }]}
-          source={handleDisplayFeedImageSrc(type, item)}
+          source={handleDisplayFeedImageSrc(type, item, item.image)}
         />
       ) : (
         <View style={{ width, height }}>
