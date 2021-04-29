@@ -58,11 +58,7 @@ const SearchResults = ({
   );
 
   return (
-    <SafeAreaView
-      style={[
-        styles.container,
-        screenType && { paddingVertical: 0, paddingHorizontal: 0 },
-      ]}>
+    <SafeAreaView style={[styles.container, screenType && styles.paddingZero]}>
       <FlatList
         data={
           screenType
@@ -121,6 +117,9 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 15,
     backgroundColor: '#FFF',
+  },
+  paddingZero: {
+    padding: 0,
   },
 });
 
