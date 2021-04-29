@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
-import useFetchSearchResultById from '../../functions/searchResult/index';
+import { useFetchSearchResultById } from '../../functions/searchResult/index';
 import {
   handleDisplayFeedImageSrc,
   handleWindowWidth,

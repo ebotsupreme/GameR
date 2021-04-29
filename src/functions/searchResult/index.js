@@ -1,3 +1,11 @@
 import useFetchSearchResultById from './useFetchSearchResultById';
+import {
+  handleRenderFLatListData,
+  handleRenderFeedLoadedState,
+} from './renderSearchResultInfo';
 
-export default useFetchSearchResultById;
+export {
+  useFetchSearchResultById,
+  handleRenderFLatListData,
+  handleRenderFeedLoadedState,
+};

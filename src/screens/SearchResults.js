@@ -6,9 +6,12 @@ import {
   useFetchMealFeedByTitle,
   useFetchCuisineFeedByTitle,
 } from '../functions/Feed/index';
+import {
+  handleRenderFLatListData,
+  handleRenderFeedLoadedState,
+} from '../functions/searchResult/index';
 import { SearchResultFeed } from './index';
 import { SearchResultSkeletonCard } from '../common/components/index';
-import { handleSearchResultFeedPlaceholder } from '../utility/index';
 
 /**
  *
@@ -42,40 +45,6 @@ const SearchResults = ({
 
   /**
    *
-   * @param {string} feedName
-   */
-  const renderFLatListData = (feedName) => {
-    switch (feedName) {
-      case 'mealFeed':
-        return isMealFeedLoaded
-          ? mealFeed
-          : handleSearchResultFeedPlaceholder();
-      case 'cuisineFeed':
-        return isCuisineFeedLoaded
-          ? cuisineFeed
-          : handleSearchResultFeedPlaceholder();
-      case 'random':
-        return isRandomFeedLoaded
-          ? randomFeed
-          : handleSearchResultFeedPlaceholder();
-    }
-  };
-  /**
-   *
-   * @param {string} feedName
-   */
-  const renderFeedLoadedState = (feedName = '', feedRandom = '') => {
-    switch (feedName ? feedName : feedRandom) {
-      case 'mealFeed':
-        return isMealFeedLoaded;
-      case 'cuisineFeed':
-        return isCuisineFeedLoaded;
-      case 'random':
-        return isRandomFeedLoaded;
-    }
-  };
-  /**
-   *
    * @param {{}} item
    */
   const renderSearchResultFeed = ({ item }) => (
@@ -97,16 +66,44 @@ const SearchResults = ({
       <FlatList
         data={
           screenType
-            ? renderFLatListData(screenType)
-            : renderFLatListData(screen)
+            ? handleRenderFLatListData(
+                screenType,
+                isMealFeedLoaded,
+                mealFeed,
+                isCuisineFeedLoaded,
+                cuisineFeed,
+                isRandomFeedLoaded,
+                randomFeed,
+              )
+            : handleRenderFLatListData(
+                screen,
+                isMealFeedLoaded,
+                mealFeed,
+                isCuisineFeedLoaded,
+                cuisineFeed,
+                isRandomFeedLoaded,
+                randomFeed,
+              )
         }
         renderItem={
-          renderFeedLoadedState(screen, screenType)
+          handleRenderFeedLoadedState(
+            screen,
+            screenType,
+            isMealFeedLoaded,
+            isCuisineFeedLoaded,
+            isRandomFeedLoaded,
+          )
             ? renderSearchResultFeed
             : renderPlaceholder
         }
         keyExtractor={(item) =>
-          renderFeedLoadedState(screen, screenType)
+          handleRenderFeedLoadedState(
+            screen,
+            screenType,
+            isMealFeedLoaded,
+            isCuisineFeedLoaded,
+            isRandomFeedLoaded,
+          )
             ? item.id.toString()
             : item.toString()
         }
