@@ -1,3 +1,4 @@
 import useFetchCuisineFeed from './useFetchCuisineFeed';
+import useFetchCuisineFeedByTitle from './useFetchCuisineFeedByTitle';
 
-export default useFetchCuisineFeed;
+export { useFetchCuisineFeed, useFetchCuisineFeedByTitle };

@@ -1,3 +1,4 @@
 import useFetchMealFeed from './useFetchMealFeed';
+import useFetchMealFeedByTitle from './useFetchMealFeedByTitle';
 
-export default useFetchMealFeed;
+export { useFetchMealFeed, useFetchMealFeedByTitle };
