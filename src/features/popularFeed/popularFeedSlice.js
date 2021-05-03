@@ -36,6 +36,8 @@ export const {
 } = popularFeedSlice.actions;
 export default popularFeedSlice.reducer;
 export const selectPopularFeed = (state) => state.popularFeed.popularFeed;
-export const selectIsLoading = (state) =>
+export const selectIsLoadingPopularFeed = (state) =>
   state.popularFeed.isLoadingPopularFeed;
+export const selectIsPopularFeedLoaded = (state) =>
+  state.popularFeed.isPopularFeedLoaded;
 export const selectError = (state) => state.popularFeed.error;
