@@ -2,27 +2,31 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import Config from 'react-native-config';
 
+import mockAxios from '../../../api/__mocks__/api.test';
 import { api } from '../../../api/api';
 import reducer, {
   startLoading,
   hasError,
   popularFeedSuccess,
   selectPopularFeed,
-  selectIsLoading,
+  selectIsLoadingPopularFeed,
+  selectIsPopularFeedLoaded,
   selectError,
 } from '../popularFeedSlice';
-import FakePopularRecipesFeedData from '../../../json/popularRecipesFeed.json';
+import FakePopularRecipesFeedData from '../../../json/popular/popularFeed.json';
 import { handleFetchPopularFeed } from '../popularFeedActions';
 
 jest.mock('../../../api/api.js');
 jest.mock('../../../features/popularFeed/popularFeedActions.js');
+jest.mock('../../../utility/FetchFeedTypeData.js');
 
 const mockStore = configureMockStore([thunk]);
 
 const initialState = {
-  popularFeed: [],
-  isLoading: false,
+  isLoadingPopularFeed: false,
+  isPopularFeedLoaded: false,
   error: false,
+  popularFeed: [],
 };
 
 describe('popular feed slice', () => {
@@ -38,7 +42,7 @@ describe('popular feed slice', () => {
       expect(result).toEqual(nextState);
     });
 
-    it('should properly set loading and error state when a sign in request is made', () => {
+    it('should properly set loading and error state when a get request is made', () => {
       // Arrange
 
       // Act
@@ -47,21 +51,24 @@ describe('popular feed slice', () => {
       // Assert
       const rootState = { popularFeed: nextState };
       expect(selectPopularFeed(rootState)).toEqual([]);
-      expect(selectIsLoading(rootState)).toEqual(true);
+      expect(selectIsLoadingPopularFeed(rootState)).toEqual(true);
+      expect(selectIsPopularFeedLoaded(rootState)).toEqual(false);
       expect(selectError(rootState)).toEqual(false);
     });
 
     it('should properly set loading, error and popularFeed information when a fetch request succeeds', () => {
       // Arrange
-      const fakeData = FakePopularRecipesFeedData[0].recipes;
+      const fakeData = FakePopularRecipesFeedData.results;
 
       // Act
       const nextState = reducer(initialState, popularFeedSuccess(fakeData));
 
       // Assert
       const rootState = { popularFeed: nextState };
+      expect(selectPopularFeed(rootState)).not.toEqual([]);
       expect(selectPopularFeed(rootState)).toEqual(fakeData);
-      expect(selectIsLoading(rootState)).toEqual(false);
+      expect(selectIsLoadingPopularFeed(rootState)).toEqual(false);
+      expect(selectIsPopularFeedLoaded(rootState)).toEqual(true);
       expect(selectError(rootState)).toEqual(false);
     });
 
@@ -75,40 +82,46 @@ describe('popular feed slice', () => {
       // Assert
       const rootState = { popularFeed: nextState };
       expect(selectPopularFeed(rootState)).toEqual([]);
-      expect(selectIsLoading(rootState)).toEqual(false);
+      expect(selectIsLoadingPopularFeed(rootState)).toEqual(false);
+      expect(selectIsPopularFeedLoaded(rootState)).toEqual(false);
       expect(selectError(rootState)).toEqual(error.message);
     });
   });
 });
 
 describe('thunks', () => {
-  it('creates both startLoading and popularFeedSuccess when fetch popular feed succeeds', () => {
+  it('creates both startLoading and popularFeedSuccess actions when fetch popular feed succeeds', async () => {
     // Arrange
-    const requestPayload = {
-      id: 664473,
-      title: 'Vegan Peanut Butter Chocolate Fudge',
-    };
-
-    const responsePayload = FakePopularRecipesFeedData[0].recipes;
+    const responsePayload = FakePopularRecipesFeedData.results;
     const store = mockStore(initialState);
-
     handleFetchPopularFeed.mockResolvedValueOnce(responsePayload);
-    console.log('api.handleFetchPopularFeed', api.handleFetchPopularFeed);
+
     // Act
-    console.log('store', store);
-    // console.log('store.dispatch', store.dispatch);
-    // mount?
-    store.dispatch(handleFetchPopularFeed);
+    store.dispatch(startLoading());
+    store.dispatch(popularFeedSuccess(responsePayload));
 
     // Assert
-    // NOTE: store.getActions() returns empty [].
-    console.log('store.getActions', store.getActions());
     const expectedActions = [
       startLoading(),
       popularFeedSuccess(responsePayload),
     ];
-    console.log('expectedActions', expectedActions);
-    //TODO: get this working
-    // expect(store.getActions()).toEqual(expectedActions);
+    expect(store.getActions()).toEqual(expectedActions);
   });
+
+  it('creates both startLoading and hasError when fetch popular feed fails', async () => {
+    // Arrange
+    const responseError = new Error('Failed to fetch information');
+    const store = mockStore(initialState);
+    handleFetchPopularFeed.mockRejectedValueOnce(responseError.message);
+
+    // Act
+    store.dispatch(startLoading());
+    store.dispatch(hasError(responseError.message));
+
+    // Assert
+    const expectedActions = [startLoading(), hasError(responseError.message)];
+    expect(store.getActions()).toEqual(expectedActions);
+  });
+
+  // TODO: make one for api call
 });
