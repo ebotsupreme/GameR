@@ -9,6 +9,7 @@ import {
 } from '../../utility/index';
 import { SkeletonCard } from '../../common/components/index';
 import ListDetails from './components/index';
+import { useFetchRelatedFeed } from '../../functions/Feed/index';
 
 /**
  *
@@ -25,6 +26,18 @@ const Details = ({ navigation, route }) => {
    *
    */
   const { searchResult, isSearchResultLoaded } = useFetchSearchResultById(id);
+  /**
+   *
+   */
+  const {
+    isLoadingRelatedFeed,
+    isRelatedFeedLoaded,
+    relatedFeed,
+  } = useFetchRelatedFeed(id);
+
+  // console.log('isLoadingRelatedFeed', isLoadingRelatedFeed);
+  // console.log('isRelatedFeedLoaded: ', isRelatedFeedLoaded);
+  // console.log('relatedFeed: ', isRelatedFeedLoaded ? relatedFeed : 'blank');
 
   // NOTE: this is still in use
   // if (isSearchResultLoaded) {
@@ -111,6 +124,13 @@ const Details = ({ navigation, route }) => {
             width={WIDTH}
             height={HEIGHT}
           />
+        </View>
+        <View>
+          {isRelatedFeedLoaded ? (
+            <Text>{JSON.stringify(relatedFeed)}</Text>
+          ) : (
+            <Text>blank</Text>
+          )}
         </View>
       </ScrollView>
     </View>

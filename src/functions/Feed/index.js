@@ -8,6 +8,7 @@ import useFetchHealthyFeed from './healthyFeed/index';
 import useFetchRandomFeed from './randomFeed/index';
 import useFetchFeaturedFeed from './featuredFeed/index';
 import useRefreshControl from './refreshControl/index';
+import useFetchRelatedFeed from './relatedFeed/index';
 
 export {
   useFetchPopularFeed,
@@ -19,4 +20,5 @@ export {
   useFetchRandomFeed,
   useFetchFeaturedFeed,
   useRefreshControl,
+  useFetchRelatedFeed,
 };
