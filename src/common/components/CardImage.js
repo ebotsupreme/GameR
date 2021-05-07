@@ -13,10 +13,14 @@ import { handleDisplayFeedImageSrc } from '../../utility/index';
 const CardImage = ({ item, width, height, type = '' }) => {
   return (
     <>
-      {item.image ? (
+      {item.image || item.imageType ? (
         <Image
           style={[styles.container, { width, height }]}
-          source={handleDisplayFeedImageSrc(type, item, item.image)}
+          source={handleDisplayFeedImageSrc(
+            type,
+            item,
+            item.image || item.imageType,
+          )}
         />
       ) : (
         <View style={{ width, height }}>

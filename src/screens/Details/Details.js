@@ -6,22 +6,25 @@ import { useFetchSearchResultById } from '../../functions/searchResult/index';
 import {
   handleDisplayFeedImageSrc,
   handleWindowWidth,
+  handleSearchResultFeedPlaceholder,
 } from '../../utility/index';
 import { SkeletonCard } from '../../common/components/index';
 import ListDetails from './components/index';
 import { useFetchRelatedFeed } from '../../functions/Feed/index';
+import { FeedCarousel, FeedCard } from '../../common/components/index';
 
 /**
  *
  * @param {{}} props
  */
 const Details = ({ navigation, route }) => {
-  const { fonts } = useTheme();
+  const { colors, fonts } = useTheme();
   const type = true;
   const item = '';
   const WIDTH = handleWindowWidth();
   const HEIGHT = WIDTH;
   const { id, screen } = route.params;
+
   /**
    *
    */
@@ -50,7 +53,9 @@ const Details = ({ navigation, route }) => {
         <View>
           {isSearchResultLoaded ? (
             <>
-              <Text style={styles.title}>{searchResult.title}</Text>
+              <Text style={[styles.title, { color: colors.accent }]}>
+                {searchResult.title}
+              </Text>
             </>
           ) : (
             <SkeletonCard
@@ -127,10 +132,38 @@ const Details = ({ navigation, route }) => {
         </View>
         <View>
           {isRelatedFeedLoaded ? (
+            <Text style={[styles.feedTitle, { color: colors.accent }]}>
+              Related Recipes
+            </Text>
+          ) : (
+            <SkeletonCard
+              width={WIDTH / 4}
+              height={HEIGHT / 4 / 4}
+              horizontalMargin={15}
+              screen="Feed"
+              justifyContent={'flex-start'}
+            />
+          )}
+          <FeedCarousel
+            data={
+              isRelatedFeedLoaded
+                ? relatedFeed
+                : handleSearchResultFeedPlaceholder()
+            }
+            // eslint-disable-next-line no-shadow
+            renderItemComponent={(item) => (
+              <FeedCard
+                {...{ item, navigation, isLoadingRelatedFeed }}
+                type="related"
+                screen="Search Results"
+              />
+            )}
+          />
+          {/* {isRelatedFeedLoaded ? (
             <Text>{JSON.stringify(relatedFeed)}</Text>
           ) : (
             <Text>blank</Text>
-          )}
+          )} */}
         </View>
       </ScrollView>
     </View>
@@ -159,6 +192,13 @@ const styles = StyleSheet.create({
   },
   paddingHorizontal: {
     paddingHorizontal: 15,
+  },
+  feedTitle: {
+    fontFamily: 'AirbnbCerealApp-Bold',
+    fontSize: 22,
+    paddingHorizontal: 15,
+    marginTop: 10,
+    marginBottom: 12,
   },
 });
 

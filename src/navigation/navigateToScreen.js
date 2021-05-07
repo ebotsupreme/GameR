@@ -20,7 +20,6 @@ const handleNavigateToScreen = (
   if (type === 'search') {
     return navigation.navigate(screen, { title: '', screen });
   }
-
   return navigation.navigate('Details', { id: item.id, screen });
 };
 

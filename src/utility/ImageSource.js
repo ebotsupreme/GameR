@@ -1,3 +1,5 @@
+import Config from 'react-native-config';
+
 /**
  *
  * @param {{}} item
@@ -48,13 +50,25 @@ const onFeedImgSrc = (item) => {
 };
 /**
  *
+ * @param {{}} item
+ */
+const onRelatedImgSrc = (item) => {
+  let recipeImageURL = `${Config.RECIPE_IMAGE_URL}/${item.id}-556x370.${item.imageType}`;
+  return recipeImageURL;
+};
+/**
+ *
  * @param {string} type
  * @param {{}} item
  */
-const handleDisplayFeedImageSrc = (type, item, image) => {
+const handleDisplayFeedImageSrc = (type, item, image = '') => {
   switch (type) {
     case 'multi':
       return onFeedImgSrc(item);
+    case 'related':
+      return {
+        uri: onRelatedImgSrc(item),
+      };
     default:
       return {
         uri: image,
