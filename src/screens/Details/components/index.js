@@ -1,3 +1,4 @@
 import ListDetails from './ListDetails';
+import Preparation from './Preparation';
 
-export default ListDetails;
+export { ListDetails, Preparation };

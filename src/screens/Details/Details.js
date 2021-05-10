@@ -9,7 +9,7 @@ import {
   handleSearchResultFeedPlaceholder,
 } from '../../utility/index';
 import { SkeletonCard } from '../../common/components/index';
-import ListDetails from './components/index';
+import { ListDetails, Preparation } from './components/index';
 import { useFetchRelatedFeed } from '../../functions/Feed/index';
 import { FeedCarousel, FeedCard } from '../../common/components/index';
 
@@ -73,11 +73,17 @@ const Details = ({ navigation, route }) => {
             <View style={styles.subTitle}>
               <Text
                 style={[fonts.light, styles.readyIn, styles.paddingHorizontal]}>
-                Ready in: {searchResult.readyInMinutes} mins
+                Score:{' '}
+                <Text style={styles.scoreAndLikes}>
+                  {searchResult.spoonacularScore}
+                </Text>
               </Text>
               <Text
                 style={[fonts.light, styles.readyIn, styles.paddingHorizontal]}>
-                Likes: {searchResult.aggregateLikes}
+                Likes:{' '}
+                <Text style={styles.scoreAndLikes}>
+                  {searchResult.aggregateLikes}
+                </Text>
               </Text>
             </View>
           ) : (
@@ -144,26 +150,48 @@ const Details = ({ navigation, route }) => {
               justifyContent={'flex-start'}
             />
           )}
-          <FeedCarousel
-            data={
-              isRelatedFeedLoaded
-                ? relatedFeed
-                : handleSearchResultFeedPlaceholder()
-            }
-            // eslint-disable-next-line no-shadow
-            renderItemComponent={(item) => (
-              <FeedCard
-                {...{ item, navigation, isLoadingRelatedFeed }}
-                type="related"
-                screen="Search Results"
-              />
-            )}
-          />
-          {/* {isRelatedFeedLoaded ? (
-            <Text>{JSON.stringify(relatedFeed)}</Text>
+          <View style={{ paddingBottom: 25 }}>
+            <FeedCarousel
+              data={
+                isRelatedFeedLoaded
+                  ? relatedFeed
+                  : handleSearchResultFeedPlaceholder()
+              }
+              // eslint-disable-next-line no-shadow
+              renderItemComponent={(item) => (
+                <FeedCard
+                  {...{ item, navigation, isLoadingRelatedFeed }}
+                  type="related"
+                  screen="Search Results"
+                />
+              )}
+            />
+          </View>
+        </View>
+        {/* Preparation component */}
+        <View>
+          {isSearchResultLoaded ? (
+            <View style={styles.preparationHeaderView}>
+              <Text style={[styles.feedTitle, { color: colors.accent }]}>
+                Preparation
+              </Text>
+            </View>
           ) : (
-            <Text>blank</Text>
-          )} */}
+            <SkeletonCard
+              width={WIDTH / 4}
+              height={HEIGHT / 4 / 4}
+              horizontalMargin={15}
+              screen="Feed"
+              justifyContent={'flex-start'}
+            />
+          )}
+        </View>
+        <View>
+          <Preparation
+            details={isSearchResultLoaded ? searchResult : []}
+            width={WIDTH}
+            height={HEIGHT}
+          />
         </View>
       </ScrollView>
     </View>
@@ -199,6 +227,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     marginTop: 10,
     marginBottom: 12,
+  },
+  scoreAndLikes: {
+    fontFamily: 'AirbnbCerealApp-Black',
+    fontSize: 19,
+    fontWeight: '600',
+  },
+  preparationHeaderView: {
+    backgroundColor: '#f1f1f1',
+    paddingTop: 5,
   },
 });
 

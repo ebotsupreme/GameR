@@ -10,7 +10,10 @@ import { handleFilterNutritionCriteria } from '../../../functions/Details/index'
 /**
  *
  * @param {{}} details
- * @param {screen} detailType
+ * @param {string} ingredients
+ * @param {string} nutrients
+ * @param {number} width
+ * @param {number} height
  */
 const ListDetails = ({
   details = [],
