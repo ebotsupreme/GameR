@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Platform } from 'react-native';
 import { DataTable, useTheme } from 'react-native-paper';
 
 import { SkeletonCard } from '../../../common/components/index';
@@ -19,21 +19,41 @@ const Preparation = ({ details = [], width, height }) => {
   const listSteps = instructionSteps.steps ? instructionSteps.steps : [];
   /**
    *
-   * @param {{}} payloadData
-   * @param {requestCallback} filter
+   * @param {{}} steps
    */
   const onListInfo = (steps) => {
     return steps.map((step, index) => {
       return (
         <DataTable.Row key={index} style={styles.preparationRow}>
-          <DataTable.Cell style={styles.preperationStepNumberCell}>
-            <Text style={styles.preparationStepNumberText}>{step.number}</Text>
-          </DataTable.Cell>
-          <DataTable.Cell style={styles.preperationStepsCell}>
-            <View style={styles.preperationStepsView}>
-              <Text style={[styles.preparationSteps]}>{step.step}</Text>
+          {Platform.OS === 'ios' && (
+            <>
+              <DataTable.Cell style={styles.preperationStepNumberCell}>
+                <Text style={styles.preparationStepNumberText}>
+                  {step.number}
+                </Text>
+              </DataTable.Cell>
+              <DataTable.Cell style={styles.preperationStepsCell}>
+                <View style={styles.preperationStepsView}>
+                  <Text style={styles.preparationSteps}>{step.step}</Text>
+                </View>
+              </DataTable.Cell>
+            </>
+          )}
+          {Platform.OS === 'android' && (
+            <View style={[styles.subTitle, styles.preparationStepsAndroidView]}>
+              <Text
+                style={[styles.preparationStepNumberText, { fontSize: 18 }]}>
+                {step.number}
+              </Text>
+              <Text
+                style={[
+                  styles.preparationSteps,
+                  styles.prparationStepsAndroid,
+                ]}>
+                {step.step}
+              </Text>
             </View>
-          </DataTable.Cell>
+          )}
         </DataTable.Row>
       );
     });
@@ -136,6 +156,14 @@ const styles = StyleSheet.create({
     fontFamily: 'AirbnbCerealApp-Black',
     fontSize: 18,
     fontWeight: '700',
+  },
+  preparationStepsAndroidView: {
+    paddingHorizontal: 5,
+    paddingVertical: 10,
+  },
+  prparationStepsAndroid: {
+    paddingHorizontal: 15,
+    fontSize: 17,
   },
 });
 
