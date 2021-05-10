@@ -24,7 +24,6 @@ const Preparation = ({ details = [], width, height }) => {
    */
   const onListInfo = (steps) => {
     return steps.map((step, index) => {
-      console.log('step', step);
       return (
         <DataTable.Row key={index} style={styles.preparationRow}>
           <DataTable.Cell style={styles.preperationStepNumberCell}>

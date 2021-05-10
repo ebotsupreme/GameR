@@ -38,15 +38,6 @@ const Details = ({ navigation, route }) => {
     relatedFeed,
   } = useFetchRelatedFeed(id);
 
-  // console.log('isLoadingRelatedFeed', isLoadingRelatedFeed);
-  // console.log('isRelatedFeedLoaded: ', isRelatedFeedLoaded);
-  // console.log('relatedFeed: ', isRelatedFeedLoaded ? relatedFeed : 'blank');
-
-  // NOTE: this is still in use
-  // if (isSearchResultLoaded) {
-  //   console.log('searchResult', JSON.stringify(searchResult, null, 4));
-  // }
-
   return (
     <View style={styles.container}>
       <ScrollView>
