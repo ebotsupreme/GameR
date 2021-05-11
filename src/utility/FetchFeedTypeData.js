@@ -23,6 +23,7 @@ import {
   thai,
 } from '../json/cuisine/index';
 import { searchResult } from '../json/searchResult/index';
+import { relatedFeed } from '../json/related/index';
 /**
  *
  * @param {string} feedType
@@ -69,6 +70,8 @@ const handleFetchFeedType = async (feedType = '', feedId = '') => {
       return southern;
     case 'Thai':
       return thai;
+    case 'Related':
+      return relatedFeed;
     case feedId:
       return searchResult;
   }

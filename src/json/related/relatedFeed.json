@@ -1,0 +1,50 @@
+[
+  {
+    "id": 119290,
+    "imageType": "png",
+    "title": "Carrot Snack Cake",
+    "readyInMinutes": 35,
+    "servings": 9,
+    "sourceUrl": "http://www.food.com/recipe/carrot-snack-cake-8847"
+  },
+  {
+    "id": 171720,
+    "imageType": "jpg",
+    "title": "Caramel and Carrot Snack Cake",
+    "readyInMinutes": 200,
+    "servings": 9,
+    "sourceUrl": "http://www.bettycrocker.com/recipes/caramel-and-carrot-snack-cake/0b32d092-3e06-4623-8dcd-7be4776700ac"
+  },
+  {
+    "id": 531247,
+    "imageType": "jpg",
+    "title": "Carrot and Banana Snack Cake",
+    "readyInMinutes": 45,
+    "servings": 8,
+    "sourceUrl": "http://motherrimmy.com/snack-time-carrot-and-banana-snacking-cake/"
+  },
+  {
+    "id": 1105214,
+    "imageType": "jpg",
+    "title": "Gooey Carrot Cake Snack Bars",
+    "readyInMinutes": 35,
+    "servings": 9,
+    "sourceUrl": "https://www.oatmealwithafork.com/low-sugar-carrot-cake-snack-bars/"
+  },
+  {
+    "id": 507087,
+    "imageType": "jpg",
+    "title": "Carrot Cake Bites",
+    "readyInMinutes": 15,
+    "servings": 13,
+    "sourceUrl": "http://thefitchen.com/2013/08/06/raw-carrot-cake-bites/"
+  },
+  {
+    "id": 539706,
+    "imageType": "jpg",
+    "title": "Carrot Cake Bites",
+    "readyInMinutes": 45,
+    "servings": 12,
+    "sourceUrl": "http://simplysugarandglutenfree.com/carrot-cake-bites/"
+  }
+]

@@ -10,7 +10,10 @@ import { handleFilterNutritionCriteria } from '../../../functions/Details/index'
 /**
  *
  * @param {{}} details
- * @param {screen} detailType
+ * @param {string} ingredients
+ * @param {string} nutrients
+ * @param {number} width
+ * @param {number} height
  */
 const ListDetails = ({
   details = [],
@@ -115,7 +118,9 @@ const ListDetails = ({
         <>
           <DataTable.Row>
             <View style={styles.sectionTitle}>
-              <Text style={styles.subTitle}>{ingredients}</Text>
+              <Text style={[styles.subTitle, { color: colors.accent }]}>
+                ingredients
+              </Text>
               <Text style={[styles.serving, fonts.light]}>
                 for{' '}
                 {details.servings > 1
@@ -129,7 +134,9 @@ const ListDetails = ({
             <DataTable.Row style={styles.alginDataInARow}>
               <DataTable.Cell>
                 <View style={styles.nutritionInfoTitle}>
-                  <Text style={styles.subTitle}>Nutrition Info</Text>
+                  <Text style={[styles.subTitle, { color: colors.accent }]}>
+                    Nutrition Info
+                  </Text>
                 </View>
               </DataTable.Cell>
               <DataTable.Cell style={{ justifyContent: 'flex-end' }}>

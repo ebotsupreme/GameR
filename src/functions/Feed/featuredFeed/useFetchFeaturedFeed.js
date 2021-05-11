@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { handleFetchFeaturedFeed } from '../../../features/featuredFeed/index';
 
+/**
+ *
+ */
 const useFetchFeaturedFeed = () => {
   const dispatch = useDispatch();
 

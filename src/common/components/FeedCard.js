@@ -22,6 +22,7 @@ const FeedCard = ({
   isLoadingCuisineFeed,
   isLoadingHealthyFeed,
   isLoadingFeaturedFeed,
+  isLoadingRelatedFeed,
   type = '',
   screen = '',
 }) => {
@@ -43,6 +44,7 @@ const FeedCard = ({
     isLoadingCuisineFeed ||
     isLoadingHealthyFeed ||
     isLoadingFeaturedFeed ||
+    isLoadingRelatedFeed ||
     item === undefined
   ) {
     return (

@@ -2,8 +2,7 @@ import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
-import FeedCarousel from '../common/components/FeedCarousel';
-import { FeedCard } from '../common/components/index';
+import { FeedCarousel, FeedCard } from '../common/components/index';
 import {
   useFetchPopularFeed,
   useFetchMealFeed,

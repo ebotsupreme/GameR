@@ -6,30 +6,37 @@ import { useFetchSearchResultById } from '../../functions/searchResult/index';
 import {
   handleDisplayFeedImageSrc,
   handleWindowWidth,
+  handleSearchResultFeedPlaceholder,
 } from '../../utility/index';
 import { SkeletonCard } from '../../common/components/index';
-import ListDetails from './components/index';
+import { ListDetails, Preparation } from './components/index';
+import { useFetchRelatedFeed } from '../../functions/Feed/index';
+import { FeedCarousel, FeedCard } from '../../common/components/index';
 
 /**
  *
  * @param {{}} props
  */
 const Details = ({ navigation, route }) => {
-  const { fonts } = useTheme();
+  const { colors, fonts } = useTheme();
   const type = true;
   const item = '';
   const WIDTH = handleWindowWidth();
   const HEIGHT = WIDTH;
   const { id, screen } = route.params;
+
   /**
    *
    */
   const { searchResult, isSearchResultLoaded } = useFetchSearchResultById(id);
-
-  // NOTE: this is still in use
-  // if (isSearchResultLoaded) {
-  //   console.log('searchResult', JSON.stringify(searchResult, null, 4));
-  // }
+  /**
+   *
+   */
+  const {
+    isLoadingRelatedFeed,
+    isRelatedFeedLoaded,
+    relatedFeed,
+  } = useFetchRelatedFeed(id);
 
   return (
     <View style={styles.container}>
@@ -37,7 +44,9 @@ const Details = ({ navigation, route }) => {
         <View>
           {isSearchResultLoaded ? (
             <>
-              <Text style={styles.title}>{searchResult.title}</Text>
+              <Text style={[styles.title, { color: colors.accent }]}>
+                {searchResult.title}
+              </Text>
             </>
           ) : (
             <SkeletonCard
@@ -55,11 +64,17 @@ const Details = ({ navigation, route }) => {
             <View style={styles.subTitle}>
               <Text
                 style={[fonts.light, styles.readyIn, styles.paddingHorizontal]}>
-                Ready in: {searchResult.readyInMinutes} mins
+                Score:{' '}
+                <Text style={styles.scoreAndLikes}>
+                  {searchResult.spoonacularScore}
+                </Text>
               </Text>
               <Text
                 style={[fonts.light, styles.readyIn, styles.paddingHorizontal]}>
-                Likes: {searchResult.aggregateLikes}
+                Likes:{' '}
+                <Text style={styles.scoreAndLikes}>
+                  {searchResult.aggregateLikes}
+                </Text>
               </Text>
             </View>
           ) : (
@@ -112,6 +127,63 @@ const Details = ({ navigation, route }) => {
             height={HEIGHT}
           />
         </View>
+        <View>
+          {isRelatedFeedLoaded ? (
+            <Text style={[styles.feedTitle, { color: colors.accent }]}>
+              Related Recipes
+            </Text>
+          ) : (
+            <SkeletonCard
+              width={WIDTH / 4}
+              height={HEIGHT / 4 / 4}
+              horizontalMargin={15}
+              screen="Feed"
+              justifyContent={'flex-start'}
+            />
+          )}
+          <View style={{ paddingBottom: 25 }}>
+            <FeedCarousel
+              data={
+                isRelatedFeedLoaded
+                  ? relatedFeed
+                  : handleSearchResultFeedPlaceholder()
+              }
+              // eslint-disable-next-line no-shadow
+              renderItemComponent={(item) => (
+                <FeedCard
+                  {...{ item, navigation, isLoadingRelatedFeed }}
+                  type="related"
+                  screen="Search Results"
+                />
+              )}
+            />
+          </View>
+        </View>
+        {/* Preparation component */}
+        <View>
+          {isSearchResultLoaded ? (
+            <View style={styles.preparationHeaderView}>
+              <Text style={[styles.feedTitle, { color: colors.accent }]}>
+                Preparation
+              </Text>
+            </View>
+          ) : (
+            <SkeletonCard
+              width={WIDTH / 4}
+              height={HEIGHT / 4 / 4}
+              horizontalMargin={15}
+              screen="Feed"
+              justifyContent={'flex-start'}
+            />
+          )}
+        </View>
+        <View>
+          <Preparation
+            details={isSearchResultLoaded ? searchResult : []}
+            width={WIDTH}
+            height={HEIGHT}
+          />
+        </View>
       </ScrollView>
     </View>
   );
@@ -139,6 +211,22 @@ const styles = StyleSheet.create({
   },
   paddingHorizontal: {
     paddingHorizontal: 15,
+  },
+  feedTitle: {
+    fontFamily: 'AirbnbCerealApp-Bold',
+    fontSize: 22,
+    paddingHorizontal: 15,
+    marginTop: 10,
+    marginBottom: 12,
+  },
+  scoreAndLikes: {
+    fontFamily: 'AirbnbCerealApp-Black',
+    fontSize: 19,
+    fontWeight: '600',
+  },
+  preparationHeaderView: {
+    backgroundColor: '#f1f1f1',
+    paddingTop: 5,
   },
 });
 
