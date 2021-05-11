@@ -61,7 +61,7 @@ const Preparation = ({ details = [], width, height }) => {
 
   return (
     <View>
-      {details ? (
+      {details.analyzedInstructions ? (
         <>
           <View style={[styles.subTitle, styles.preparationBackground]}>
             <Text
@@ -82,26 +82,71 @@ const Preparation = ({ details = [], width, height }) => {
           </View>
         </>
       ) : (
-        <View style={styles.subTitle}>
-          <SkeletonCard
-            width={width / 3 + 6}
-            height={height / 12}
-            screen="Details"
-            horizontalMargin={15}
-            marginTop={15}
-            marginBottom={15}
-          />
-          <SkeletonCard
-            width={width / 5 + 8}
-            height={height / 12}
-            screen="Details"
-            d
-            horizontalMargin={15}
-            marginTop={15}
-            marginBottom={15}
-          />
-        </View>
-        // TODO: Skeleton placerholder for Preparation
+        <>
+          <View style={styles.subTitle}>
+            <SkeletonCard
+              width={width / 3 + 6}
+              height={height / 12}
+              screen="Details"
+              horizontalMargin={15}
+              marginTop={15}
+              marginBottom={15}
+            />
+            <SkeletonCard
+              width={width / 5 + 8}
+              height={height / 12}
+              screen="Details"
+              horizontalMargin={15}
+              marginTop={15}
+              marginBottom={15}
+            />
+          </View>
+          {/* NOTE: techinical debt: refactor - use onSkeletonListInfo() */}
+          <DataTable.Row style={styles.preparationRow}>
+            <DataTable.Cell style={styles.preperationStepNumberCell}>
+              <SkeletonCard
+                width={width / 14}
+                height={height / 12}
+                screen="Details"
+                horizontalMargin={20}
+                marginTop={15}
+                marginBottom={15}
+              />
+            </DataTable.Cell>
+            <DataTable.Cell style={{ flex: 8 }}>
+              <SkeletonCard
+                width={width / 2 + 50}
+                height={height / 6}
+                screen="Details"
+                horizontalMargin={20}
+                marginTop={20}
+                marginBottom={15}
+              />
+            </DataTable.Cell>
+          </DataTable.Row>
+          <DataTable.Row style={styles.preparationRow}>
+            <DataTable.Cell style={styles.preperationStepNumberCell}>
+              <SkeletonCard
+                width={width / 14}
+                height={height / 12}
+                screen="Details"
+                horizontalMargin={20}
+                marginTop={15}
+                marginBottom={15}
+              />
+            </DataTable.Cell>
+            <DataTable.Cell style={{ flex: 8 }}>
+              <SkeletonCard
+                width={width / 2 + 50}
+                height={height / 6}
+                screen="Details"
+                horizontalMargin={20}
+                marginTop={20}
+                marginBottom={15}
+              />
+            </DataTable.Cell>
+          </DataTable.Row>
+        </>
       )}
     </View>
   );
